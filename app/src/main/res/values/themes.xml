@@ -1,0 +1,62 @@
+<resources>
+    <style name="Theme.OpenOven" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/oven_accent</item>
+        <item name="colorOnPrimary">@color/oven_on_accent</item>
+        <item name="colorPrimaryContainer">@color/oven_accent_soft</item>
+        <item name="colorOnPrimaryContainer">@color/oven_accent</item>
+        <item name="colorSecondary">@color/oven_accent</item>
+        <item name="colorSecondaryContainer">@color/oven_accent_soft</item>
+        <item name="colorOnSecondaryContainer">@color/oven_accent</item>
+        <item name="colorSurface">@color/oven_surface</item>
+        <item name="colorOnSurface">@color/oven_text</item>
+        <item name="colorSurfaceContainerHigh">@color/oven_surface</item>
+        <item name="colorSurfaceVariant">@color/oven_neutral</item>
+        <item name="colorOnSurfaceVariant">@color/oven_muted</item>
+        <item name="colorOutline">@color/oven_input_border</item>
+        <item name="colorError">@color/oven_danger</item>
+        <item name="android:windowBackground">@color/oven_background</item>
+        <item name="android:colorBackground">@color/oven_background</item>
+        <item name="android:statusBarColor">@color/oven_background</item>
+        <item name="android:navigationBarColor">@color/oven_surface</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.OpenOven.Dialog</item>
+    </style>
+    <style name="TextAppearance.OpenOven.Navigation" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="TextAppearance.OpenOven.Toolbar" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:letterSpacing">0.13</item>
+    </style>
+    <style name="ThemeOverlay.OpenOven.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.OpenOven.DialogButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.OpenOven.DialogButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.OpenOven.DialogButton</item>
+    </style>
+    <style name="Widget.OpenOven.DialogButton" parent="Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    <style name="Widget.OpenOven.NavigationIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/oven_accent_soft</item>
+    </style>
+    <style name="Widget.OpenOven.ConnectionStatus" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="cornerRadius">14dp</item>
+        <item name="android:insetTop">6dp</item>
+        <item name="android:insetBottom">6dp</item>
+        <item name="icon">@drawable/ic_status_dot</item>
+        <item name="iconSize">10dp</item>
+        <item name="iconGravity">start</item>
+    </style>
+</resources>

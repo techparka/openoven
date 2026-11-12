@@ -1,0 +1,25 @@
+<resources>
+    <color name="oven_accent">#A9E5F6</color>
+    <color name="oven_on_accent">#12313D</color>
+    <color name="oven_background">#14202A</color>
+    <color name="oven_surface">#1C2935</color>
+    <color name="oven_text">#F3F8FC</color>
+    <color name="oven_muted">#B6C8D7</color>
+    <color name="oven_border">#405361</color>
+    <color name="oven_input_border">#829AA9</color>
+    <color name="oven_accent_soft">#294353</color>
+    <color name="oven_success">#A9E4C8</color>
+    <color name="oven_danger">#FFDAD9</color>
+    <color name="oven_demo">#4B3C20</color>
+    <color name="oven_on_demo">#FFE5AC</color>
+    <color name="oven_neutral">#21303C</color>
+    <color name="oven_success_soft">#274638</color>
+    <color name="oven_danger_soft">#50303A</color>
+    <color name="oven_disabled_text">#92A7B5</color>
+    <color name="oven_disabled_fill">#263440</color>
+    <color name="oven_panel">#0E1A24</color>
+    <color name="oven_panel_text">#F3F8FC</color>
+    <color name="oven_panel_muted">#B6C8D7</color>
+    <color name="oven_panel_heat">#A9E5F6</color>
+    <color name="oven_panel_track">#405361</color>
+</resources>

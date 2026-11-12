@@ -1,0 +1,28 @@
+<resources>
+    <color name="launcher_background">#14202A</color>
+    <color name="oven_accent">#18576E</color>
+    <color name="oven_on_accent">#FFFFFF</color>
+    <color name="oven_background">#F1F5F7</color>
+    <color name="oven_surface">#FFFFFF</color>
+    <color name="oven_text">#172B39</color>
+    <color name="oven_muted">#4B6272</color>
+    <color name="oven_border">#CCD9E1</color>
+    <color name="oven_input_border">#6B8392</color>
+    <color name="oven_accent_soft">#D9EEF6</color>
+    <color name="oven_success">#216747</color>
+    <color name="oven_danger">#9E3141</color>
+    <color name="oven_demo">#F6E9C3</color>
+    <color name="oven_on_demo">#594317</color>
+    <color name="oven_neutral">#E5EDF2</color>
+    <color name="oven_success_soft">#DEEFE6</color>
+    <color name="oven_danger_soft">#FAE1E5</color>
+    <color name="oven_disabled_text">#627581</color>
+    <color name="oven_disabled_fill">#E4EBEF</color>
+    <color name="oven_panel">#FFFFFF</color>
+    <color name="oven_panel_text">#F3F8FC</color>
+    <color name="oven_panel_muted">#B6C8D7</color>
+    <color name="oven_panel_heat">#A9E5F6</color>
+    <color name="oven_panel_track">#405361</color>
+    <color name="oven_red">@color/oven_accent</color>
+    <color name="oven_plum">@color/oven_accent</color>
+</resources>

@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home" android:title="Piekarnik" android:icon="@drawable/ic_nav_oven" />
+    <item android:id="@+id/nav_programs" android:title="Programy" android:icon="@drawable/ic_nav_programs" />
+    <item android:id="@+id/nav_recipes" android:title="Przepisy" android:icon="@drawable/ic_nav_recipes" />
+    <item android:id="@+id/nav_more" android:title="Więcej" android:icon="@drawable/ic_nav_more" />
+</menu>

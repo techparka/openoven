@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/oven_background">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="52dp"
+        android:background="@color/oven_background"
+        app:contentInsetStart="20dp"
+        app:navigationIconTint="@color/oven_text"
+        app:titleTextAppearance="@style/TextAppearance.OpenOven.Toolbar"
+        app:titleTextColor="@color/oven_text">
+        <LinearLayout android:id="@+id/homeHeader" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal"
+            android:gravity="center_vertical" android:visibility="gone">
+            <ImageView android:layout_width="32dp" android:layout_height="32dp"
+                android:src="@drawable/openoven_logo"
+                android:importantForAccessibility="no" />
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:layout_marginStart="9dp" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="OPENOVEN" android:textSize="10sp" android:textStyle="bold"
+                    android:letterSpacing="0.13" android:textColor="@color/oven_muted" />
+                <TextView android:id="@+id/homeOvenName" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:textSize="16sp" android:textStyle="bold"
+                    android:textColor="@color/oven_text" />
+            </LinearLayout>
+            <com.google.android.material.button.MaterialButton android:id="@+id/homeConnection"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:minWidth="0dp" android:minHeight="48dp" android:paddingStart="5dp" android:paddingEnd="0dp"
+                android:textSize="11sp" android:textAllCaps="false" android:letterSpacing="0"
+                app:icon="@drawable/ic_status_dot" app:iconSize="6dp" app:iconPadding="5dp" />
+        </LinearLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <TextView
+        android:id="@+id/demoBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/oven_demo"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:text="@string/demo_banner"
+        android:textColor="@color/oven_on_demo"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/connectionStatus"
+        style="@style/Widget.OpenOven.ConnectionStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/connect_oven" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/oven_border"
+        android:importantForAccessibility="no" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/oven_surface"
+        app:elevation="0dp"
+        app:itemActiveIndicatorStyle="@style/Widget.OpenOven.NavigationIndicator"
+        app:itemIconSize="20dp"
+        app:itemTextAppearanceActive="@style/TextAppearance.OpenOven.Navigation"
+        app:itemTextAppearanceInactive="@style/TextAppearance.OpenOven.Navigation"
+        app:itemIconTint="@color/navigation_item"
+        app:itemTextColor="@color/navigation_item"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/main_navigation" />
+</LinearLayout>

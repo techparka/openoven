@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OpenOven</string>
+    <string name="brand_name">Open Oven</string>
+    <string name="menu_description">Otwórz menu</string>
+    <string name="demo_banner">Demonstracja · dane z symulatora</string>
+    <string name="connect_oven">Podłącz piekarnik</string>
+    <string name="navigate_back">Wróć</string>
+</resources>
