@@ -1508,12 +1508,22 @@ dialog#lightbox[open] { animation: lb-in 320ms var(--ease-out); }
   justify-items: center;
 }
 .gallery-grid .gal__item {
-  width: min(100%, 256px);
+  width: min(100%, 228px);
   grid-template-rows: auto 1fr;
   gap: 12px;
 }
-.gallery-grid .device { --dw: 100%; width: 100%; padding: 5px; border-radius: 22px; }
-.gallery-grid .device__screen { border-radius: 17px; }
+.gallery-grid .device {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #667786;
+  border-radius: clamp(16px, 2.6vw, 28px);
+  background: linear-gradient(142deg, #667786, #1b2935 33%, #17242e 72%, #637584);
+  box-shadow: 0 18px 32px -18px #04090eaa;
+}
+.gallery-grid .device__screen {
+  aspect-ratio: 9 / 20;
+  border-radius: clamp(11px, calc(2.6vw - 5px), 23px);
+}
 .gallery-grid .gal__cap { margin: 0; text-align: center; }
 .msheet { overflow-y: auto; }
 @media (max-width: 700px) {
