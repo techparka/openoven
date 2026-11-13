@@ -1,4 +1,4 @@
-/* OpenOven — strona prezentująca. Bez zależności, bez zewnętrznych żądań. */
+/* Strona OpenOven. Bez zależności, bez zewnętrznych żądań. */
 (() => {
   'use strict';
 
@@ -16,6 +16,7 @@
     openMenu: 'Otwórz menu', closeMenu: 'Zamknij menu', yes: 'tak', no: 'nie',
     duration: (value) => `${value} min`,
     temperature: (value) => `${value} stopni Celsjusza`,
+    noTemperature: 'Bez temperatury', temperatureNotApplicable: 'Brak',
     defrost: 'Rozmrażanie pomija nastawy temperatury i sondy.',
     range: (max) => `Zakres tej funkcji: 30–${max} °C.`,
     stage: (n) => `Etap ${n}`, stageCount: (n) => `${n} z 3 etapów`,
@@ -29,6 +30,7 @@
     openMenu: 'Open menu', closeMenu: 'Close menu', yes: 'Yes', no: 'No',
     duration: (value) => `${value} min`,
     temperature: (value) => `${value} degrees Celsius`,
+    noTemperature: 'No temperature', temperatureNotApplicable: 'N/A',
     defrost: 'Defrost skips temperature and probe settings.',
     range: (max) => `Temperature range for this mode: 30–${max} °C.`,
     stage: (n) => `Stage ${n}`, stageCount: (n) => `${n} of 3 stages`,
@@ -291,7 +293,7 @@
       const sum = state.stages.reduce((a, s) => a + s.minutes, 0);
       $('#fnCaption').textContent = f.name;
       $('#sumFn').textContent = f.name;
-      const tempLabel = f.noTemp ? 'bez temperatury' : `${state.temp} °C`;
+      const tempLabel = f.noTemp ? copy.noTemperature : `${state.temp} °C`;
       $('#sumTemp').textContent = tempLabel;
       $('#sumTime').textContent = fmtTime(state.minutes);
       $('#sumRapid').textContent = state.rapid ? copy.yes : copy.no;
@@ -313,7 +315,7 @@
       $$('#stageList .stagecard').forEach((card, i) => {
         const s = state.stages[i];
         if (!s) return;
-        $('.t', card).textContent = f.noTemp ? '—' : `${s.temp} °C`;
+        $('.t', card).textContent = f.noTemp ? copy.temperatureNotApplicable : `${s.temp} °C`;
         $('.m', card).textContent = fmtTime(s.minutes);
       });
       $$('#stageList [data-act^="t"]').forEach((b) => {
