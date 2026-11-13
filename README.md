@@ -2,67 +2,64 @@
 
 <h1 align="center">OpenOven</h1>
 
-<p align="center">Niezależna aplikacja na Androida do lokalnego sterowania kompatybilnymi piekarnikami Amica. Alternatywa dla aplikacji producenta, z własnymi przepisami, edytowalnymi nastawami i szybkim dostępem do funkcji pieczenia.</p>
+<p align="center">An independent Android app for controlling compatible Amica ovens over your home Wi-Fi.</p>
 
-<p align="center"><a href="https://github.com/techparka/openoven/releases/latest"><strong>Pobierz APK</strong></a> · <a href="#pierwsze-połączenie">Pierwsze połączenie</a> · <a href="#zakres-testów">Zakres testów</a> — <a href="https://techparka.github.io/openoven/">Prezentacja</a></p>
+<p align="center"><a href="https://techparka.github.io/openoven/">Project website</a> · <a href="https://github.com/techparka/openoven/releases/latest"><strong>Download APK</strong></a> · <a href="README.pl.md">Polski</a></p>
 
 <p align="center">
-  <img src="docs/screenshots/dashboard.png" width="29%" alt="Pulpit z odczytem i szybkimi akcjami">
-  <img src="docs/screenshots/baking.png" width="29%" alt="Pieczenie w toku z czasem i przyciskiem zakończenia">
-  <img src="docs/screenshots/settings-wheel.png" width="29%" alt="Karuzele temperatury i czasu">
+  <img src="docs/screenshots/dashboard.png" width="29%" alt="Dashboard with oven status and quick controls">
+  <img src="docs/screenshots/baking.png" width="29%" alt="Cooking in progress with remaining time and a stop button">
+  <img src="docs/screenshots/settings-wheel.png" width="29%" alt="Temperature and time pickers">
 </p>
 
-*Zrzuty wykonano w demonstracji na emulatorze. Widoczne odczyty pochodzą z symulatora.*
+*Screenshots show the Polish interface in demo mode. The emulator uses simulated oven readings.*
 
-## Co możesz zrobić
+## Features
 
-- **Pieczenie pod kontrolą.** Odczyt temperatury komory i pozostałego czasu, szybkie akcje dla światła i nagrzewu oraz widoczny przycisk zakończenia.
-- **Zmiany w trakcie.** Dodaj minuty lub zmień temperaturę bez uruchamiania programu od początku, gdy bieżący stan piekarnika na to pozwala.
-- **Nastawy bez żmudnego klikania.** Karuzele temperatury i czasu przyspieszają przy szybkim przesunięciu. Możesz ustawić do trzech etapów i wrócić do ostatnich nastaw.
-- **Własne przepisy.** Zapisuj etapy, składniki, opis i zdjęcie. Przenoś bibliotekę w ZIP OpenOven albo zacznij od edytowalnego szablonu.
-- **Połączenie lokalne.** Korzystaj w domowym Wi‑Fi bez konta. Profil można przenieść przez QR na drugi telefon domownika. Używaj jednej aktywnej sesji naraz.
-- **Demonstracja.** Obejrzyj interfejs bez piekarnika w „Więcej → Połączenie z piekarnikiem → Wypróbuj demonstrację”.
+- Check the oven temperature and remaining time. Toggle the light and rapid preheat from the dashboard.
+- Add time or adjust the temperature while cooking when the oven supports the change.
+- Set temperature and time with swipe controls, configure up to three stages, or reuse recent settings.
+- Save recipes with ingredients, instructions, and a photo. Import or export them as ZIP files, or start with one of four editable presets.
+- Connect over home Wi-Fi without an account. Share the oven profile with a household member using a QR code. Use one active control session at a time.
+- Try demo mode without an oven. In the app, go to <span lang="pl">Więcej → Połączenie z piekarnikiem → Wypróbuj demonstrację</span>.
 
-APK jest wydaniem testowym. Zawiera cztery szablony nastaw OpenOven oraz zapis i przenoszenie własnych przepisów.
+## First connection
 
-## Pierwsze połączenie
+These steps apply when the oven is already connected to your home Wi-Fi.
 
-Poniższa ścieżka dotyczy piekarnika, który jest już w domowym Wi‑Fi.
+1. Connect your phone to the same network and close any other oven control apps.
+2. In OpenOven, open <span lang="pl">Więcej → Połączenie z piekarnikiem → Dodaj piekarnik → Piekarnik już jest w domowym Wi-Fi</span>.
+3. On the oven panel, set <b lang="pl">ŁĄCZENIE</b> (pairing) to **ON** and press **OK**. The tested panel shows a countdown starting at 05. [Amica control panel guide (PDF, Polish)](https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf)
+4. In OpenOven, tap <b lang="pl">Otworzyłem WI — połącz</b>. When <span lang="pl">Gotowe</span> (Ready) appears, check the oven status on the dashboard.
 
-1. Podłącz telefon do tej samej sieci i zamknij inne aplikacje sterujące piekarnikiem.
-2. Otwórz „Więcej → Połączenie z piekarnikiem → Dodaj piekarnik → Piekarnik już jest w domowym Wi‑Fi”.
-3. Na panelu piekarnika włącz **ŁĄCZENIE → ON** i zatwierdź **OK**. Na testowanym panelu licznik 05 oznacza otwarte okno parowania. Nazwa tej opcji zależy od panelu. [Instrukcja Amica](https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf)
-4. W OpenOven wybierz „Otworzyłem WI — połącz”. Po komunikacie „Gotowe” sprawdź aktualny odczyt na Pulpicie.
+Keep the oven's existing network settings. Share the profile QR code only with people you want to give access to local oven control.
 
-Zachowaj bieżącą konfigurację sieci piekarnika. Profil QR udostępniaj tylko osobom, którym chcesz dać dostęp do lokalnego sterowania.
+## Testing
 
-## Zakres testów
-
-| Środowisko | Co sprawdzono |
+| Environment | What was tested |
 | --- | --- |
-| POCO F2 Pro i jeden fizyczny piekarnik Amica, identyfikator modelu 9137 | W wersji 0.5.1 sprawdzono aktualny odczyt, dodanie w istniejącym Wi‑Fi po wyczyszczeniu danych, ponowne połączenie po zamknięciu okna oraz dodanie po pełnej reinstalacji. Świeża instalacja uzyskała odczyt po włączeniu okna parowania. |
-| Android 14 i 16, emulatory | Po 34 testy wersji 0.6.0 na każdym emulatorze. Nawigacja, karuzele, zachowanie szkicu, przepisy ZIP, uprawnienia i scenariusze sterowania z symulatorem. |
-| JVM, 56 testów | Kod połączenia, model odczytu, etapy, zmiany czasu i temperatury oraz obsługa utraty sesji. |
+| Amica ED87489BA+ Q-TYPE Steam | Version 0.5.1 was used to check live status, add the oven on an existing Wi-Fi network after clearing app data, reconnect after the pairing window closed, and pair again after a full reinstall. The fresh installation received a status reading after pairing was enabled on the oven. |
+| Android 14 and 16 emulators | Version 0.6.0 passed 34 tests on each emulator, covering navigation, settings pickers, draft state, recipe ZIP files, permissions, and simulated oven control. |
+| JVM | 56 unit tests cover connection logic, oven readings, cooking stages, setting changes, and session loss. |
 
-Kompatybilność sprzętowa jest potwierdzona dla opisanego zestawu. Inne telefony, panele i wersje oprogramowania piekarnika mogą zachowywać się inaczej. Kreator pierwszej konfiguracji sieci ma testy z symulatorem. Próba z fizycznym urządzeniem dotyczyła istniejącej sieci domowej.
+Other oven models still need testing. Initial Wi-Fi setup was tested with the simulator. The physical oven tests used an existing home network.
 
-## Budowanie
+## Build
 
-Wymagane są JDK 17 oraz Android SDK 34. Aplikacja wymaga Androida 6 lub nowszego.
+The build requires JDK 17 and Android SDK 34. The app runs on Android 6.0 or later.
 
 ```sh
 ./gradlew :core:test :app:assembleDebug
 ```
 
-W systemie Windows użyj `gradlew.bat`. APK pojawi się w `app/build/outputs/apk/debug/`.
+On Windows, use `gradlew.bat`. The APK appears in `app/build/outputs/apk/debug/`.
 
-## Strona prezentacyjna
+## Website
 
-[Strona OpenOven](https://techparka.github.io/openoven/) zawiera zrzuty aplikacji, demo nastaw i instrukcję połączenia.
-Pliki strony są w katalogu `docs/`. Podgląd lokalny:
+The [OpenOven website](https://techparka.github.io/openoven/) includes screenshots, an interactive settings demo, and pairing instructions. The source is in `docs/`. To preview it locally, run:
 
 ```sh
 python -m http.server -d docs 8000
 ```
 
-OpenOven to niezależny projekt. Nazwa Amica wskazuje urządzenia, do których aplikacja jest przeznaczona.
+OpenOven is an independent project. The Amica name identifies the appliances the app is designed to control.

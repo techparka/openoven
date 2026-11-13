@@ -11,6 +11,34 @@
   /* ============================================================ 1. Motyw */
   const KEY = 'openoven.theme';
   const html = document.documentElement;
+  const isPolish = html.lang === 'pl';
+  const copy = isPolish ? {
+    openMenu: 'Otwórz menu', closeMenu: 'Zamknij menu', yes: 'tak', no: 'nie',
+    duration: (value) => `${value} min`,
+    temperature: (value) => `${value} stopni Celsjusza`,
+    defrost: 'Rozmrażanie pomija nastawy temperatury i sondy.',
+    range: (max) => `Zakres tej funkcji: 30–${max} °C.`,
+    stage: (n) => `Etap ${n}`, stageCount: (n) => `${n} z 3 etapów`,
+    cooler: (n) => `Temperatura niższa w etapie ${n}`,
+    warmer: (n) => `Temperatura wyższa w etapie ${n}`,
+    shorter: (n) => `Minuta mniej w etapie ${n}`,
+    longer: (n) => `Minuta więcej w etapie ${n}`,
+    removeStage: (n) => `Usuń etap ${n}`, addedStage: (n) => `Dodano etap ${n}`,
+    total: (n, time) => `${n} ${n === 1 ? 'etap' : 'etapy'} · łącznie ${time}`,
+  } : {
+    openMenu: 'Open menu', closeMenu: 'Close menu', yes: 'Yes', no: 'No',
+    duration: (value) => `${value} min`,
+    temperature: (value) => `${value} degrees Celsius`,
+    defrost: 'Defrost skips temperature and probe settings.',
+    range: (max) => `Temperature range for this mode: 30–${max} °C.`,
+    stage: (n) => `Stage ${n}`, stageCount: (n) => `${n} of 3 stages`,
+    cooler: (n) => `Lower temperature in stage ${n}`,
+    warmer: (n) => `Raise temperature in stage ${n}`,
+    shorter: (n) => `Subtract one minute from stage ${n}`,
+    longer: (n) => `Add one minute to stage ${n}`,
+    removeStage: (n) => `Remove stage ${n}`, addedStage: (n) => `Added stage ${n}`,
+    total: (n, time) => `${n} ${n === 1 ? 'stage' : 'stages'} · ${time} total`,
+  };
   const mqDark = matchMedia('(prefers-color-scheme: dark)');
   let choice = 'system';
   try {
@@ -56,7 +84,7 @@
     msheet.hidden = !open;
     msheet.classList.toggle('is-open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
-    menuBtn.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+    menuBtn.setAttribute('aria-label', open ? copy.closeMenu : copy.openMenu);
     menuBtn.firstElementChild.innerHTML = `<use href="#${open ? 'i-close' : 'i-menu'}"/>`;
     document.body.style.overflow = open ? 'hidden' : '';
     if (open) msheet.querySelector('a')?.focus();
@@ -118,18 +146,18 @@
   });
 
   const FUNCTIONS = [
-    { id: 1, name: 'Konwencjonalne', max: 280 },
-    { id: 2, name: 'Grzałka dolna + górna + wentylator', max: 280 },
-    { id: 3, name: 'Grill', max: 280 },
-    { id: 4, name: 'Turbo grill', max: 280 },
-    { id: 5, name: 'Super grill', max: 280 },
-    { id: 6, name: 'Termoobieg', max: 280 },
-    { id: 7, name: 'Termoobieg + dolna grzałka', max: 280 },
-    { id: 8, name: 'Zarumienienie', max: 230 },
-    { id: 9, name: 'Przypiekanie', max: 240 },
-    { id: 10, name: 'Rozmrażanie', max: 0, noTemp: true },
-    { id: 11, name: 'Grill + rożen', max: 280 },
-    { id: 12, name: 'Super grill + rożen', max: 280 },
+    { id: 1, name: isPolish ? 'Konwencjonalne' : 'Conventional', max: 280 },
+    { id: 2, name: isPolish ? 'Grzałka dolna + górna + wentylator' : 'Top and bottom heat with fan', max: 280 },
+    { id: 3, name: isPolish ? 'Grill' : 'Grill', max: 280 },
+    { id: 4, name: isPolish ? 'Turbo grill' : 'Turbo grill', max: 280 },
+    { id: 5, name: isPolish ? 'Super grill' : 'Super grill', max: 280 },
+    { id: 6, name: isPolish ? 'Termoobieg' : 'Fan cooking', max: 280 },
+    { id: 7, name: isPolish ? 'Termoobieg + dolna grzałka' : 'Fan cooking with bottom heat', max: 280 },
+    { id: 8, name: isPolish ? 'Zarumienienie' : 'Browning', max: 230 },
+    { id: 9, name: isPolish ? 'Przypiekanie' : 'Crisping', max: 240 },
+    { id: 10, name: isPolish ? 'Rozmrażanie' : 'Defrost', max: 0, noTemp: true },
+    { id: 11, name: isPolish ? 'Grill + rożen' : 'Grill with rotisserie', max: 280 },
+    { id: 12, name: isPolish ? 'Super grill + rożen' : 'Super grill with rotisserie', max: 280 },
   ];
   /* ================================================ 7. Playground nastaw */
   const fnList = $('#fnList');
@@ -196,7 +224,7 @@
         this.value = vals[this.index];
         this.out.textContent = this.isTime ? fmtTime(this.value) : this.value;
         this.el.setAttribute('aria-valuenow', this.value);
-        this.el.setAttribute('aria-valuetext', this.isTime ? `${this.value} minut` : `${this.value} stopni Celsjusza`);
+        this.el.setAttribute('aria-valuetext', this.isTime ? copy.duration(this.value) : copy.temperature(this.value));
         this.onChange(this.value);
       }
       move(delta) {
@@ -266,14 +294,13 @@
       const tempLabel = f.noTemp ? 'bez temperatury' : `${state.temp} °C`;
       $('#sumTemp').textContent = tempLabel;
       $('#sumTime').textContent = fmtTime(state.minutes);
-      $('#sumRapid').textContent = state.rapid ? 'tak' : 'nie';
-      $('#sumLight').textContent = state.light ? 'tak' : 'nie';
+      $('#sumRapid').textContent = state.rapid ? copy.yes : copy.no;
+      $('#sumLight').textContent = state.light ? copy.yes : copy.no;
       $('#sumTotal').textContent = fmtTime(sum);
       $('#sumCount').textContent = String(state.stages.length);
       const hint = $('#fnHint');
       hint.textContent = f.noTemp
-        ? 'Rozmrażanie pomija nastawy temperatury i sondy — piekarnik nie przyjmuje tu stopni.'
-        : `Zakres tej funkcji: 30–${f.max} °C. Wartości poza progiem nie da się wystartować.`;
+        ? copy.defrost : copy.range(f.max);
       const temperatureControl = $('#wheelTemp');
       temperatureControl.classList.toggle('wheel--off', !!f.noTemp);
       temperatureControl.setAttribute('aria-disabled', String(!!f.noTemp));
@@ -293,7 +320,7 @@
         b.disabled = !!f.noTemp;
         b.style.opacity = f.noTemp ? 0.4 : 1;
       });
-      $('#stageHint').textContent = state.stages.length >= 3 ? 'limit trzech etapów' : `etap ${state.stages.length} z 3`;
+      $('#stageHint').textContent = copy.stageCount(state.stages.length);
     };
 
     const tEl = $('#wheelTemp');
@@ -358,15 +385,15 @@
           (s, i) => `
         <div class="stagecard">
           <span class="n">${i + 1}</span>
-          <b>Etap ${i + 1}</b>
+          <b>${copy.stage(i + 1)}</b>
           <div class="stagecard__ctl">
-            <button type="button" class="iconbtn iconbtn--xs" data-act="t-" data-i="${i}" aria-label="Temperatura niższa w etapie ${i + 1}">−</button>
+            <button type="button" class="iconbtn iconbtn--xs" data-act="t-" data-i="${i}" aria-label="${copy.cooler(i + 1)}">−</button>
             <span class="t">180 °C</span>
-            <button type="button" class="iconbtn iconbtn--xs" data-act="t+" data-i="${i}" aria-label="Temperatura wyższa w etapie ${i + 1}">+</button>
-            <button type="button" class="iconbtn iconbtn--xs" data-act="m-" data-i="${i}" aria-label="Minuta mniej w etapie ${i + 1}">−1m</button>
+            <button type="button" class="iconbtn iconbtn--xs" data-act="t+" data-i="${i}" aria-label="${copy.warmer(i + 1)}">+</button>
+            <button type="button" class="iconbtn iconbtn--xs" data-act="m-" data-i="${i}" aria-label="${copy.shorter(i + 1)}">−1m</button>
             <span class="m">0:35</span>
-            <button type="button" class="iconbtn iconbtn--xs" data-act="m+" data-i="${i}" aria-label="Minuta więcej w etapie ${i + 1}">+1m</button>
-            ${state.stages.length > 1 ? `<button type="button" class="iconbtn iconbtn--xs" data-act="del" data-i="${i}" aria-label="Usuń etap ${i + 1}"><svg width="13" height="13"><use href="#i-close"/></svg></button>` : ''}
+            <button type="button" class="iconbtn iconbtn--xs" data-act="m+" data-i="${i}" aria-label="${copy.longer(i + 1)}">+1m</button>
+            ${state.stages.length > 1 ? `<button type="button" class="iconbtn iconbtn--xs" data-act="del" data-i="${i}" aria-label="${copy.removeStage(i + 1)}"><svg width="13" height="13"><use href="#i-close"/></svg></button>` : ''}
           </div>
         </div>`
         )
@@ -398,7 +425,7 @@
       const last = state.stages[state.stages.length - 1];
       state.stages.push({ fn: state.fn, temp: last.temp, minutes: Math.max(1, last.minutes - 5) });
       drawStages();
-      toast(`Etap ${state.stages.length} dołożony`);
+      toast(copy.addedStage(state.stages.length));
     });
     $('#resetPlay').addEventListener('click', () => {
       state.fn = 6; state.temp = 180; state.minutes = 35; state.rapid = true; state.light = false;
@@ -413,7 +440,8 @@
 
     $('#btnSend').addEventListener('click', () => {
       const f = FUNCTIONS.find((x) => x.id === state.fn);
-      toast(`${f.name} · ${state.stages.length} ${state.stages.length === 1 ? 'etap' : 'etapy'} · łącznie ${fmtTime(state.stages.reduce((total, stage) => total + stage.minutes, 0))}`);
+      const time = fmtTime(state.stages.reduce((total, stage) => total + stage.minutes, 0));
+      toast(`${f.name} · ${copy.total(state.stages.length, time)}`);
     });
   }
 

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenOven — sterowanie piekarnikiem Amica z Androida</title>
+<meta name="description" content="OpenOven to niezależna aplikacja na Androida do lokalnego sterowania kompatybilnymi piekarnikami Amica. Bez konta, bez chmury, przez domowe Wi-Fi. Kod w publicznym repozytorium. Sterowanie, programy, etapy, przepisy, historia i diagnostyka.">
+<meta name="theme-color" content="#070d13">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OpenOven — sterowanie piekarnikiem z telefonu">
+<meta property="og:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0.">
+<meta property="og:url" content="https://techparka.github.io/openoven/pl/">
+<meta property="og:site_name" content="OpenOven">
+<meta property="og:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="Okładka projektu OpenOven">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenOven — sterowanie piekarnikiem z telefonu">
+<meta name="twitter:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0, APK 9,0 MB.">
+<meta name="twitter:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
+<meta name="twitter:image:alt" content="Makieta telefonu z paskiem postępu pieczenia i hasłem OpenOven.">
+<meta name="author" content="techparka">
+<meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://techparka.github.io/openoven/">
+<link rel="alternate" hreflang="pl" href="https://techparka.github.io/openoven/pl/">
+<link rel="alternate" hreflang="x-default" href="https://techparka.github.io/openoven/">
+<link rel="canonical" href="https://techparka.github.io/openoven/pl/">
+<link rel="icon" href="../assets/img/logo-64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="../assets/img/logo-128.png">
+<link rel="preload" as="font" href="../assets/fonts/SpaceGrotesk-latin.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="../assets/fonts/Inter-latin.woff2" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<link rel="stylesheet" href="../styles.css?v=6">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "OpenOven",
+  "operatingSystem": "Android 6.0+",
+  "applicationCategory": "UtilitiesApplication",
+  "softwareVersion": "0.6.0",
+  "softwareRequirements": "Android 6.0 (API 23) lub nowszy",
+  "fileSize": "9.0 MB",
+  "downloadUrl": "https://github.com/techparka/openoven/releases/latest",
+  "isAccessibleForFree": true,
+  "codeRepository": "https://github.com/techparka/openoven",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-13",
+  "inLanguage": "pl",
+  "keywords": "Amica, piekarnik, Android, lokalne sterowanie, publiczny kod, Wi-Fi, bez chmury",
+  "publisher": {
+    "@type": "Organization",
+    "name": "techparka",
+    "url": "https://github.com/techparka"
+  },
+  "screenshot": {
+    "@type": "ImageObject",
+    "url": "https://techparka.github.io/openoven/assets/og-cover.png",
+    "caption": "Pulpit pieczenia OpenOven z paskiem postępu"
+  },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PLN" },
+  "featureList": [
+    "Lokalne sterowanie piekarnikiem przez domowe Wi-Fi",
+    "Funkcje grzania, programy, pieczenie w etapach",
+    "Własne przepisy z importem i eksportem ZIP",
+    "Historia i ostatnie nastawy",
+    "Diagnostyka połączenia",
+    "Motyw jasny, ciemny lub zgodny z systemem"
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
+<div class="bg-field" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow--heat"></div>
+  <div class="bg-glow bg-glow--cool"></div>
+  <div class="bg-noise"></div>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="heatGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffc46b"/><stop offset="60%" stop-color="#ff8f45"/><stop offset="100%" stop-color="#a9e5f6"/>
+    </linearGradient>
+    <g id="i-set" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+  <symbol id="i-oven" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 4h18v16H3z"/><path d="M3 9h18"/><path d="M6 6h2M10 6h2"/>
+    <path d="M6.5 12.5h11v5h-11z"/>
+  </symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4v11"/><path d="M7.5 11.5 12 16l4.5-4.5"/><path d="M4 20h16"/>
+  </symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 2.5-.34c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12H5"/><path d="m11 6-6 6 6 6"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 20V14M12 20V4M18 20v-8"/><path d="M4 12.5h4M10 5.5h4M16 10.5h4"/>
+  </symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m12 3 8 4.5-8 4.5L4 7.5z"/><path d="m4 12.5 8 4.5 8-4.5"/><path d="m4 16.8 8 4.5 8-4.5"/>
+  </symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5v15"/><path d="M9 8h7M9 11.5h5"/>
+  </symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/><path d="M9.5 9.5h1.5v1.5H9.5zM13.5 9.5H15v1.5h-1.5zM9.5 13.5H11V15H9.5zM13.5 13.5H15V15h-1.5z"/>
+  </symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.5 9a14 14 0 0 1 19 0"/><path d="M6 12.6a9 9 0 0 1 12 0"/><path d="M9.5 16.2a4.4 4.4 0 0 1 5 0"/><path d="M12 20h.01"/>
+  </symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3l7 3v6c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9V6z"/><path d="m9 12 2 2 4-4"/>
+  </symbol>
+  <symbol id="i-cloud-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 17.5h9.5a3.5 3.5 0 0 0 .8-6.9A5.5 5.5 0 0 0 8.4 8.2"/><path d="M4 4l16 16"/>
+  </symbol>
+  <symbol id="i-thermo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4a2.2 2.2 0 0 1 2.2 2.2v7a4.5 4.5 0 1 1-4.4 0v-7A2.2 2.2 0 0 1 12 4z"/><path d="M12 16.5v-5"/>
+  </symbol>
+  <symbol id="i-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="13.5" r="7"/><path d="M12 10v3.8l2.4 1.7"/><path d="M9.5 3h5"/>
+  </symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.5 3 6 13h4.5L10 21l7.5-10H13z"/>
+  </symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9.5 17h5"/><path d="M10.5 20.5h3"/><path d="M12 3a6 6 0 0 1 3.5 10.9v1.1h-7v-1.1A6 6 0 0 1 12 3z"/>
+  </symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14.5 6.5a3.5 3.5 0 0 0 4.9 4.2l-8.2 8.2a2.1 2.1 0 0 1-3-3l8.2-8.2a3.5 3.5 0 0 0-4.2-4.9"/>
+  </symbol>
+  <symbol id="i-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v4h4"/><path d="M12 8.5V13l3 1.8"/>
+  </symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 6.5A1.5 1.5 0 0 1 6.5 5H12l2 2h3.5A1.5 1.5 0 0 1 19 8.5v9A1.5 1.5 0 0 1 17.5 19h-11A1.5 1.5 0 0 1 5 17.5z"/><path d="M10 3v2M10 7v2M10 11v2"/><path d="M9.5 15h2v2h-2z"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 3h10v18H7z"/><path d="M10.5 18.5h3"/>
+  </symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.5 5.5 7 7M17 17l1.5 1.5M18.5 5.5 17 7M7 17l-1.5 1.5"/>
+  </symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>
+  </symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3c1.5 4 3.5 6 7.5 7.5-4 1.5-6 3.5-7.5 7.5-1.5-4-3.5-6-7.5-7.5C8.5 9 10.5 7 12 3z"/>
+  </symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8h.01"/>
+  </symbol>
+  <symbol id="i-rotate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 4v4h-4"/>
+  </symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24" fill="currentColor"><path d="M4 15h2.5v5H4zM9 11h2.5v9H9zM14 7h2.5v13H14zM19 3.5h2.5v16.5H19z"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h16v8H2z"/><path d="M20 10.5v3"/><path d="M4.5 10.5h9v3h-9z" fill="currentColor" stroke="none"/></symbol>
+</svg>
+<main id="main">
+<header class="topbar" id="topbar">
+  <a class="topbar__brand" href="#top" aria-label="OpenOven — strona główna">
+    <img class="topbar__mark" src="../assets/img/logo-128.png" alt="" width="32" height="32">
+    <span>OpenOven</span>
+    <span class="topbar__ver">0.6.0</span>
+  </a>
+  <nav class="topbar__nav" id="nav" aria-label="Nawigacja sekcji">
+    <a href="#mozliwosci">Funkcje</a>
+    <a href="#ekrany">Ekrany</a>
+    <a href="#karuzela">Demo</a>
+    <a href="#jakosc">Testy</a>
+    <a href="#start">Połączenie</a>
+  </nav>
+  <div class="topbar__actions">
+    <a class="iconbtn language-link" href="../" lang="en" hreflang="en" aria-label="English version" title="English version">EN</a>
+    <button class="iconbtn" id="themeToggle" type="button" aria-label="Przełącz motyw: ciemny lub jasny" title="Motyw jasny / ciemny">
+      <svg class="moon" width="19" height="19" aria-hidden="true"><use href="#i-moon"/></svg>
+      <svg class="sun" width="19" height="19" aria-hidden="true"><use href="#i-sun"/></svg>
+    </button>
+    <a class="btn btn--ghost btn--sm" href="https://github.com/techparka/openoven" rel="noopener">
+      <svg width="17" height="17" aria-hidden="true"><use href="#i-github"/></svg>
+      <span>Kod źródłowy</span>
+    </a>
+    <a class="btn btn--primary btn--sm" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
+      <svg width="16" height="16" aria-hidden="true"><use href="#i-download"/></svg>
+      <span>Pobierz APK 0.6.0</span>
+    </a>
+    <button class="iconbtn iconbtn--menu" id="menuBtn" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="msheet">
+      <svg width="20" height="20" aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+  <div class="topbar__progress" id="progress" aria-hidden="true"></div>
+</header>
+
+<nav class="msheet" id="msheet" hidden aria-label="Menu mobilne">
+  <a href="#mozliwosci">Funkcje</a>
+  <a href="#ekrany">Ekrany</a>
+  <a href="#karuzela">Demo</a>
+  <a href="#jakosc">Testy</a>
+  <a href="#start">Połączenie</a>
+  <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
+    <svg width="17" height="17" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
+  </a>
+</nav>
+
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <h1>Piekarnik <span>pod kontrolą</span></h1>
+      <p class="hero__lead">Ustaw temperaturę i czas z telefonu. OpenOven łączy się z kompatybilnymi piekarnikami Amica przez domowe Wi-Fi.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk">
+          <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg>
+          Pobierz APK 0.6.0
+        </a>
+        <a class="btn btn--ghost" href="#ekrany">Zobacz ekrany</a>
+      </div>
+      <p class="hero__meta">Android 6.0+ · 9,0 MB · wersja testowa</p>
+    </div>
+
+    <figure class="hero__stage">
+      <img class="hero__mockup" src="../assets/img/hero-phones-20x9.webp" width="1051" height="1112"
+           fetchpriority="high" alt="Dwa telefony z ekranami OpenOven: pulpit piekarnika i ustawianie temperatury oraz czasu">
+      <figcaption class="sr-only">Ekrany wersji 0.6.0 w trybie demonstracji.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section" id="mozliwosci">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>Funkcje</h2>
+    </div>
+    <div class="feature-grid">
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-thermo"/></svg></span>
+        <h3>Pulpit pieczenia</h3>
+        <p>Sprawdź temperaturę komory i pozostały czas. Włącz światło lub szybki nagrzew.</p>
+      </article>
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-rotate"/></svg></span>
+        <h3>Zmiany w trakcie</h3>
+        <p>Dodaj minuty lub zmień temperaturę bez ponownego uruchamiania programu.</p>
+      </article>
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-sliders"/></svg></span>
+        <h3>Karuzele nastaw</h3>
+        <p>Przesuwaj palcem, żeby szybko ustawić temperaturę i czas.</p>
+      </article>
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-layers"/></svg></span>
+        <h3>Pieczenie w etapach</h3>
+        <p>Ustaw do trzech etapów z osobną funkcją, temperaturą i czasem.</p>
+      </article>
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-book"/></svg></span>
+        <h3>Własne przepisy</h3>
+        <p>Zapisuj nastawy, składniki i zdjęcia. Przenieś przepisy na inny telefon przez ZIP.</p>
+      </article>
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <h3>Domowe Wi-Fi</h3>
+        <p>Połącz telefon z piekarnikiem w tej samej sieci. OpenOven działa bez konta i serwera pośredniczącego.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--edge" id="ekrany">
+  <div class="wrap">
+    <div class="sechead" id="aplikacja">
+      <h2>Ekrany aplikacji</h2>
+      <p>Wybierz ekran, aby go powiększyć.</p>
+    </div>
+    <div class="gallery-grid" id="galRail">
+      <a class="gal__item" href="../screenshots/dashboard.png">
+        <div class="device device--shot">
+          <div class="device__screen"><img class="device__shot" src="../screenshots/dashboard.png" width="1080" height="1920" loading="lazy" alt="Pulpit i szybkie akcje"></div>
+        </div>
+        <span class="gal__cap">Pulpit i szybkie akcje</span>
+      </a>
+      <a class="gal__item" href="../screenshots/baking.png">
+        <div class="device device--shot">
+          <div class="device__screen"><img class="device__shot" src="../screenshots/baking.png" width="1080" height="1920" loading="lazy" alt="Pieczenie w toku"></div>
+        </div>
+        <span class="gal__cap">Pieczenie w toku</span>
+      </a>
+      <a class="gal__item" href="../screenshots/settings-wheel.png">
+        <div class="device device--shot">
+          <div class="device__screen"><img class="device__shot" src="../screenshots/settings-wheel.png" width="1080" height="1920" loading="lazy" alt="Ustawianie pieczenia"></div>
+        </div>
+        <span class="gal__cap">Ustawianie pieczenia</span>
+      </a>
+    </div>
+  </div>
+</section>
+<section class="section section--edge" id="karuzela">
+  <div class="wrap">
+    <div class="sechead" data-reveal>
+      <h2>Demo nastaw</h2>
+      <p>Ustaw temperaturę, czas i etapy w przeglądarce.</p>
+    </div>
+
+    <div class="play">
+      <div class="play__panel">
+        <div class="field" data-reveal>
+          <div class="field__label"><span>Funkcja grzania</span><b id="fnCaption">Termoobieg</b></div>
+          <div class="fns" id="fnList" role="group" aria-label="Funkcja grzania"></div>
+          <p class="hint" id="fnHint">Zakres temperatur zależy od funkcji: ta obsługuje 30–280 °C.</p>
+        </div>
+
+        <div class="field" data-reveal style="--d:80ms">
+          <div class="field__label"><span>Temperatura</span><b>przeciągnij lub użyj strzałek</b></div>
+          <div class="wheel wheel--hot" id="wheelTemp" data-min="30" data-max="280" data-step="1"
+               data-value="180" data-unit="°C" data-variant="temp"
+               role="slider" tabindex="0" aria-label="Temperatura w stopniach Celsjusza"
+               aria-valuemin="30" aria-valuemax="280" aria-valuenow="180" aria-valuetext="180 stopni Celsjusza">
+            <div class="wheel__value"><span data-out>180</span><small>°C</small></div>
+            <div class="wheel__strip">
+              <div class="wheel__reel" data-reel></div>
+              <div class="wheel__needle"></div>
+            </div>
+            <div class="wheel__scale"><span>30</span><span>105</span><span>180</span><span>230</span><span>280</span></div>
+          </div>
+          <div class="stepbtns" aria-label="Korekta temperatury">
+            <button type="button" data-temperature-step data-nudge="-5">−5</button>
+            <button type="button" data-temperature-step data-nudge="-1">−1</button>
+            <button type="button" data-temperature-step data-nudge="1">+1</button>
+            <button type="button" data-temperature-step data-nudge="5">+5</button>
+          </div>
+        </div>
+
+        <div class="field" data-reveal style="--d:160ms">
+          <div class="field__label"><span>Czas</span><b>minuty: kółka przyspieszają przy szybszym geście</b></div>
+          <div class="wheel" id="wheelTime" data-min="1" data-max="600" data-step="1"
+               data-value="35" data-unit="min" data-variant="time"
+               role="slider" tabindex="0" aria-label="Czas pieczenia w minutach"
+               aria-valuemin="1" aria-valuemax="600" aria-valuenow="35" aria-valuetext="35 minut">
+            <div class="wheel__value"><span data-out>0:35</span><small>godz:min</small></div>
+            <div class="wheel__strip">
+              <div class="wheel__reel" data-reel></div>
+              <div class="wheel__needle"></div>
+            </div>
+            <div class="wheel__scale"><span>0:05</span><span>2:30</span><span>5:00</span><span>7:30</span><span>10:00</span></div>
+          </div>
+          <div class="stepbtns" aria-label="Korekta czasu">
+            <button type="button" data-nudge="-10">−10</button>
+            <button type="button" data-nudge="-5">−5</button>
+            <button type="button" data-nudge="5">+5</button>
+            <button type="button" data-nudge="10">+10</button>
+          </div>
+        </div>
+
+        <div class="field" data-reveal style="--d:80ms">
+          <div class="field__label"><span>Przed startem</span><b>ustawienia dodatkowe</b></div>
+          <div style="display:grid;gap:10px">
+            <button class="sw" id="swRapid" type="button" aria-pressed="true">
+              <span class="sw__dot" aria-hidden="true"></span>
+              <span><b>Szybki nagrzew</b><span>piekarnik dosyć szybko osiągnie zadaną temperaturę</span></span>
+            </button>
+            <button class="sw" id="swLight" type="button" aria-pressed="false">
+              <span class="sw__dot" aria-hidden="true"></span>
+              <span><b>Światło w piekarniku</b><span>przydatne, gdy pilnujesz koloru spodu</span></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field" data-reveal style="--d:120ms">
+          <div class="field__label"><span>Etapy</span><b id="stageHint">maksymalnie trzy</b></div>
+          <div class="stages" id="stageList"></div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn--ghost btn--sm" id="addStage" type="button">
+              <svg width="15" height="15" aria-hidden="true"><use href="#i-plus"/></svg> Dodaj etap
+            </button>
+            <button class="btn btn--quiet btn--sm" id="resetPlay" type="button">
+              <svg width="15" height="15" aria-hidden="true"><use href="#i-rotate"/></svg> Wróć do ustawień początkowych
+            </button>
+          </div>
+          <p class="hint">W tym podglądzie wszystkie etapy używają wybranej funkcji. Czas każdego etapu mieści się w zakresie 1–600 minut.</p>
+        </div>
+      </div>
+
+      <aside class="summary" aria-live="polite">
+        <p class="eyebrow eyebrow--plain">Podsumowanie</p>
+        <div class="summary__row"><span>Funkcja</span><b id="sumFn">Termoobieg</b></div>
+        <div class="summary__row"><span>Temperatura</span><b id="sumTemp">180 °C</b></div>
+        <div class="summary__row"><span>Czas</span><b id="sumTime">0:35</b></div>
+        <div class="summary__row"><span>Szybki nagrzew</span><b id="sumRapid">tak</b></div>
+        <div class="summary__row"><span>Światło</span><b id="sumLight">nie</b></div>
+        <hr>
+        <div class="summary__row"><span>Suma etapów</span><b id="sumTotal">0:35</b></div>
+        <div class="summary__row"><span>Etap</span><b id="sumCount">1</b></div>
+        <button class="btn btn--primary" id="btnSend" type="button" style="width:100%">
+          <svg width="17" height="17" aria-hidden="true"><use href="#i-play"/></svg>
+          Sprawdź nastawy
+        </button>
+
+      </aside>
+    </div>
+  </div>
+</section>
+<section class="section section--edge" id="jakosc">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>Zakres testów</h2>
+    </div>
+    <div class="test-grid">
+      <article class="card">
+        <h3>Amica ED87489BA+ Q-TYPE Steam</h3>
+        <p>W wersji 0.5.1 sprawdzono odczyt i ponowne parowanie po reinstalacji.</p>
+      </article>
+      <article class="card">
+        <h3>Android 14 i 16</h3>
+        <p>W wersji 0.6.0 przeszło 56 testów jednostkowych i po 34 testy na każdym emulatorze.</p>
+      </article>
+    </div>
+    <p class="section-note">Pozostałe modele piekarników wymagają weryfikacji. <a href="https://github.com/techparka/openoven/blob/main/README.pl.md#zakres-testów">Szczegóły testów</a></p>
+  </div>
+</section>
+<section class="section section--edge" id="start">
+  <div class="wrap">
+    <div class="sechead">
+      <h2>Połączenie z piekarnikiem</h2>
+      <p>Te kroki dotyczą piekarnika, który jest już w domowym Wi-Fi.</p>
+    </div>
+    <div class="steps4">
+      <article class="card pstep" data-step="1">
+        <h3>Podłącz telefon</h3>
+        <p>Połącz telefon z tą samą siecią Wi-Fi. Zamknij inne aplikacje sterujące piekarnikiem.</p>
+      </article>
+      <article class="card pstep" data-step="2">
+        <h3>Dodaj piekarnik</h3>
+        <p>W OpenOven wybierz „Więcej → Połączenie z piekarnikiem → Dodaj piekarnik → Piekarnik już jest w domowym Wi-Fi”.</p>
+      </article>
+      <article class="card pstep" data-step="3">
+        <h3>Włącz parowanie</h3>
+        <p>Na panelu piekarnika ustaw <b>ŁĄCZENIE → ON</b> i zatwierdź <b>OK</b>. Na testowanym panelu pojawia się licznik 05.</p>
+      </article>
+      <article class="card pstep" data-step="4">
+        <h3>Sprawdź odczyt</h3>
+        <p>W aplikacji wybierz „Otworzyłem WI — połącz”. Po komunikacie „Gotowe” sprawdź odczyt na pulpicie.</p>
+      </article>
+    </div>
+    <p class="section-note"><a href="https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf">Instrukcja panelu Amica (PDF)</a></p>
+
+    <div class="cta download">
+      <h2>Instalacja OpenOven</h2>
+      <p>Pobierz plik i otwórz go na telefonie. Android może poprosić o zgodę na instalację z tego źródła.</p>
+      <div class="cta__row">
+        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk">
+          <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
+        </a>
+        <a class="btn btn--ghost" href="https://github.com/techparka/openoven/releases/tag/v0.6.0">Informacje o wydaniu</a>
+      </div>
+      <a class="download__hash" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk.sha256">Suma SHA-256</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__compact">
+    <div>
+      <p class="footer__brand">
+        <img src="../assets/img/logo-64.png" alt="" width="34" height="34"> OpenOven
+      </p>
+      <p class="footer__note">Niezależna aplikacja do kompatybilnych piekarników Amica.</p>
+    </div>
+    <nav aria-label="Projekt OpenOven">
+      <a href="https://github.com/techparka/openoven">Kod źródłowy</a>
+      <a href="https://github.com/techparka/openoven/blob/main/README.pl.md#budowanie">Budowanie</a>
+      <a href="https://github.com/techparka/openoven/issues">Zgłoś błąd</a>
+    </nav>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>
+  <span id="toastText">Podgląd nastaw</span>
+</div>
+
+<dialog id="lightbox" aria-label="Powiększenie zrzutu ekranu">
+  <div class="lb">
+    <img id="lbImg" alt="">
+    <div class="lb__side">
+      <p class="lb__cap" id="lbCap"></p>
+      <div class="lb__nav">
+        <button class="iconbtn" id="lbPrev" type="button" aria-label="Poprzedni zrzut"><svg width="18" height="18"><use href="#i-arrow-left"/></svg></button>
+        <button class="iconbtn" id="lbClose" type="button" aria-label="Zamknij podgląd"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+        <button class="iconbtn" id="lbNext" type="button" aria-label="Następny zrzut"><svg width="18" height="18"><use href="#i-arrow-right"/></svg></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script src="../app.js?v=4" defer></script>
+</body>
+</html>

@@ -430,6 +430,7 @@ p { text-wrap: pretty; }
 [data-theme="light"] .iconbtn .sun { display: block; }
 [data-theme="light"] .iconbtn .moon { display: none; }
 
+.language-link { font-size: 13px; font-weight: 700; }
 .topbar__progress {
   position: absolute;
   left: 0; bottom: -1px;

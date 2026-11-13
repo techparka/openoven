@@ -1,36 +1,39 @@
 <!DOCTYPE html>
-<html lang="pl" data-theme="dark">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenOven — sterowanie piekarnikiem Amica z Androida</title>
-<meta name="description" content="OpenOven to niezależna aplikacja na Androida do lokalnego sterowania kompatybilnymi piekarnikami Amica. Bez konta, bez chmury, przez domowe Wi-Fi. Kod w publicznym repozytorium. Sterowanie, programy, etapy, przepisy, historia i diagnostyka.">
+<title>OpenOven — Control your Amica oven from Android</title>
+<meta name="description" content="OpenOven is an independent Android app for controlling compatible Amica ovens over home Wi-Fi. Set up cooking stages and save your recipes without an account.">
 <meta name="theme-color" content="#070d13">
 <meta name="color-scheme" content="dark light">
 <meta property="og:type" content="website">
-<meta property="og:title" content="OpenOven — sterowanie piekarnikiem z telefonu">
-<meta property="og:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0.">
+<meta property="og:title" content="OpenOven — Control your oven from your phone">
+<meta property="og:description" content="Independent Android app for local control of compatible Amica ovens. Source code available on GitHub. Test release 0.6.0.">
 <meta property="og:url" content="https://techparka.github.io/openoven/">
 <meta property="og:site_name" content="OpenOven">
-<meta property="og:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
-<meta property="og:image:width" content="2400">
-<meta property="og:image:height" content="1260">
-<meta property="og:image:alt" content="Okładka projektu OpenOven">
-<meta property="og:locale" content="pl_PL">
+<meta property="og:image" content="https://techparka.github.io/openoven/screenshots/baking.png">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1920">
+<meta property="og:image:alt" content="OpenOven cooking dashboard">
+<meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OpenOven — sterowanie piekarnikiem z telefonu">
-<meta name="twitter:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0, APK 9,0 MB.">
-<meta name="twitter:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
-<meta name="twitter:image:alt" content="Makieta telefonu z paskiem postępu pieczenia i hasłem OpenOven.">
+<meta name="twitter:title" content="OpenOven — Control your oven from your phone">
+<meta name="twitter:description" content="Independent Android app for local control of compatible Amica ovens. Test release 0.6.0, 9.0 MB APK.">
+<meta name="twitter:image" content="https://techparka.github.io/openoven/screenshots/baking.png">
+<meta name="twitter:image:alt" content="OpenOven cooking dashboard">
 <meta name="author" content="techparka">
 <meta name="robots" content="max-image-preview:large">
+<link rel="alternate" hreflang="en" href="https://techparka.github.io/openoven/">
+<link rel="alternate" hreflang="pl" href="https://techparka.github.io/openoven/pl/">
+<link rel="alternate" hreflang="x-default" href="https://techparka.github.io/openoven/">
 <link rel="canonical" href="https://techparka.github.io/openoven/">
 <link rel="icon" href="assets/img/logo-64.png" sizes="64x64">
 <link rel="apple-touch-icon" href="assets/img/logo-128.png">
 <link rel="preload" as="font" href="assets/fonts/SpaceGrotesk-latin.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="font" href="assets/fonts/Inter-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=6">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -39,15 +42,15 @@
   "operatingSystem": "Android 6.0+",
   "applicationCategory": "UtilitiesApplication",
   "softwareVersion": "0.6.0",
-  "softwareRequirements": "Android 6.0 (API 23) lub nowszy",
+  "softwareRequirements": "Android 6.0 (API 23) or later",
   "fileSize": "9.0 MB",
   "downloadUrl": "https://github.com/techparka/openoven/releases/latest",
   "isAccessibleForFree": true,
   "codeRepository": "https://github.com/techparka/openoven",
   "datePublished": "2026-11-12",
   "dateModified": "2026-11-13",
-  "inLanguage": "pl",
-  "keywords": "Amica, piekarnik, Android, lokalne sterowanie, publiczny kod, Wi-Fi, bez chmury",
+  "inLanguage": "en",
+  "keywords": "Amica, oven, Android, local control, Wi-Fi",
   "publisher": {
     "@type": "Organization",
     "name": "techparka",
@@ -55,23 +58,23 @@
   },
   "screenshot": {
     "@type": "ImageObject",
-    "url": "https://techparka.github.io/openoven/assets/og-cover.png",
-    "caption": "Pulpit pieczenia OpenOven z paskiem postępu"
+    "url": "https://techparka.github.io/openoven/screenshots/baking.png",
+    "caption": "OpenOven cooking dashboard"
   },
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "PLN" },
   "featureList": [
-    "Lokalne sterowanie piekarnikiem przez domowe Wi-Fi",
-    "Funkcje grzania, programy, pieczenie w etapach",
-    "Własne przepisy z importem i eksportem ZIP",
-    "Historia i ostatnie nastawy",
-    "Diagnostyka połączenia",
-    "Motyw jasny, ciemny lub zgodny z systemem"
+    "Local oven control over home Wi-Fi",
+    "Cooking modes, presets, and multi-stage cooking",
+    "Custom recipes with ZIP import and export",
+    "History and recent settings",
+    "Connection diagnostics",
+    "Light, dark, and system themes"
   ]
 }
 </script>
 </head>
 <body>
-<a class="skip-link" href="#main">Przejdź do treści</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <div class="bg-field" aria-hidden="true">
   <div class="bg-grid"></div>
@@ -167,68 +170,69 @@
 </svg>
 <main id="main">
 <header class="topbar" id="topbar">
-  <a class="topbar__brand" href="#top" aria-label="OpenOven — strona główna">
+  <a class="topbar__brand" href="#top" aria-label="OpenOven — home">
     <img class="topbar__mark" src="assets/img/logo-128.png" alt="" width="32" height="32">
     <span>OpenOven</span>
     <span class="topbar__ver">0.6.0</span>
   </a>
-  <nav class="topbar__nav" id="nav" aria-label="Nawigacja sekcji">
-    <a href="#mozliwosci">Funkcje</a>
-    <a href="#ekrany">Ekrany</a>
+  <nav class="topbar__nav" id="nav" aria-label="Main navigation">
+    <a href="#mozliwosci">Features</a>
+    <a href="#ekrany">Screenshots</a>
     <a href="#karuzela">Demo</a>
-    <a href="#jakosc">Testy</a>
-    <a href="#start">Połączenie</a>
+    <a href="#jakosc">Testing</a>
+    <a href="#start">Setup</a>
   </nav>
   <div class="topbar__actions">
-    <button class="iconbtn" id="themeToggle" type="button" aria-label="Przełącz motyw: ciemny lub jasny" title="Motyw jasny / ciemny">
+    <a class="iconbtn language-link" href="pl/" lang="pl" hreflang="pl" aria-label="Wersja polska" title="Wersja polska">PL</a>
+    <button class="iconbtn" id="themeToggle" type="button" aria-label="Toggle light and dark theme" title="Light or dark theme">
       <svg class="moon" width="19" height="19" aria-hidden="true"><use href="#i-moon"/></svg>
       <svg class="sun" width="19" height="19" aria-hidden="true"><use href="#i-sun"/></svg>
     </button>
     <a class="btn btn--ghost btn--sm" href="https://github.com/techparka/openoven" rel="noopener">
       <svg width="17" height="17" aria-hidden="true"><use href="#i-github"/></svg>
-      <span>Kod źródłowy</span>
+      <span>Source code</span>
     </a>
     <a class="btn btn--primary btn--sm" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
       <svg width="16" height="16" aria-hidden="true"><use href="#i-download"/></svg>
-      <span>Pobierz APK 0.6.0</span>
+      <span>Download APK 0.6.0</span>
     </a>
-    <button class="iconbtn iconbtn--menu" id="menuBtn" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="msheet">
+    <button class="iconbtn iconbtn--menu" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="msheet">
       <svg width="20" height="20" aria-hidden="true"><use href="#i-menu"/></svg>
     </button>
   </div>
   <div class="topbar__progress" id="progress" aria-hidden="true"></div>
 </header>
 
-<nav class="msheet" id="msheet" hidden aria-label="Menu mobilne">
-  <a href="#mozliwosci">Funkcje</a>
-  <a href="#ekrany">Ekrany</a>
+<nav class="msheet" id="msheet" hidden aria-label="Mobile menu">
+  <a href="#mozliwosci">Features</a>
+  <a href="#ekrany">Screenshots</a>
   <a href="#karuzela">Demo</a>
-  <a href="#jakosc">Testy</a>
-  <a href="#start">Połączenie</a>
+  <a href="#jakosc">Testing</a>
+  <a href="#start">Setup</a>
   <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
-    <svg width="17" height="17" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
+    <svg width="17" height="17" aria-hidden="true"><use href="#i-download"/></svg> Download APK 0.6.0
   </a>
 </nav>
 
 <section class="hero" id="top">
   <div class="wrap hero__grid">
     <div>
-      <h1>Piekarnik <span>pod kontrolą</span></h1>
-      <p class="hero__lead">Ustaw temperaturę i czas z telefonu. OpenOven łączy się z kompatybilnymi piekarnikami Amica przez domowe Wi-Fi.</p>
+      <h1>Your oven <span>under control</span></h1>
+      <p class="hero__lead">Set the temperature and cooking time from your phone. OpenOven connects to compatible Amica ovens over home Wi-Fi.</p>
       <div class="hero__cta">
         <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk">
           <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg>
-          Pobierz APK 0.6.0
+          Download APK 0.6.0
         </a>
-        <a class="btn btn--ghost" href="#ekrany">Zobacz ekrany</a>
+        <a class="btn btn--ghost" href="#ekrany">View screenshots</a>
       </div>
-      <p class="hero__meta">Android 6.0+ · 9,0 MB · wersja testowa</p>
+      <p class="hero__meta">Android 6.0+ · 9.0 MB · Test release</p>
     </div>
 
     <figure class="hero__stage">
       <img class="hero__mockup" src="assets/img/hero-phones-20x9.webp" width="1051" height="1112"
-           fetchpriority="high" alt="Dwa telefony z ekranami OpenOven: pulpit piekarnika i ustawianie temperatury oraz czasu">
-      <figcaption class="sr-only">Ekrany wersji 0.6.0 w trybie demonstracji.</figcaption>
+           fetchpriority="high" alt="Two phones showing the OpenOven dashboard and the temperature and time controls">
+      <figcaption class="sr-only">Screens from version 0.6.0 in demo mode.</figcaption>
     </figure>
   </div>
 </section>
@@ -236,38 +240,38 @@
 <section class="section" id="mozliwosci">
   <div class="wrap">
     <div class="sechead">
-      <h2>Funkcje</h2>
+      <h2>Features</h2>
     </div>
     <div class="feature-grid">
       <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-thermo"/></svg></span>
-        <h3>Pulpit pieczenia</h3>
-        <p>Sprawdź temperaturę komory i pozostały czas. Włącz światło lub szybki nagrzew.</p>
+        <h3>Cooking dashboard</h3>
+        <p>Check the oven temperature and time remaining. Turn on the light or rapid preheat.</p>
       </article>
       <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-rotate"/></svg></span>
-        <h3>Zmiany w trakcie</h3>
-        <p>Dodaj minuty lub zmień temperaturę bez ponownego uruchamiania programu.</p>
+        <h3>Adjust while cooking</h3>
+        <p>Add time or change the temperature without restarting the program.</p>
       </article>
       <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-sliders"/></svg></span>
-        <h3>Karuzele nastaw</h3>
-        <p>Przesuwaj palcem, żeby szybko ustawić temperaturę i czas.</p>
+        <h3>Quick settings</h3>
+        <p>Swipe to set the temperature and cooking time.</p>
       </article>
       <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-layers"/></svg></span>
-        <h3>Pieczenie w etapach</h3>
-        <p>Ustaw do trzech etapów z osobną funkcją, temperaturą i czasem.</p>
+        <h3>Multi-stage cooking</h3>
+        <p>Set up to three stages, each with its own mode, temperature, and duration.</p>
       </article>
       <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-book"/></svg></span>
-        <h3>Własne przepisy</h3>
-        <p>Zapisuj nastawy, składniki i zdjęcia. Przenieś przepisy na inny telefon przez ZIP.</p>
+        <h3>Your recipes</h3>
+        <p>Save your settings, ingredients, and photos. Transfer recipes to another phone as a ZIP file.</p>
       </article>
       <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg></span>
-        <h3>Domowe Wi-Fi</h3>
-        <p>Połącz telefon z piekarnikiem w tej samej sieci. OpenOven działa bez konta i serwera pośredniczącego.</p>
+        <h3>Home Wi-Fi</h3>
+        <p>Connect your phone and oven to the same network. OpenOven works without an account or a cloud service.</p>
       </article>
     </div>
   </div>
@@ -276,27 +280,27 @@
 <section class="section section--edge" id="ekrany">
   <div class="wrap">
     <div class="sechead" id="aplikacja">
-      <h2>Ekrany aplikacji</h2>
-      <p>Wybierz ekran, aby go powiększyć.</p>
+      <h2>App screenshots</h2>
+      <p>Select a screenshot to enlarge it. The app screens are in Polish.</p>
     </div>
     <div class="gallery-grid" id="galRail">
       <a class="gal__item" href="screenshots/dashboard.png">
         <div class="device device--shot">
-          <div class="device__screen"><img class="device__shot" src="screenshots/dashboard.png" width="1080" height="1920" loading="lazy" alt="Pulpit i szybkie akcje"></div>
+          <div class="device__screen"><img class="device__shot" src="screenshots/dashboard.png" width="1080" height="1920" loading="lazy" alt="Dashboard and quick controls"></div>
         </div>
-        <span class="gal__cap">Pulpit i szybkie akcje</span>
+        <span class="gal__cap">Dashboard and quick controls</span>
       </a>
       <a class="gal__item" href="screenshots/baking.png">
         <div class="device device--shot">
-          <div class="device__screen"><img class="device__shot" src="screenshots/baking.png" width="1080" height="1920" loading="lazy" alt="Pieczenie w toku"></div>
+          <div class="device__screen"><img class="device__shot" src="screenshots/baking.png" width="1080" height="1920" loading="lazy" alt="Cooking in progress"></div>
         </div>
-        <span class="gal__cap">Pieczenie w toku</span>
+        <span class="gal__cap">Cooking in progress</span>
       </a>
       <a class="gal__item" href="screenshots/settings-wheel.png">
         <div class="device device--shot">
-          <div class="device__screen"><img class="device__shot" src="screenshots/settings-wheel.png" width="1080" height="1920" loading="lazy" alt="Ustawianie pieczenia"></div>
+          <div class="device__screen"><img class="device__shot" src="screenshots/settings-wheel.png" width="1080" height="1920" loading="lazy" alt="Cooking settings"></div>
         </div>
-        <span class="gal__cap">Ustawianie pieczenia</span>
+        <span class="gal__cap">Cooking settings</span>
       </a>
     </div>
   </div>
@@ -304,24 +308,24 @@
 <section class="section section--edge" id="karuzela">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <h2>Demo nastaw</h2>
-      <p>Ustaw temperaturę, czas i etapy w przeglądarce.</p>
+      <h2>Cooking settings demo</h2>
+      <p>Try setting the temperature, time, and cooking stages in your browser.</p>
     </div>
 
     <div class="play">
       <div class="play__panel">
         <div class="field" data-reveal>
-          <div class="field__label"><span>Funkcja grzania</span><b id="fnCaption">Termoobieg</b></div>
-          <div class="fns" id="fnList" role="group" aria-label="Funkcja grzania"></div>
-          <p class="hint" id="fnHint">Zakres temperatur zależy od funkcji: ta obsługuje 30–280 °C.</p>
+          <div class="field__label"><span>Cooking mode</span><b id="fnCaption">Fan cooking</b></div>
+          <div class="fns" id="fnList" role="group" aria-label="Cooking mode"></div>
+          <p class="hint" id="fnHint">Temperature range for this mode is 30–280 °C.</p>
         </div>
 
         <div class="field" data-reveal style="--d:80ms">
-          <div class="field__label"><span>Temperatura</span><b>przeciągnij lub użyj strzałek</b></div>
+          <div class="field__label"><span>Temperature</span><b>Drag or use the arrow keys</b></div>
           <div class="wheel wheel--hot" id="wheelTemp" data-min="30" data-max="280" data-step="1"
                data-value="180" data-unit="°C" data-variant="temp"
-               role="slider" tabindex="0" aria-label="Temperatura w stopniach Celsjusza"
-               aria-valuemin="30" aria-valuemax="280" aria-valuenow="180" aria-valuetext="180 stopni Celsjusza">
+               role="slider" tabindex="0" aria-label="Temperature in degrees Celsius"
+               aria-valuemin="30" aria-valuemax="280" aria-valuenow="180" aria-valuetext="180 degrees Celsius">
             <div class="wheel__value"><span data-out>180</span><small>°C</small></div>
             <div class="wheel__strip">
               <div class="wheel__reel" data-reel></div>
@@ -329,7 +333,7 @@
             </div>
             <div class="wheel__scale"><span>30</span><span>105</span><span>180</span><span>230</span><span>280</span></div>
           </div>
-          <div class="stepbtns" aria-label="Korekta temperatury">
+          <div class="stepbtns" aria-label="Adjust temperature">
             <button type="button" data-temperature-step data-nudge="-5">−5</button>
             <button type="button" data-temperature-step data-nudge="-1">−1</button>
             <button type="button" data-temperature-step data-nudge="1">+1</button>
@@ -338,19 +342,19 @@
         </div>
 
         <div class="field" data-reveal style="--d:160ms">
-          <div class="field__label"><span>Czas</span><b>minuty: kółka przyspieszają przy szybszym geście</b></div>
+          <div class="field__label"><span>Time</span><b>Swipe faster for larger changes</b></div>
           <div class="wheel" id="wheelTime" data-min="1" data-max="600" data-step="1"
                data-value="35" data-unit="min" data-variant="time"
-               role="slider" tabindex="0" aria-label="Czas pieczenia w minutach"
-               aria-valuemin="1" aria-valuemax="600" aria-valuenow="35" aria-valuetext="35 minut">
-            <div class="wheel__value"><span data-out>0:35</span><small>godz:min</small></div>
+               role="slider" tabindex="0" aria-label="Cooking time in minutes"
+               aria-valuemin="1" aria-valuemax="600" aria-valuenow="35" aria-valuetext="35 minutes">
+            <div class="wheel__value"><span data-out>0:35</span><small>h:min</small></div>
             <div class="wheel__strip">
               <div class="wheel__reel" data-reel></div>
               <div class="wheel__needle"></div>
             </div>
             <div class="wheel__scale"><span>0:05</span><span>2:30</span><span>5:00</span><span>7:30</span><span>10:00</span></div>
           </div>
-          <div class="stepbtns" aria-label="Korekta czasu">
+          <div class="stepbtns" aria-label="Adjust cooking time">
             <button type="button" data-nudge="-10">−10</button>
             <button type="button" data-nudge="-5">−5</button>
             <button type="button" data-nudge="5">+5</button>
@@ -359,47 +363,47 @@
         </div>
 
         <div class="field" data-reveal style="--d:80ms">
-          <div class="field__label"><span>Przed startem</span><b>ustawienia dodatkowe</b></div>
+          <div class="field__label"><span>Before cooking</span><b>Optional settings</b></div>
           <div style="display:grid;gap:10px">
             <button class="sw" id="swRapid" type="button" aria-pressed="true">
               <span class="sw__dot" aria-hidden="true"></span>
-              <span><b>Szybki nagrzew</b><span>piekarnik dosyć szybko osiągnie zadaną temperaturę</span></span>
+              <span><b>Rapid preheat</b><span>Bring the oven up to temperature faster</span></span>
             </button>
             <button class="sw" id="swLight" type="button" aria-pressed="false">
               <span class="sw__dot" aria-hidden="true"></span>
-              <span><b>Światło w piekarniku</b><span>przydatne, gdy pilnujesz koloru spodu</span></span>
+              <span><b>Oven light</b><span>Check on your food while it cooks</span></span>
             </button>
           </div>
         </div>
 
         <div class="field" data-reveal style="--d:120ms">
-          <div class="field__label"><span>Etapy</span><b id="stageHint">maksymalnie trzy</b></div>
+          <div class="field__label"><span>Stages</span><b id="stageHint">Up to three</b></div>
           <div class="stages" id="stageList"></div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn btn--ghost btn--sm" id="addStage" type="button">
-              <svg width="15" height="15" aria-hidden="true"><use href="#i-plus"/></svg> Dodaj etap
+              <svg width="15" height="15" aria-hidden="true"><use href="#i-plus"/></svg> Add stage
             </button>
             <button class="btn btn--quiet btn--sm" id="resetPlay" type="button">
-              <svg width="15" height="15" aria-hidden="true"><use href="#i-rotate"/></svg> Wróć do ustawień początkowych
+              <svg width="15" height="15" aria-hidden="true"><use href="#i-rotate"/></svg> Reset settings
             </button>
           </div>
-          <p class="hint">W tym podglądzie wszystkie etapy używają wybranej funkcji. Czas każdego etapu mieści się w zakresie 1–600 minut.</p>
+          <p class="hint">All stages in this demo use the selected cooking mode. Each stage can run for 1–600 minutes.</p>
         </div>
       </div>
 
       <aside class="summary" aria-live="polite">
-        <p class="eyebrow eyebrow--plain">Podsumowanie</p>
-        <div class="summary__row"><span>Funkcja</span><b id="sumFn">Termoobieg</b></div>
-        <div class="summary__row"><span>Temperatura</span><b id="sumTemp">180 °C</b></div>
-        <div class="summary__row"><span>Czas</span><b id="sumTime">0:35</b></div>
-        <div class="summary__row"><span>Szybki nagrzew</span><b id="sumRapid">tak</b></div>
-        <div class="summary__row"><span>Światło</span><b id="sumLight">nie</b></div>
+        <p class="eyebrow eyebrow--plain">Summary</p>
+        <div class="summary__row"><span>Mode</span><b id="sumFn">Fan cooking</b></div>
+        <div class="summary__row"><span>Temperature</span><b id="sumTemp">180 °C</b></div>
+        <div class="summary__row"><span>Time</span><b id="sumTime">0:35</b></div>
+        <div class="summary__row"><span>Rapid preheat</span><b id="sumRapid">Yes</b></div>
+        <div class="summary__row"><span>Light</span><b id="sumLight">No</b></div>
         <hr>
-        <div class="summary__row"><span>Suma etapów</span><b id="sumTotal">0:35</b></div>
-        <div class="summary__row"><span>Etap</span><b id="sumCount">1</b></div>
+        <div class="summary__row"><span>Total time</span><b id="sumTotal">0:35</b></div>
+        <div class="summary__row"><span>Stages</span><b id="sumCount">1</b></div>
         <button class="btn btn--primary" id="btnSend" type="button" style="width:100%">
           <svg width="17" height="17" aria-hidden="true"><use href="#i-play"/></svg>
-          Sprawdź nastawy
+          Review settings
         </button>
 
       </aside>
@@ -409,57 +413,57 @@
 <section class="section section--edge" id="jakosc">
   <div class="wrap">
     <div class="sechead">
-      <h2>Zakres testów</h2>
+      <h2>Testing</h2>
     </div>
     <div class="test-grid">
       <article class="card">
-        <h3>POCO F2 Pro i piekarnik Amica</h3>
-        <p>W wersji 0.5.1 sprawdzono odczyt i ponowne parowanie modelu 9137 po reinstalacji.</p>
+        <h3>Amica ED87489BA+ Q-TYPE Steam</h3>
+        <p>Oven status readings and pairing after reinstalling the app were tested with version 0.5.1.</p>
       </article>
       <article class="card">
-        <h3>Android 14 i 16</h3>
-        <p>W wersji 0.6.0 przeszło 56 testów jednostkowych i po 34 testy na każdym emulatorze.</p>
+        <h3>Android 14 and 16</h3>
+        <p>Version 0.6.0 passed 56 unit tests and 34 tests on each emulator.</p>
       </article>
     </div>
-    <p class="section-note">Pozostałe modele piekarników wymagają weryfikacji. <a href="https://github.com/techparka/openoven#zakres-testów">Szczegóły testów</a></p>
+    <p class="section-note">Other oven models still need testing. <a href="https://github.com/techparka/openoven#testing">Test details</a></p>
   </div>
 </section>
 <section class="section section--edge" id="start">
   <div class="wrap">
     <div class="sechead">
-      <h2>Połączenie z piekarnikiem</h2>
-      <p>Te kroki dotyczą piekarnika, który jest już w domowym Wi-Fi.</p>
+      <h2>Connect your oven</h2>
+      <p>Follow these steps if your oven is already connected to your home Wi-Fi.</p>
     </div>
     <div class="steps4">
       <article class="card pstep" data-step="1">
-        <h3>Podłącz telefon</h3>
-        <p>Połącz telefon z tą samą siecią Wi-Fi. Zamknij inne aplikacje sterujące piekarnikiem.</p>
+        <h3>Connect your phone</h3>
+        <p>Connect your phone to the same Wi-Fi network and close any other oven control apps.</p>
       </article>
       <article class="card pstep" data-step="2">
-        <h3>Dodaj piekarnik</h3>
-        <p>W OpenOven wybierz „Więcej → Połączenie z piekarnikiem → Dodaj piekarnik → Piekarnik już jest w domowym Wi-Fi”.</p>
+        <h3>Add your oven</h3>
+        <p>In OpenOven, open <span lang="pl">Więcej → Połączenie z piekarnikiem → Dodaj piekarnik</span> and select <span lang="pl">Piekarnik już jest w domowym Wi-Fi</span> (Oven already on home Wi-Fi).</p>
       </article>
       <article class="card pstep" data-step="3">
-        <h3>Włącz parowanie</h3>
-        <p>Na panelu piekarnika ustaw <b>ŁĄCZENIE → ON</b> i zatwierdź <b>OK</b>. Na testowanym panelu pojawia się licznik 05.</p>
+        <h3>Enable pairing</h3>
+        <p>On the oven panel, set <b lang="pl">ŁĄCZENIE</b> (pairing) to <b>ON</b> and press <b>OK</b>. The tested panel shows a countdown starting at 05.</p>
       </article>
       <article class="card pstep" data-step="4">
-        <h3>Sprawdź odczyt</h3>
-        <p>W aplikacji wybierz „Otworzyłem WI — połącz”. Po komunikacie „Gotowe” sprawdź odczyt na pulpicie.</p>
+        <h3>Check the oven status</h3>
+        <p>In the app, tap <b lang="pl">Otworzyłem WI — połącz</b> to connect. When <span lang="pl">Gotowe</span> (Ready) appears, check the oven status on the dashboard.</p>
       </article>
     </div>
-    <p class="section-note"><a href="https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf">Instrukcja panelu Amica (PDF)</a></p>
+    <p class="section-note"><a href="https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf">Amica control panel guide (PDF, Polish)</a></p>
 
     <div class="cta download">
-      <h2>Instalacja OpenOven</h2>
-      <p>Pobierz plik i otwórz go na telefonie. Android może poprosić o zgodę na instalację z tego źródła.</p>
+      <h2>Install OpenOven</h2>
+      <p>Download the APK and open it on your phone. Android may ask you to allow installation from that source.</p>
       <div class="cta__row">
         <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk">
-          <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
+          <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg> Download APK 0.6.0
         </a>
-        <a class="btn btn--ghost" href="https://github.com/techparka/openoven/releases/tag/v0.6.0">Informacje o wydaniu</a>
+        <a class="btn btn--ghost" href="https://github.com/techparka/openoven/releases/tag/v0.6.0">Release notes</a>
       </div>
-      <a class="download__hash" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk.sha256">Suma SHA-256</a>
+      <a class="download__hash" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk.sha256">SHA-256 checksum</a>
     </div>
   </div>
 </section>
@@ -472,35 +476,35 @@
       <p class="footer__brand">
         <img src="assets/img/logo-64.png" alt="" width="34" height="34"> OpenOven
       </p>
-      <p class="footer__note">Niezależna aplikacja do kompatybilnych piekarników Amica.</p>
+      <p class="footer__note">Independent Android app for compatible Amica ovens.</p>
     </div>
-    <nav aria-label="Projekt OpenOven">
-      <a href="https://github.com/techparka/openoven">Kod źródłowy</a>
-      <a href="https://github.com/techparka/openoven#budowanie">Budowanie</a>
-      <a href="https://github.com/techparka/openoven/issues">Zgłoś błąd</a>
+    <nav aria-label="OpenOven project">
+      <a href="https://github.com/techparka/openoven">Source code</a>
+      <a href="https://github.com/techparka/openoven#build">Build instructions</a>
+      <a href="https://github.com/techparka/openoven/issues">Report a bug</a>
     </nav>
   </div>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite">
   <svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>
-  <span id="toastText">Podgląd nastaw</span>
+  <span id="toastText">Settings preview</span>
 </div>
 
-<dialog id="lightbox" aria-label="Powiększenie zrzutu ekranu">
+<dialog id="lightbox" aria-label="Screenshot preview">
   <div class="lb">
     <img id="lbImg" alt="">
     <div class="lb__side">
       <p class="lb__cap" id="lbCap"></p>
       <div class="lb__nav">
-        <button class="iconbtn" id="lbPrev" type="button" aria-label="Poprzedni zrzut"><svg width="18" height="18"><use href="#i-arrow-left"/></svg></button>
-        <button class="iconbtn" id="lbClose" type="button" aria-label="Zamknij podgląd"><svg width="18" height="18"><use href="#i-close"/></svg></button>
-        <button class="iconbtn" id="lbNext" type="button" aria-label="Następny zrzut"><svg width="18" height="18"><use href="#i-arrow-right"/></svg></button>
+        <button class="iconbtn" id="lbPrev" type="button" aria-label="Previous screenshot"><svg width="18" height="18"><use href="#i-arrow-left"/></svg></button>
+        <button class="iconbtn" id="lbClose" type="button" aria-label="Close preview"><svg width="18" height="18"><use href="#i-close"/></svg></button>
+        <button class="iconbtn" id="lbNext" type="button" aria-label="Next screenshot"><svg width="18" height="18"><use href="#i-arrow-right"/></svg></button>
       </div>
     </div>
   </div>
 </dialog>
 
-<script src="app.js?v=3" defer></script>
+<script src="app.js?v=4" defer></script>
 </body>
 </html>
