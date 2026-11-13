@@ -1425,13 +1425,13 @@ p { text-wrap: pretty; }
 }
 
 /* ---------- 19. Rewelacje ---------- */
-[data-reveal] {
+.motion-ready [data-reveal] {
   opacity: 0;
   transform: translateY(26px);
   transition: opacity var(--d-slow) var(--ease-out), transform var(--d-slow) var(--ease-out);
   transition-delay: var(--d, 0ms);
 }
-[data-reveal].is-in { opacity: 1; transform: none; }
+.motion-ready [data-reveal].is-in { opacity: 1; transform: none; }
 [data-reveal="scale"] { transform: translateY(26px) scale(0.97); }
 [data-reveal="left"] { transform: translateX(-24px); }
 
@@ -1557,4 +1557,48 @@ dialog#lightbox[open] { animation: lb-in 320ms var(--ease-out); }
 @media (max-width: 700px) {
   .iconbtn--xs { width: 38px; height: 38px; font-size: 13px; }
   .stagecard__ctl { gap: 5px; }
+}
+
+
+/* Layout for the real application screens and the download page. */
+[hidden] { display: none !important; }
+.hero {
+  padding: clamp(84px, 10vh, 112px) 0 clamp(30px, 5vw, 60px);
+}
+.hero__grid { gap: clamp(20px, 4vw, 56px); }
+.hero h1 {
+  font-size: clamp(2.15rem, 5.2vw, 4.6rem);
+  line-height: 1.04;
+  max-width: 14ch;
+  margin: 0;
+}
+.hero__lead { margin-top: 18px; }
+.hero__cta { margin-top: 22px; }
+.hero__stage { min-height: 0; margin: 0; padding-block: 12px; gap: 12px; }
+.hero__phone { --dw: clamp(208px, 24vw, 286px); }
+.hero__stage figcaption { position: relative; color: var(--text-2); text-align: center; font-size: .84rem; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 4vw, 40px);
+  justify-items: center;
+}
+.gallery-grid .gal__item {
+  width: min(100%, 256px);
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+}
+.gallery-grid .device { --dw: 100%; width: 100%; padding: 5px; border-radius: 22px; }
+.gallery-grid .device__screen { border-radius: 17px; }
+.gallery-grid .gal__cap { margin: 0; text-align: center; }
+.file-hash { overflow-wrap: anywhere; }
+.file-hash a { text-decoration: underline; }
+.msheet { overflow-y: auto; }
+@media (max-width: 700px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+  .hero__grid { gap: 22px; }
+  .hero__meta { margin-top: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready [data-reveal] { opacity: 1; transform: none; }
 }

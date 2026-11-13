@@ -12,7 +12,16 @@
   const KEY = 'openoven.theme';
   const html = document.documentElement;
   const mqDark = matchMedia('(prefers-color-scheme: dark)');
-  let choice = localStorage.getItem(KEY) || 'system';
+  let choice = 'system';
+  try {
+    const saved = localStorage.getItem(KEY);
+    if (['system', 'light', 'dark'].includes(saved)) choice = saved;
+  } catch {
+    // Theme controls also work when browser storage is unavailable.
+  }
+  const saveTheme = () => {
+    try { localStorage.setItem(KEY, choice); } catch { /* Session-only choice. */ }
+  };
 
   const applyTheme = () => {
     const dark = choice === 'system' ? mqDark.matches : choice === 'dark';
@@ -34,13 +43,13 @@
   $$('[data-theme-choice]').forEach((b) =>
     b.addEventListener('click', () => {
       choice = b.dataset.themeChoice;
-      localStorage.setItem(KEY, choice);
+      saveTheme();
       applyTheme();
     })
   );
   $('#themeToggle')?.addEventListener('click', () => {
     choice = html.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem(KEY, choice);
+    saveTheme();
     applyTheme();
   });
   applyTheme();
@@ -59,21 +68,37 @@
 
   const msheet = $('#msheet');
   const menuBtn = $('#menuBtn');
+  const desktop = matchMedia('(min-width: 1080px)');
   const setMenu = (open) => {
+    msheet.hidden = !open;
     msheet.classList.toggle('is-open', open);
     menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
     menuBtn.firstElementChild.innerHTML = `<use href="#${open ? 'i-close' : 'i-menu'}"/>`;
     document.body.style.overflow = open ? 'hidden' : '';
+    if (open) msheet.querySelector('a')?.focus();
   };
-  menuBtn?.addEventListener('click', () => setMenu(!msheet.classList.contains('is-open')));
-  $$('#msheet a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
-  addEventListener('keydown', (e) => e.key === 'Escape' && setMenu(false));
+  menuBtn.addEventListener('click', () => setMenu(msheet.hidden));
+  $$('#msheet a').forEach((a) => a.addEventListener('click', () => {
+    setMenu(false);
+    const target = a.hash && document.getElementById(a.hash.slice(1));
+    if (target) {
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+  }));
+  addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || msheet.hidden) return;
+    setMenu(false);
+    menuBtn.focus();
+  });
+  desktop.addEventListener('change', () => { if (desktop.matches) setMenu(false); });
 
   const navLinks = $$('#nav a');
   const sections = navLinks
     .map((a) => $(a.getAttribute('href')))
     .filter(Boolean);
-  if (sections.length) {
+  if (sections.length && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
@@ -88,46 +113,17 @@
     sections.forEach((s) => io.observe(s));
   }
 
-  /* ========================================================= 3. Rewelacje */
-  const revealIO = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((en) => {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('is-in');
-        if (!en.target.querySelector('[data-count]')) return;
-      }),
-    { rootMargin: '0px 0px -8% 0px', threshold: 0.12 }
-  );
-  $$('[data-reveal]').forEach((el) => revealIO.observe(el));
-  $$('.feature, .card, .step, .themecard, .timeline__row, .tablewrap, .stats').forEach((el) =>
-    revealIO.observe(el)
-  );
-
-  /* liczniki */
-  const countIO = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((en) => {
-        if (!en.isIntersecting || en.target.dataset.done) return;
-        en.target.dataset.done = '1';
-        const end = +en.target.dataset.count || 0;
-        const suffix = en.target.dataset.suffix || '';
-        if (reduce.matches || end === 0) {
-          en.target.textContent = end.toLocaleString('pl-PL') + suffix;
-          return;
-        }
-        const t0 = performance.now();
-        const dur = 1500;
-        const tick = (now) => {
-          const p = clamp((now - t0) / dur, 0, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          en.target.textContent = Math.round(end * eased).toLocaleString('pl-PL') + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      }),
-    { threshold: 0.4 }
-  );
-  $$('[data-count]').forEach((el) => countIO.observe(el));
+  if ('IntersectionObserver' in window && !reduce.matches) {
+    const reveal = new IntersectionObserver((entries, observer) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('is-in');
+        observer.unobserve(entry.target);
+      }
+    }, { threshold: 0.08 });
+    document.documentElement.classList.add('motion-ready');
+    $$('[data-reveal]').forEach((element) => reveal.observe(element));
+  }
 
   /* podświetlenie kursorami w kartach (poświata) */
   $$('.feature').forEach((card) => {
@@ -161,77 +157,7 @@
     { id: 11, name: 'Grill + rożen', max: 280 },
     { id: 12, name: 'Super grill + rożen', max: 280 },
   ];
-  const track = $('#fnTrack');
-  if (track) {
-    const cell = (f) =>
-      `<span class="marquee__item"><i>${String(f.id).padStart(2, '0')}</i>${f.name}</span>`;
-    track.innerHTML = FUNCTIONS.map(cell).join('') + FUNCTIONS.map(cell).join('');
-  }
-
-  /* ====================================== 5. Makieta w hero: animacja pieczenia */
-  const hero = {
-    ring: $('#heroRing'),
-    temp: $('#heroTemp'),
-    time: $('#heroTime'),
-    bar: $('#heroBar'),
-    stage: $('#heroStage'),
-  };
-  if (hero.ring && !reduce.matches) {
-    const C = 263.9;
-    const stages = ['Etap 1 / 3', 'Etap 2 / 3', 'Etap 3 / 3'];
-    let temp = 25, minute = 41, sIdx = 1, t0 = performance.now();
-    const step = (now) => {
-      const el = (now - t0) / 1000;
-      const heat = clamp(el / 6, 0, 1);
-      temp = Math.round(25 + heat * 155);
-      const progress = clamp((41 - (minute - Math.floor(el / 4))) / 41, 0.04, 0.96);
-      hero.temp.textContent = temp;
-      hero.ring.style.strokeDashoffset = String(C * (1 - (temp - 20) / 270));
-      const m = clamp(41 - Math.floor(el / 4), 1, 41);
-      hero.time.textContent = `0:${String(m).padStart(2, '0')}`;
-      hero.bar.style.width = `${(1 - m / 41) * 100}%`;
-      hero.stage.textContent = stages[clamp(Math.floor(el / 9), 0, 2)];
-      if (el > 46) { t0 = now; }
-      requestAnimationFrame(step);
-    };
-    const startHero = () => requestAnimationFrame(step);
-    const heroIO = new IntersectionObserver((e) => {
-      if (e[0].isIntersecting) { startHero(); heroIO.disconnect(); }
-    });
-    heroIO.observe(hero.ring.closest('.device'));
-  }
-
-  /* ================================================= 6. Przewodnik (sticky tour) */
-  const screens = $$('#tourScreens .ui__scr');
-  const steps = $$('#tourSteps .step');
-  const dotsBox = $('#dots');
-  if (screens.length && steps.length) {
-    if (dotsBox) dotsBox.innerHTML = steps.map(() => '<i></i>').join('');
-    const dots = dotsBox ? $$('i', dotsBox) : [];
-    let current = -1;
-    const show = (i) => {
-      if (i === current) return;
-      current = i;
-      screens.forEach((s, k) => s.classList.toggle('is-on', k === i));
-      steps.forEach((s, k) => s.classList.toggle('is-active', k === i));
-      dots.forEach((d, k) => d.classList.toggle('on', k === i));
-    };
-    const stepIO = new IntersectionObserver(
-      (entries) => {
-        entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-          .slice(0, 1)
-          .forEach((e) => show(steps.indexOf(e.target)));
-      },
-      { rootMargin: '-30% 0px -30% 0px', threshold: [0.05, 0.35, 0.75] }
-    );
-    steps.forEach((s) => stepIO.observe(s));
-    show(0);
-  }
-
   /* ================================================ 7. Playground nastaw */
-  let wheels = [];
   const fnList = $('#fnList');
   if (fnList) {
     const state = {
@@ -250,7 +176,7 @@
         this.el = el;
         this.out = $('[data-out]', el);
         this.reel = $('[data-reel]', el);
-      this.strip = $('.wheel__strip', el);
+        this.strip = $('.wheel__strip', el);
         this.area = el;
         this.onChange = onChange;
         this.min = +el.dataset.min;
@@ -300,6 +226,7 @@
         this.onChange(this.value);
       }
       move(delta) {
+        if (this.el.getAttribute('aria-disabled') === 'true') return;
         const vals = this.labels();
         const next = clamp(this.index + delta, 0, vals.length - 1);
         if (next === this.index) return;
@@ -314,6 +241,7 @@
         this.paint();
       }
       down(e) {
+        if (this.el.getAttribute('aria-disabled') === 'true') return;
         if (e.pointerType === 'mouse' && e.button !== 0) return;
         this.el.setPointerCapture(e.pointerId);
         this.drag = { y: e.clientY, last: e.clientY, moved: 0, t: performance.now(), vel: 0 };
@@ -345,6 +273,7 @@
         this.el.addEventListener('pointercancel', onUp);
       }
       key(e) {
+        if (this.el.getAttribute('aria-disabled') === 'true') return;
         const k = e.key;
         if (k === 'ArrowUp' || k === 'ArrowRight') { this.move(1); e.preventDefault(); }
         else if (k === 'ArrowDown' || k === 'ArrowLeft') { this.move(-1); e.preventDefault(); }
@@ -371,15 +300,15 @@
       hint.textContent = f.noTemp
         ? 'Rozmrażanie pomija nastawy temperatury i sondy — piekarnik nie przyjmuje tu stopni.'
         : `Zakres tej funkcji: 30–${f.max} °C. Wartości poza progiem nie da się wystartować.`;
-      const warn = $('#sumWarn');
-      const problems = [];
-      if (!f.noTemp && state.temp > f.max) problems.push(`${f.name} kończy się na ${f.max} °C.`);
-      if (sum > 600) problems.push('Suma etapów przekracza 600 minut.');
-      if (f.noTemp && state.stages.some((s) => s.temp > 0)) problems.push('Przy rozmrażaniu pomijamy temperaturę.');
-      warn.hidden = !problems.length;
-      warn.textContent = problems.join(' ');
-      warn.classList.toggle('hint--warn', true);
-      $('#wheelTemp').classList.toggle('wheel--off', !!f.noTemp);
+      const temperatureControl = $('#wheelTemp');
+      temperatureControl.classList.toggle('wheel--off', !!f.noTemp);
+      temperatureControl.setAttribute('aria-disabled', String(!!f.noTemp));
+      temperatureControl.tabIndex = f.noTemp ? -1 : 0;
+      $$('#karuzela [data-temperature-step]').forEach((button) => {
+        button.disabled = !!f.noTemp;
+      });
+      $('#swRapid').disabled = !!f.noTemp;
+      $('#swRapid').setAttribute('aria-pressed', String(state.rapid));
       $$('#stageList .stagecard').forEach((card, i) => {
         const s = state.stages[i];
         if (!s) return;
@@ -417,6 +346,7 @@
       const b = e.target.closest('.fn');
       if (!b) return;
       state.fn = +b.dataset.fn;
+      if (state.fn === 10) state.rapid = false;
       const f = FUNCTIONS.find((x) => x.id === state.fn);
       $$('.fn', fnList).forEach((x) => x.setAttribute('aria-pressed', String(+x.dataset.fn === state.fn)));
       wheelTemp.setMax(f.noTemp ? +wheelTemp.el.dataset.originMax : f.max);
@@ -425,12 +355,11 @@
       syncAll();
     });
 
-    wheels = [wheelTemp, wheelTime];
 
     /* przyciski korekty przy karuzelach */
     $$('.stepbtns [data-nudge]').forEach((b) => {
       const field = b.closest('.field');
-      const w = wheels.find((x) => field.contains(x.el));
+      const w = [wheelTemp, wheelTime].find((wheel) => field.contains(wheel.el));
       if (!w) return;
       b.addEventListener('click', () => w.move(+b.dataset.nudge));
     });
@@ -510,7 +439,7 @@
 
     $('#btnSend').addEventListener('click', () => {
       const f = FUNCTIONS.find((x) => x.id === state.fn);
-      toast(`Symulator: ${f.name}, ${f.noTemp ? 'bez temperatury' : state.temp + ' °C'}, ${fmtTime(state.minutes)}`);
+      toast(`${f.name} · ${state.stages.length} ${state.stages.length === 1 ? 'etap' : 'etapy'} · łącznie ${fmtTime(state.stages.reduce((total, stage) => total + stage.minutes, 0))}`);
     });
   }
 
@@ -522,103 +451,35 @@
     toast._t = setTimeout(() => t.classList.remove('is-on'), 3200);
   };
 
-  /* =========================================== 8. Galeria + lightbox */
-  const rail = $('#galRail');
-  if (rail) {
-    const items = $$('.gal__item', rail);
-    const step = () => (items[0]?.offsetWidth || 260) + 24;
-    let moved = 0;
-    $('#galNext').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: 'smooth' }));
-    $('#galPrev').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: 'smooth' }));
-    rail.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') { rail.scrollBy({ left: step(), behavior: 'smooth' }); e.preventDefault(); }
-      if (e.key === 'ArrowLeft') { rail.scrollBy({ left: -step(), behavior: 'smooth' }); e.preventDefault(); }
-    });
-    let down = false, startX = 0, startLeft = 0;
-    rail.addEventListener('pointerdown', (e) => {
-      down = true; moved = 0; startX = e.clientX; startLeft = rail.scrollLeft;
-    });
-    rail.addEventListener('pointermove', (e) => {
-      if (!down) return;
-      moved = Math.max(moved, Math.abs(e.clientX - startX));
-      if (moved > 10) rail.classList.add('is-drag');
-      rail.scrollLeft = startLeft - (e.clientX - startX);
-    });
-    ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) =>
-      rail.addEventListener(ev, () => {
-        down = false;
-        rail.classList.remove('is-drag');
-      })
-    );
-
-    /* lightbox */
-    const lb = $('#lightbox');
-    const shots = items.map((it) => ({
-      src: $('img', it).src,
-      alt: $('img', it).alt,
-      cap: ($('b', $('.gal__cap', it)) ? $('.gal__cap', it).lastChild.textContent : $('.gal__cap', it).textContent).trim(),
+  const lightbox = $('#lightbox');
+  const shots = $$('#galRail .gal__item');
+  if (lightbox?.showModal && shots.length) {
+    let current = 0;
+    let opener;
+    const show = (index) => {
+      current = (index + shots.length) % shots.length;
+      const shot = shots[current];
+      $('#lbImg').src = shot.href;
+      $('#lbImg').alt = $('img', shot).alt;
+      $('#lbCap').textContent = `${current + 1} / ${shots.length} · ${$('.gal__cap', shot).textContent}`;
+    };
+    shots.forEach((shot, index) => shot.addEventListener('click', (event) => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      opener = shot;
+      show(index);
+      lightbox.showModal();
+      $('#lbClose').focus();
     }));
-    let li = 0;
-    const open = (i) => {
-      li = clamp(i, 0, shots.length - 1);
-      $('#lbImg').src = shots[li].src;
-      $('#lbImg').alt = shots[li].alt;
-      $('#lbCap').textContent = `${li + 1} / ${shots.length} · ${shots[li].cap}`;
-      if (!lb.open) lb.showModal();
-      const it = items[li];
-      rail.scrollTo({ left: Math.max(0, it.offsetLeft - (rail.clientWidth - it.offsetWidth) / 2), behavior: 'auto' });
-    };
-    items.forEach((it, i) => {
-      it.tabIndex = 0;
-      it.setAttribute('role', 'button');
-      it.setAttribute('aria-label', `Powiększ: ${$('.gal__cap', it).textContent.trim()}`);
-      const go = () => open(i);
-      it.addEventListener('click', () => { if (moved < 10) go(); });
-      it.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); }
-      });
-      $('img', it).loading = 'lazy';
-    });
-    $('#lbClose').addEventListener('click', () => lb.close());
-    $('#lbNext').addEventListener('click', () => open(li + 1));
-    $('#lbPrev').addEventListener('click', () => open(li - 1));
-    lb.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') open(li + 1);
-      if (e.key === 'ArrowLeft') open(li - 1);
+    $('#lbClose').addEventListener('click', () => lightbox.close());
+    $('#lbNext').addEventListener('click', () => show(current + 1));
+    $('#lbPrev').addEventListener('click', () => show(current - 1));
+    lightbox.addEventListener('close', () => opener?.focus());
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(current + (event.key === 'ArrowRight' ? 1 : -1));
+      }
     });
   }
-
-  /* ==================================== 9. Kroki parowania — auto podświetlenie */
-  const pair = $$('#pairSteps .pstep');
-  if (pair.length && !reduce.matches) {
-    let pi = 0, timer = null;
-    const cycle = () => {
-      const i = pi % pair.length;
-      pair.forEach((p, k) => p.classList.toggle('is-active', k === i));
-      pi = i + 1;
-    };
-    const play = () => { clearInterval(timer); timer = setInterval(cycle, 2400); };
-    cycle(); play();
-    pair.forEach((p, idx) =>
-      p.addEventListener('pointerenter', () => {
-        clearInterval(timer);
-        pair.forEach((q, k) => q.classList.toggle('is-active', k === idx));
-        pi = idx + 1;
-      })
-    );
-    $('#pairSteps').addEventListener('pointerleave', play);
-  }
-
-  /* ============================== 10. Waga strony (bez analityki, bez CDN) */
-  addEventListener('load', () => {
-    const el = $('#pageWeight');
-    if (!el || !performance.getEntriesByType) return;
-    const bytes = performance
-      .getEntriesByType('resource')
-      .concat(performance.getEntriesByType('navigation'))
-      .reduce((a, r) => a + (r.decodedBodySize || 0), 0);
-    if (!bytes) return;
-    const kb = bytes / 1024;
-    el.textContent = `cała strona: ${kb > 1024 ? (kb / 1024).toFixed(2) + ' MB' : Math.round(kb) + ' kB'} transferu, zero zewnętrznych żądań`;
-  });
 })();

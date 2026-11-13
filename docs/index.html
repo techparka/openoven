@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenOven — lokalna kontrola piekarników Amica z Androida</title>
+<title>OpenOven — sterowanie piekarnikiem Amica z Androida</title>
 <meta name="description" content="OpenOven to niezależna aplikacja na Androida do lokalnego sterowania kompatybilnymi piekarnikami Amica. Bez konta, bez chmury, przez domowe Wi-Fi. Kod w publicznym repozytorium. Sterowanie, programy, etapy, przepisy, historia i diagnostyka.">
 <meta name="theme-color" content="#070d13">
 <meta name="color-scheme" content="dark light">
@@ -19,7 +19,7 @@
 <meta property="og:locale" content="pl_PL">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="OpenOven — pieczenie po Twojemu. W Twojej sieci.">
-<meta name="twitter:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0, APK 8,6 MB.">
+<meta name="twitter:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0, APK 9,0 MB.">
 <meta name="twitter:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
 <meta name="twitter:image:alt" content="Makieta telefonu z paskiem postępu pieczenia i hasłem OpenOven.">
 <meta name="author" content="techparka">
@@ -30,7 +30,7 @@
 <link rel="preload" as="font" href="assets/fonts/SpaceGrotesk-latin.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="font" href="assets/fonts/Inter-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -174,12 +174,11 @@
   </a>
   <nav class="topbar__nav" id="nav" aria-label="Nawigacja sekcji">
     <a href="#mozliwosci">Możliwości</a>
-    <a href="#aplikacja">Aplikacja</a>
     <a href="#karuzela">Nastawy</a>
     <a href="#ekrany">Ekrany</a>
     <a href="#lokalnie">Lokalnie</a>
-    <a href="#jakosc">Jakość</a>
-    <a href="#start">Start</a>
+    <a href="#jakosc">Testy</a>
+    <a href="#start">Połączenie</a>
   </nav>
   <div class="topbar__actions">
     <button class="iconbtn" id="themeToggle" type="button" aria-label="Przełącz motyw: ciemny lub jasny" title="Motyw jasny / ciemny">
@@ -190,7 +189,7 @@
       <svg width="17" height="17" aria-hidden="true"><use href="#i-github"/></svg>
       <span>Kod</span>
     </a>
-    <a class="btn btn--primary btn--sm" href="https://github.com/techparka/openoven/releases/latest" rel="noopener">
+    <a class="btn btn--primary btn--sm" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
       <svg width="16" height="16" aria-hidden="true"><use href="#i-download"/></svg>
       <span>APK 0.6.0</span>
     </a>
@@ -201,15 +200,14 @@
   <div class="topbar__progress" id="progress" aria-hidden="true"></div>
 </header>
 
-<nav class="msheet" id="msheet" aria-label="Menu mobilne">
-  <a href="#mozliwosci">Możliwości <span>01</span></a>
-  <a href="#aplikacja">Aplikacja <span>02</span></a>
-  <a href="#karuzela">Nastawy <span>03</span></a>
-  <a href="#ekrany">Ekrany <span>04</span></a>
-  <a href="#lokalnie">Lokalnie <span>05</span></a>
-  <a href="#jakosc">Jakość <span>06</span></a>
-  <a href="#start">Start <span>07</span></a>
-  <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/latest" rel="noopener">
+<nav class="msheet" id="msheet" hidden aria-label="Menu mobilne">
+  <a href="#mozliwosci">Możliwości </a>
+  <a href="#karuzela">Nastawy </a>
+  <a href="#ekrany">Ekrany </a>
+  <a href="#lokalnie">Lokalnie </a>
+  <a href="#jakosc">Testy</a>
+  <a href="#start">Połączenie</a>
+  <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
     <svg width="17" height="17" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
   </a>
 </nav>
@@ -217,22 +215,10 @@
 <section class="hero" id="top">
   <div class="wrap hero__grid">
     <div>
-      <p class="hero__badge" data-reveal>
-        Niezależna aplikacja na Androida <b>z publicznym kodem</b>
-      </p>
-      <h1>
-        <span class="line"><span>Twoje pieczenie.</span></span>
-        <span class="line"><span>Twoja sieć.</span></span>
-        <span class="line"><span class="heat-text">Zero chmury.</span></span>
-      </h1>
-      <p class="hero__lead" data-reveal style="--d:260ms">
-        OpenOven to niezależna alternatywa dla aplikacji producenta: lokalne sterowanie
-        kompatybilnymi piekarnikami Amica przez domowe Wi-Fi. Funkcje grzania, programy,
-        pieczenie w etapach, własne przepisy, historia i diagnostyka — bez konta i bez serwera
-        pośredniczącego.
-      </p>
-      <div class="hero__cta" data-reveal style="--d:380ms">
-        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/latest" rel="noopener">
+      <h1>Steruj piekarnikiem <span class="heat-text">z telefonu</span></h1>
+      <p class="hero__lead">OpenOven to niezależna aplikacja na Androida do kompatybilnych piekarników Amica. Sprawdź temperaturę, dodaj czas i zapisz własne nastawy przez domowe Wi-Fi.</p>
+      <div class="hero__cta" >
+        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
           <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg>
           Pobierz APK 0.6.0
         </a>
@@ -240,127 +226,36 @@
           <svg width="18" height="18" aria-hidden="true"><use href="#i-github"/></svg>
           Repozytorium i kod
         </a>
-        <a class="btn btn--quiet" href="#aplikacja">
-          Zobacz, jak działa <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        <a class="btn btn--quiet" href="#ekrany">
+          Zobacz aplikację <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
         </a>
       </div>
-      <ul class="hero__meta" data-reveal style="--d:460ms">
+      <ul class="hero__meta" >
         <li>Android <b>6.0+</b></li>
-        <li>APK <b>8,6 MB</b></li>
-        <li>repo <b>publiczne</b></li>
+        <li>APK <b>9,0 MB</b></li>
+
         <li><b class="chip chip--heat chip--meta">wersja testowa</b></li>
       </ul>
     </div>
 
-    <div class="hero__stage" data-reveal="scale" style="--d:200ms">
+    <figure class="hero__stage">
       <div class="hero__ring" aria-hidden="true"></div>
-      <div class="hero__chips" aria-hidden="true">
-        <span class="chip chip--live">połączenie LAN</span>
-        <span class="chip">12 funkcji grzania</span>
-        <span class="chip">30–280 °C</span>
-        <span class="chip">3 etapy</span>
-      </div>
-
-      <div class="device device--float" role="img"
-           aria-label="Zrzut interfejsu aplikacji OpenOven: pieczenie w toku, temperatura 180 stopni Celsjusza, pozostało 41 minut">
-        <span class="device__cam" aria-hidden="true"></span>
+      <div class="device device--shot hero__phone">
         <div class="device__screen">
-          <div class="ui">
-            <div class="ui__bar">
-              <span class="mono">13:51</span>
-              <span><svg width="11" height="11" aria-hidden="true"><use href="#i-signal"/></svg>
-              <svg width="11" height="11" aria-hidden="true"><use href="#i-wifi"/></svg>
-              <svg width="14" height="11" aria-hidden="true"><use href="#i-battery"/></svg></span>
-            </div>
-            <div class="ui__head">
-              <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-              <span class="ui__word">OPENOVEN</span>
-              <span class="ui__state">w toku</span>
-            </div>
-            <div class="ui" style="position:static;flex:1">
-              <div style="display:flex;align-items:center;gap:.4em;padding:.4em .9em;font-size:.5em;background:color-mix(in oklab, var(--ui-ok) 18%, transparent);color:var(--ui-text)">
-                <svg width="9" height="9" aria-hidden="true"><use href="#i-info"/></svg>
-                Demonstracja — dane z symulatora
-              </div>
-              <div class="ui__body">
-                <div class="ui__card ui__card--hero">
-                  <div class="ui__row ui__row--split">
-                    <span class="ui__label">Pieczenie w toku</span>
-                    <span class="ui__chip" id="heroStage">Etap 2 / 3</span>
-                  </div>
-                  <div class="ui__ring" style="padding:.3em 1.4em">
-                    <svg viewBox="0 0 100 100" aria-hidden="true">
-                      <circle class="t" cx="50" cy="50" r="42"/>
-                      <circle class="v" id="heroRing" cx="50" cy="50" r="42"
-                              stroke-dasharray="263.9" stroke-dashoffset="214"/>
-                    </svg>
-                    <span class="ui__ring-val">
-                      <b class="ui__big"><span id="heroTemp">180</span><sup>°C</sup></b>
-                      <span class="ui__sub" id="heroFn">Termoobieg</span>
-                    </span>
-                  </div>
-                  <div class="ui__row ui__row--split" style="align-items:baseline">
-                    <span class="ui__label">Pozostało</span>
-                    <b class="ui__mid" id="heroTime">00:41</b>
-                  </div>
-                  <div class="ui__bar2"><i id="heroBar" style="width:32%"></i></div>
-                </div>
-                <div class="ui__grid2">
-                  <div class="ui__tile ui__tile--on">
-                    <svg width="12" height="12" aria-hidden="true"><use href="#i-bulb"/></svg>
-                    <b>Światło</b> włączone
-                  </div>
-                  <div class="ui__tile">
-                    <svg width="12" height="12" aria-hidden="true"><use href="#i-bolt"/></svg>
-                    <b>Szybki nagrzew</b> gotowy
-                  </div>
-                </div>
-                <div class="ui__card" style="gap:.35em">
-                  <div class="ui__row ui__row--split"><span class="ui__sub">Etap 2 · zapiekanie</span><span class="ui__sub">195 °C · 0:15</span></div>
-                  <div class="ui__row ui__row--split"><span class="ui__sub">Etap 3 · podawanie</span><span class="ui__sub">70 °C · 0:20</span></div>
-                </div>
-                <div class="ui__btn ui__btn--stop">Zatrzymaj pieczenie</div>
-              </div>
-              <div class="ui__nav" aria-hidden="true">
-                <span class="on"><svg><use href="#i-oven"/></svg>Pulpit</span>
-                <span><svg><use href="#i-sliders"/></svg>Nastawy</span>
-                <span><svg><use href="#i-book"/></svg>Przepisy</span>
-                <span><svg><use href="#i-wrench"/></svg>Więcej</span>
-              </div>
-            </div>
-          </div>
+          <img class="device__shot" src="screenshots/baking.png" width="1080" height="1920"
+               fetchpriority="high" alt="OpenOven w trakcie pieczenia, z odczytem temperatury i przyciskiem dodawania czasu">
         </div>
-        <span class="device__glare" aria-hidden="true"></span>
       </div>
-    </div>
-  </div>
-  <p class="wrap" style="margin-top:var(--s4);font-size:13px;color:var(--text-3);max-width:56ch">
-    Makieta interfejsu pracuje w przeglądarce — dane są generowane lokalnie, dokładnie tak jak
-    w trybie demonstracji w samej aplikacji.
-  </p>
-</section>
-
-<section class="trust" aria-label="Najważniejsze liczby">
-  <div class="wrap" style="padding-inline:0">
-    <div class="trust__inner">
-      <div class="trust__item"><b class="mono" data-count="0" data-suffix="">0</b><span>kont i chmur w łańcuchu sterowania</span></div>
-      <div class="trust__item"><b class="mono" data-count="12">12</b><span>funkcji grzania w katalogu urządzenia</span></div>
-      <div class="trust__item"><b class="mono" data-count="124">124</b><span>testy automatyczne: JVM i dwa emulatory</span></div>
-      <div class="trust__item"><b class="mono" data-count="5447" data-suffix="">5447</b><span>linii Kotlinu w publicznym repozytorium</span></div>
-    </div>
+      <figcaption>OpenOven 0.6.0 w trybie demonstracji</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="marquee" aria-label="Dwanaście funkcji grzania dostępnych w aplikacji">
-  <div class="marquee__track" id="fnTrack"></div>
-</section>
 <section class="section" id="mozliwosci">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <p class="eyebrow">01 — Co potrafi</p>
-      <h2>Pieczenie opisane całą złożonością, jaką je wymyślono</h2>
-      <p>Aplikacja nie udaje uproszczenia. Pokazuje stan piekarnika, limity funkcji i etapy tak,
-      jak wygląda ich realna obsługa — tylko szybciej i z jednego ekranu telefonu.</p>
+      <h2>Co potrafi OpenOven</h2>
+
     </div>
 
     <div class="bento">
@@ -395,7 +290,7 @@
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-rotate"/></svg></span>
         <h3>Zmiana w trakcie</h3>
         <p>Temperatura i czas bez przerywania programu. Dołóż minuty z poziomu pulpitu —
-        nowe nastawy wracają do piekarnika natychmiast.</p>
+        aplikacja sprawdza zmianę po odczycie stanu.</p>
         <div class="feature__art">
           <div class="ui" style="position:static">
             <div class="ui__row" style="gap:.4em">
@@ -487,381 +382,39 @@
     </div>
   </div>
 </section>
-<section class="section" id="aplikacja">
+<section class="section section--edge" id="ekrany">
   <div class="wrap">
-    <div class="sechead" data-reveal>
-      <p class="eyebrow">02 — Przewodnik po aplikacji</p>
-      <h2>Siedem ekranów, które obsłużą całe pieczenie</h2>
-      <p>Przewiń, żeby przejść ścieżkę od pulpitu do parowania. Makieta po lewej reaguje na pozycję
-     sekcji na stronie — to ten sam układ co w wersji na Androida.</p>
+    <div class="sechead" id="aplikacja">
+      <h2>Zobacz aplikację</h2>
+      <p>Trzy ekrany wersji 0.6.0 z emulatora. Otwórz zrzut, aby go powiększyć.</p>
     </div>
-
-    <div class="showcase">
-      <div class="showcase__stage">
-        <div class="showcase__stagewrap">
-          <div class="showcase__dots" id="dots" aria-hidden="true"></div>
-          <div class="device" id="tourDevice">
-            <span class="device__cam" aria-hidden="true"></span>
-            <div class="device__screen">
-              <div class="ui__screens" id="tourScreens">
-
-                <!-- 1. pulpit, brak pieczenia -->
-                <div class="ui__scr is-on" data-scr="1">
-                  <div class="ui__bar"><span class="mono">13:48</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state ui__state--warn">bezczynny</span>
-                  </div>
-                  <div class="ui__body">
-                    <div class="ui__card">
-                      <span class="ui__label">Piekarnik</span>
-                      <b class="ui__title" style="font-size:.8em">Gotowy do ustawienia</b>
-                      <span class="ui__sub">Amica · funkcja konwencjonalna</span>
-                    </div>
-                    <div class="ui__grid2">
-                      <div class="ui__tile"><b>42 °C</b>w komorze</div>
-                      <div class="ui__tile"><b>—</b>brak programu</div>
-                    </div>
-                    <div class="ui__grid2">
-                      <div class="ui__tile"><svg width="12" height="12"><use href="#i-bolt"/></svg><b>Szybki nagrzew</b></div>
-                      <div class="ui__tile"><svg width="12" height="12"><use href="#i-bulb"/></svg><b>Światło</b></div>
-                    </div>
-                    <div class="ui__btn">Ustaw pieczenie</div>
-                    <div class="ui__card" style="gap:.35em">
-                      <span class="ui__label">Ostatnie nastawy</span>
-                      <div class="ui__row ui__row--split"><span class="ui__sub">Termoobieg · 180 °C</span><span class="ui__sub">0:35</span></div>
-                      <span class="ui__note"><svg width="9" height="9"><use href="#i-history"/></svg>wpis z historii, dostępny jednym dotknięciem</span>
-                    </div>
-                  </div>
-                  <div class="ui__nav"><span class="on"><svg><use href="#i-oven"/></svg>Pulpit</span><span><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-                <!-- 2. pieczenie w toku -->
-                <div class="ui__scr" data-scr="2">
-                  <div class="ui__bar"><span class="mono">13:51</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state">w toku</span>
-                  </div>
-                  <div class="ui__body">
-                    <div class="ui__card ui__card--hero">
-                      <div class="ui__row ui__row--split"><span class="ui__label">Termoobieg</span><span class="ui__chip">Etap 2 / 3</span></div>
-                      <div class="ui__ring" style="padding:.2em 1.3em">
-                        <svg viewBox="0 0 100 100">
-                          <circle class="t" cx="50" cy="50" r="42"/>
-                          <circle class="v" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="98"/>
-                        </svg>
-                        <span class="ui__ring-val">
-                          <b class="ui__big">180<sup>°C</sup></b>
-                          <span class="ui__sub">zadana</span>
-                        </span>
-                      </div>
-                      <div class="ui__row ui__row--split" style="align-items:baseline">
-                        <span class="ui__label">Pozostało</span><b class="ui__mid">0:41</b>
-                      </div>
-                      <div class="ui__bar2"><i style="width:62%"></i></div>
-                    </div>
-                    <div class="ui__grid2">
-                      <div class="ui__tile"><b>178 °C</b>rzeczywista</div>
-                      <div class="ui__tile ui__tile--on"><b>195 °C</b>bieżący etap</div>
-                    </div>
-                    <div class="ui__grid2">
-                      <div class="ui__tile ui__tile--on"><svg width="12" height="12"><use href="#i-bulb"/></svg><b>Światło</b></div>
-                      <div class="ui__tile"><svg width="12" height="12"><use href="#i-timer"/></svg><b>Dodaj minuty</b></div>
-                    </div>
-                    <div class="ui__btn ui__btn--stop">Zatrzymaj</div>
-                  </div>
-                  <div class="ui__nav"><span class="on"><svg><use href="#i-oven"/></svg>Pulpit</span><span><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-                <!-- 3. nastawy s007 z karuzelami -->
-                <div class="ui__scr" data-scr="3">
-                  <div class="ui__bar"><span class="mono">13:52</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state ui__state--warn">nastawy</span>
-                  </div>
-                  <div class="ui__body">
-                    <span class="ui__label">Funkcja grzania</span>
-                    <div class="ui__row" style="gap:.35em;flex-wrap:wrap">
-                      <span class="ui__chip ui__chip--ghost">Konwencjonalne</span>
-                      <span class="ui__chip">Termoobieg</span>
-                      <span class="ui__chip ui__chip--ghost">Grill</span>
-                    </div>
-                    <div class="ui__card" style="gap:.3em">
-                      <div class="ui__row ui__row--split"><span class="ui__label">Temperatura</span><span class="ui__sub">30 – 280</span></div>
-                      <b class="ui__big" style="text-align:center">180<sup>°C</sup></b>
-                      <div style="display:grid;gap:.15em;opacity:.75">
-                        <span class="ui__sub" style="text-align:center">260 °C</span>
-                        <span class="ui__sub" style="text-align:center;color:var(--ui-text)">200 °C</span>
-                        <span class="ui__sub" style="text-align:center">220 °C</span>
-                      </div>
-                    </div>
-                    <div class="ui__card" style="gap:.3em">
-                      <div class="ui__row ui__row--split"><span class="ui__label">Czas</span><span class="ui__sub">1 – 600 min</span></div>
-                      <b class="ui__big" style="text-align:center">0:35</b>
-                      <div style="display:grid;gap:.15em;opacity:.75">
-                        <span class="ui__sub" style="text-align:center">0:25</span>
-                        <span class="ui__sub" style="text-align:center;color:var(--ui-text)">0:35</span>
-                        <span class="ui__sub" style="text-align:center">0:45</span>
-                      </div>
-                    </div>
-                    <div class="ui__card" style="gap:.45em">
-                      <div class="ui__row ui__row--split"><span class="ui__sub">Szybki nagrzew</span><span class="ui__switch ui__switch--on"></span></div>
-                      <div class="ui__row ui__row--split"><span class="ui__sub">Światło w piekarniku</span><span class="ui__switch"></span></div>
-                    </div>
-                    <div class="ui__btn">Start</div>
-                  </div>
-                  <div class="ui__nav"><span><svg><use href="#i-oven"/></svg>Pulpit</span><span class="on"><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-                <!-- 4. etapy -->
-                <div class="ui__scr" data-scr="4">
-                  <div class="ui__bar"><span class="mono">13:53</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state ui__state--warn">etapy</span>
-                  </div>
-                  <div class="ui__body">
-                    <div class="ui__row ui__row--split">
-                      <b class="ui__title" style="font-size:.78em">Pieczenie w etapach</b>
-                      <span class="ui__chip">1 / 3</span>
-                    </div>
-                    <div class="ui__list">
-                      <div class="ui__li ui__li--on">
-                        <span class="ui__ic"><svg><use href="#i-thermo"/></svg></span>
-                        <span><b>Etap 1 · Termoobieg</b><span>180 °C · 0:25 · szybki nagrzew</span></span>
-                        <span class="ui__go">≡</span>
-                      </div>
-                      <div class="ui__li">
-                        <span class="ui__ic"><svg><use href="#i-bolt"/></svg></span>
-                        <span><b>Etap 2 · Zapiekanie</b><span>195 °C · 0:15</span></span>
-                        <span class="ui__go">≡</span>
-                      </div>
-                      <div class="ui__li">
-                        <span class="ui__ic"><svg><use href="#i-timer"/></svg></span>
-                        <span><b>Etap 3 · Podawanie</b><span>70 °C · 0:20</span></span>
-                        <span class="ui__go">≡</span>
-                      </div>
-                    </div>
-                    <div class="ui__btn ui__btn--line"><svg width="11" height="11" style="vertical-align:-1px"><use href="#i-plus"/></svg> Dodaj etap</div>
-                    <span class="ui__note"><svg width="9" height="9"><use href="#i-info"/></svg>maksimum trzy etapy; przeciągnij, aby zmienić kolejność</span>
-                    <div class="ui__btn">Start</div>
-                  </div>
-                  <div class="ui__nav"><span><svg><use href="#i-oven"/></svg>Pulpit</span><span class="on"><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-                <!-- 5. zmiana w trakcie -->
-                <div class="ui__scr" data-scr="5">
-                  <div class="ui__bar"><span class="mono">14:06</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state">korekta</span>
-                  </div>
-                  <div class="ui__body">
-                    <b class="ui__title" style="font-size:.78em">Zmień w trakcie pieczenia</b>
-                    <div class="ui__card">
-                      <span class="ui__label">Temperatura</span>
-                      <div class="ui__row" style="gap:.5em;align-items:baseline">
-                        <span class="ui__sub" style="text-decoration:line-through">180 °C</span>
-                        <b class="ui__big" style="font-size:1.3em">200 °C</b>
-                      </div>
-                      <div class="ui__bar2"><i style="width:70%"></i></div>
-                    </div>
-                    <div class="ui__card">
-                      <span class="ui__label">Pozostały czas</span>
-                      <div class="ui__row" style="gap:.5em;align-items:baseline">
-                        <b class="ui__big" style="font-size:1.3em">0:41</b>
-                        <span class="ui__chip">+5</span><span class="ui__chip">+10</span>
-                      </div>
-                      <span class="ui__sub">suma po zmianie: 0:56</span>
-                    </div>
-                    <div class="ui__card" style="gap:.3em;border-color:color-mix(in oklab, var(--ui-ok) 45%, transparent)">
-                      <div class="ui__row" style="gap:.4em">
-                        <svg width="11" height="11" style="color:var(--ui-ok)"><use href="#i-check"/></svg>
-                        <span class="ui__sub">polecenie wysłane</span>
-                      </div>
-                      <span class="ui__sub">potwierdzone odczytem z piekarnika</span>
-                    </div>
-                    <div class="ui__btn">Zapisz zmianę</div>
-                    <div class="ui__btn ui__btn--line">Wróć</div>
-                  </div>
-                  <div class="ui__nav"><span class="on"><svg><use href="#i-oven"/></svg>Pulpit</span><span><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-                <!-- 6. programy -->
-                <div class="ui__scr" data-scr="6">
-                  <div class="ui__bar"><span class="mono">13:56</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state ui__state--warn">programy</span>
-                  </div>
-                  <div class="ui__body">
-                    <b class="ui__title" style="font-size:.78em">Programy gotowe</b>
-                    <div class="ui__list">
-                      <div class="ui__li">
-                        <span class="ui__ic"><svg><use href="#i-oven"/></svg></span>
-                        <span><b>Pieczenie tradycyjne</b><span>Konwencjonalne · 180 °C · 0:25</span></span>
-                        <span class="ui__go"><svg width="12" height="12"><use href="#i-arrow-right"/></svg></span>
-                      </div>
-                      <div class="ui__li ui__li--on">
-                        <span class="ui__ic"><svg><use href="#i-oven"/></svg></span>
-                        <span><b>Pieczenie z termoobiegiem</b><span>Termoobieg · 165 °C · 0:30</span></span>
-                        <span class="ui__go"><svg width="12" height="12"><use href="#i-arrow-right"/></svg></span>
-                      </div>
-                      <div class="ui__li">
-                        <span class="ui__ic"><svg><use href="#i-oven"/></svg></span>
-                        <span><b>Zapiekanie z dolną grzałką</b><span>Przypiekanie · 195 °C · 0:15</span></span>
-                        <span class="ui__go"><svg width="12" height="12"><use href="#i-arrow-right"/></svg></span>
-                      </div>
-                      <div class="ui__li">
-                        <span class="ui__ic"><svg><use href="#i-layers"/></svg></span>
-                        <span><b>Pieczenie i dopiekanie</b><span>2 etapy · 175 °C 0:25 → 190 °C 0:05</span></span>
-                        <span class="ui__go"><svg width="12" height="12"><use href="#i-arrow-right"/></svg></span>
-                      </div>
-                    </div>
-                    <span class="ui__note"><svg width="9" height="9"><use href="#i-info"/></svg>program startuje od razu albo wraca na ekran nastaw do korekty</span>
-                    <div class="ui__btn">Uruchom wybrany program</div>
-                  </div>
-                  <div class="ui__nav"><span><svg><use href="#i-oven"/></svg>Pulpit</span><span class="on"><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-                <!-- 7. polaczenie i QR -->
-                <div class="ui__scr" data-scr="7">
-                  <div class="ui__bar"><span class="mono">13:40</span><span><svg width="11" height="11"><use href="#i-wifi"/></svg></span></div>
-                  <div class="ui__head">
-                    <img class="ui__mark" src="assets/img/logo-64.png" alt="">
-                    <span class="ui__word">OPENOVEN</span><span class="ui__state">połączono</span>
-                  </div>
-                  <div class="ui__body">
-                    <b class="ui__title" style="font-size:.78em">Połączenie</b>
-                    <div class="ui__card" style="gap:.4em">
-                      <div class="ui__row ui__row--split"><span class="ui__sub">Piekarnik</span><b class="ui__sub" style="color:var(--ui-text)">Amica · 9137</b></div>
-                      <div class="ui__row ui__row--split"><span class="ui__sub">Sieć</span><b class="ui__sub" style="color:var(--ui-text)">domowe Wi-Fi</b></div>
-                      <div class="ui__row ui__row--split"><span class="ui__sub">Profil</span><b class="ui__sub" style="color:var(--ui-text)">1 piekarnik</b></div>
-                    </div>
-                    <div class="ui__card" style="gap:.5em">
-                      <span class="ui__label">Profil na drugi telefon</span>
-                      <div class="ui__qr"><svg viewBox="0 0 29 29" fill="none" stroke="#172b39" stroke-width="1.2"><rect x="1" y="1" width="8" height="8"/><rect x="20" y="1" width="8" height="8"/><rect x="1" y="20" width="8" height="8"/><path d="M12 2h2v2h-2zM16 4h2v2h-2zM12 8h4v2h-4zM2 12h2v2H2zM6 12h3v2H6zM11 13h3v2h-3zM16 12h2v3h-2zM20 13h2v2h-2zM24 12h4v2h-4zM12 18h2v3h-2zM16 20h3v2h-3zM12 23h3v2h-3zM17 24h2v3h-2zM21 22h2v3h-2zM25 25h3v2h-3z"/></svg></div>
-                      <span class="ui__sub" style="text-align:center">wygeneruj kod, odczytaj aparatem drugiego telefonu</span>
-                    </div>
-                    <div class="ui__btn">Skanuj kod z piekarnika</div>
-                    <div class="ui__btn ui__btn--line">Diagnostyka</div>
-                  </div>
-                  <div class="ui__nav"><span><svg><use href="#i-oven"/></svg>Pulpit</span><span><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span class="on"><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-                </div>
-
-              </div>
-            </div>
-            <span class="device__glare" aria-hidden="true"></span>
-          </div>
+    <div class="gallery-grid" id="galRail">
+      <a class="gal__item" href="screenshots/dashboard.png">
+        <div class="device device--shot">
+          <div class="device__screen"><img class="device__shot" src="screenshots/dashboard.png" width="1080" height="1920" loading="lazy" alt="Pulpit i szybkie akcje"></div>
         </div>
-      </div>
-
-      <div class="showcase__steps" id="tourSteps">
-        <article class="step is-active" data-step="1">
-          <p class="step__no">Etap 01</p>
-          <h3>Pulpit po otwarciu</h3>
-          <p>Pierwszy ekran pokazuje to, co naprawdę wie piekarnik: temperaturę w komorze,
-          status, ostatnie nastawy. Gdy nic się nie piecze, tym ekranem ustawiasz pieczenie —
-          historię jednym dotknięciem.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> odczyty z urządzenia, nie z cache telefonu</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> ostatnie nastawy jako gotowy punkt startu</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> światło i szybki nagrzew w zasięgu kciuka</li>
-          </ul>
-        </article>
-
-        <article class="step" data-step="2">
-          <p class="step__no">Etap 02</p>
-          <h3>Pieczenie w toku</h3>
-          <p>Po starcie pulpit zmienia układ: pierście postępu, temperatura zadana i rzeczywista
-          obok siebie, licznik czasu oraz bieżący etap. Sterowanie pozostaje na tym samym ekranie —
-          bez zagłębiania się w menu.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> dwa poziomy temperatury: zadana i mierzona</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> znacznik etapu i czas do końca</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> STOP zawsze pod ręką</li>
-          </ul>
-        </article>
-
-        <article class="step" data-step="3">
-          <p class="step__no">Etap 03</p>
-          <h3>Nastawy: funkcja, temperatura, czas</h3>
-          <p>Wybierasz funkcję grzania, potem przeciągasz karuzelę temperatury i czasu. Skala
-          przyspiesza przy dłuższym geście, więc przebiegnięcie od 30 do 280 °C zajmuje ułamek
-          sekundy, a detal dalej jest pojedynczym stopniem.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> zakres zależny od wybranej funkcji</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> przełączniki szybkiego nagrzewu i światła</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> ten sam układ gestów, który znasz z kołek piekarnika</li>
-          </ul>
-        </article>
-
-        <article class="step" data-step="4">
-          <p class="step__no">Etap 04</p>
-          <h3>Trzy etapy jedno danie</h3>
-          <p>Własna sekwencja: najpierw termoobieg, potem zapiekanie, na końcu podawanie.
-          Etapy układasz na karuzelach i uzupełniasz w dowolnej chwili — aplikacja pilnuje,
-          żeby suma i progi były zgodne z limitem funkcji.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> do trzech etapów, każdy z własną funkcją</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> edycja i dodawanie również w trakcie</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> zapis całości do własnego przepisu</li>
-          </ul>
-        </article>
-
-        <article class="step" data-step="5">
-          <p class="step__no">Etap 05</p>
-          <h3>Korekta bez utraty postępu</h3>
-          <p>Okazało się, że trzeba podkręcić górę albo dołożyć kwadrans? Zmieniasz temperaturę
-          i czas na bieżąco, a ekran pokazuje dwa stany: polecenie wysłane oraz polecenie
-          potwierdzone odczytem z piekarnika.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> stopniowa zmiana temperatury i dokładanie minut</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> statusy potwierdzenia zamiast założenia, że „na pewno się udało”</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> powrót do pieczenia bez utraty ustawień</li>
-          </ul>
-        </article>
-
-        <article class="step" data-step="6">
-          <p class="step__no">Etap 06</p>
-          <h3>Programy i przepisy</h3>
-          <p>Cztery programy fabryczne startują od razu albo trafiają na ekran nastaw do korekty.
-          Własne przepisy prowadzą przez etapy jak instrukcja: etapy, składniki, opis i zdjęcie,
-          a całość przenosi plik ZIP albo kod QR.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> cztery programy fabryczne, w tym dwuetapowe</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> edytor przepisów ze zdjęciem i składnikami</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> import i eksport ZIP oraz szablon do pobrania</li>
-          </ul>
-        </article>
-
-        <article class="step" data-step="7">
-          <p class="step__no">Etap 07</p>
-          <h3>Piekarnik w domowej sieci</h3>
-          <p>Parowanie idzie z panela piekarnika: licznik na wyświetlaczu, potem kod QR albo
-          ręczne wpisanie hasła. Aplikacja potrafi też skonfigurować Wi-Fi samego piekarnika
-          i przenieść profil na drugi telefon przez wygenerowany kod.</p>
-          <ul>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> parowanie z poziomymi wskaźnikami licznika</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> pierwsza konfiguracja Wi-Fi piekarnika i zmiana hasła</li>
-            <li><svg width="15" height="15"><use href="#i-check"/></svg> diagnostyka: adres, porty, etapy utylitarnego pakietu</li>
-          </ul>
-        </article>
-
-      </div>
+        <span class="gal__cap">Pulpit i szybkie akcje</span>
+      </a>
+      <a class="gal__item" href="screenshots/baking.png">
+        <div class="device device--shot">
+          <div class="device__screen"><img class="device__shot" src="screenshots/baking.png" width="1080" height="1920" loading="lazy" alt="Zmiana nastaw w trakcie pieczenia"></div>
+        </div>
+        <span class="gal__cap">Zmiana nastaw w trakcie pieczenia</span>
+      </a>
+      <a class="gal__item" href="screenshots/settings-wheel.png">
+        <div class="device device--shot">
+          <div class="device__screen"><img class="device__shot" src="screenshots/settings-wheel.png" width="1080" height="1920" loading="lazy" alt="Karuzele temperatury i czasu"></div>
+        </div>
+        <span class="gal__cap">Karuzele temperatury i czasu</span>
+      </a>
     </div>
   </div>
 </section>
 <section class="section section--edge" id="karuzela">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <p class="eyebrow">03 — Interakcja</p>
-      <h2>Ustaw pieczenie teraz, w tej chwili</h2>
-      <p>Wybierz funkcję, przeciągnij karuzele temperatury i czasu, dołóż etapy. Ta część strony
-      działa dokładnie jak ekran nastaw w aplikacji — z tymi samymi limitami i tymi samymi
-      nazwami funkcji. Nic nie wysyłamy: wszystko zostaje w Twojej przeglądarce.</p>
+      <h2>Wypróbuj nastawy w przeglądarce</h2>
+      <p>Wybierz funkcję, temperaturę i czas, a potem dodaj kolejne etapy. Zmiany dotyczą tylko podglądu na tej stronie.</p>
     </div>
 
     <div class="play">
@@ -886,10 +439,10 @@
             <div class="wheel__scale"><span>30</span><span>105</span><span>180</span><span>230</span><span>280</span></div>
           </div>
           <div class="stepbtns" aria-label="Korekta temperatury">
-            <button type="button" data-nudge="-5">−5</button>
-            <button type="button" data-nudge="-1">−1</button>
-            <button type="button" data-nudge="1">+1</button>
-            <button type="button" data-nudge="5">+5</button>
+            <button type="button" data-temperature-step data-nudge="-5">−5</button>
+            <button type="button" data-temperature-step data-nudge="-1">−1</button>
+            <button type="button" data-temperature-step data-nudge="1">+1</button>
+            <button type="button" data-temperature-step data-nudge="5">+5</button>
           </div>
         </div>
 
@@ -939,8 +492,7 @@
               <svg width="15" height="15" aria-hidden="true"><use href="#i-rotate"/></svg> Wróć do ustawień początkowych
             </button>
           </div>
-          <p class="hint">Etap dziedziczy funkcję i temperaturę; suma czasów musi mieścić się w 600 minutach,
-          a temperatura każdego etapu nie może przekraczać limitu funkcji.</p>
+          <p class="hint">W tym podglądzie wszystkie etapy używają wybranej funkcji. Czas każdego etapu mieści się w zakresie 1–600 minut.</p>
         </div>
       </div>
 
@@ -954,241 +506,32 @@
         <hr>
         <div class="summary__row"><span>Suma etapów</span><b id="sumTotal">0:35</b></div>
         <div class="summary__row"><span>Etap</span><b id="sumCount">1</b></div>
-        <p class="hint" id="sumWarn" hidden></p>
         <button class="btn btn--primary" id="btnSend" type="button" style="width:100%">
           <svg width="17" height="17" aria-hidden="true"><use href="#i-play"/></svg>
-          Uruchom w symulatorze
+          Sprawdź nastawy
         </button>
-        <p class="hint">To makieta interfejsu: parametry zostają w przeglądarce, polecenia nie trafiają
-        do żadnego piekarnika. W aplikacji ten sam układ rozmawia z urządzeniem.</p>
+
       </aside>
-    </div>
-  </div>
-</section>
-<section class="section section--edge" id="ekrany">
-  <div class="wrap">
-    <div class="sechead" data-reveal>
-      <p class="eyebrow">04 — Ekrany</p>
-      <h2>Prawdziwe zrzuty z aplikacji</h2>
-      <p>Poniższe obrazy pochodzą z wersji 0.5.x–0.6.0 uruchamianej na emulatorze oraz z testów
-      na telefonie i piekarniku. Kliknij dowolny, żeby zobaczyć pełną rozdzielczość 1080&nbsp;×&nbsp;1920.</p>
-    </div>
-  </div>
-
-  <div class="wrap gal" data-reveal>
-    <div class="gal__rail" id="galRail" tabindex="0" role="group" aria-label="Przewijana galeria zrzutów ekranu; użyj strzałek w lewo i w prawo">
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/dashboard.webp" width="720" height="1280" loading="lazy" alt="Pulpit aplikacji z podglądem pieczenia, statusem i dostępem do funkcji piekarnika"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>01 · pulpit</b> Pulpit z odczytem i szybkimi akcjami</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/baking.webp" width="720" height="1280" loading="lazy" alt="Ekran pieczenia w toku z pozostałym czasem i przyciskiem zatrzymania"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>02 · w toku</b> Pieczenie w toku, pozostały czas i STOP</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/wheels.webp" width="720" height="1280" loading="lazy" alt="Ekran nastaw z karuzelą temperatury i czasu"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>03 · nastawy</b> Karuzela temperatury i czasu po połączeniu funkcji</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/temp-change.webp" width="720" height="1280" loading="lazy" alt="Ekran zmiany temperatury w trakcie pieczenia"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>04 · korekta</b> Zmiana temperatury w trakcie pieczenia</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/add-time.webp" width="720" height="1280" loading="lazy" alt="Ekran dokładania minut do trwającego programu"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>05 · czas</b> Dodaj minuty bez restartu programu</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/stages.webp" width="720" height="1280" loading="lazy" alt="Lista etapów pieczenia"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>06 · etapy</b> Pieczenie w etapach, do trzech</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/programs.webp" width="720" height="1280" loading="lazy" alt="Lista programów gotowych do pieczenia"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>07 · programy</b> Programy gotowe: cztery fabryczne nastawy</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/recipes.webp" width="720" height="1280" loading="lazy" alt="Lista własnych przepisów z opcją importu i eksportu"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>08 · przepisy</b> Biblioteka przepisów oraz import i eksport ZIP</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/recipe.webp" width="720" height="1280" loading="lazy" alt="Edytor przepisu z etapami, składnikami i zdjęciem"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>09 · edytor</b> Własny przepis: etapy, składniki, zdjęcie</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/history.webp" width="720" height="1280" loading="lazy" alt="Historia pieczenia i ostatnie nastawy"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>10 · historia</b> Historia i ostatnie nastawy jednym dotknięciem</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/connection.webp" width="720" height="1280" loading="lazy" alt="Ekran łączenia się z piekarnikiem i parowania przez kod QR"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>11 · połączenie</b> Parowanie z piekarnikiem i status połączenia</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/first-setup.webp" width="720" height="1280" loading="lazy" alt="Pierwsza konfiguracja sieci Wi-Fi piekarnika"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>12 · pierwsza konfiguracja</b> Wprowadzenie piekarnika do domowego Wi-Fi</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/oven-funcs.webp" width="720" height="1280" loading="lazy" alt="Funkcje i stan piekarnika w ustawieniach sprzętu"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>13 · funkcje piekarnika</b> Katalog funkcji i odczyty stanu urządzenia</figcaption>
-      </figure>
-
-      <figure class="gal__item">
-        <div class="device device--shot"><span class="device__cam"></span>
-          <div class="device__screen"><img class="device__shot" src="assets/img/diagnostics.webp" width="720" height="1280" loading="lazy" alt="Ekran diagnostyki lokalnego połączenia z piekarnikiem"></div>
-          <span class="device__glare"></span></div>
-        <figcaption class="gal__cap"><b>14 · diagnostyka</b> Diagnostyka lokalnego połączenia, bez danych prywatnych</figcaption>
-      </figure>
-
-    </div>
-
-    <div class="gal__nav">
-      <p class="gal__note" style="margin-right:auto;align-self:center">Przeciągnij palcem albo użyj klawiatury.</p>
-      <button class="iconbtn" id="galPrev" type="button" aria-label="Poprzedni zrzut"><svg width="18" height="18"><use href="#i-arrow-left"/></svg></button>
-      <button class="iconbtn" id="galNext" type="button" aria-label="Następny zrzut"><svg width="18" height="18"><use href="#i-arrow-right"/></svg></button>
-    </div>
-  </div>
-
-  <div class="wrap" style="margin-top:var(--s7)">
-    <div class="note" data-reveal>
-      <b>Skąd się wzięły zrzuty</b>
-      <span>Część obrazów pochodzi z testów na emulatorze (Android 14 i 16), część z testów na
-      telefonie POCO F2 Pro i piekarniku Amica podłączonym do domowej sieci. Wszystkie są
-      pokazywane bez zmian kadrowania — w takiej proporcji, w jakiej aplikacja rysuje interfejs.</span>
     </div>
   </div>
 </section>
 <section class="section section--edge" id="motyw">
   <div class="wrap">
-    <div class="sechead" data-reveal>
-      <p class="eyebrow">05 — Wygląd</p>
-      <h2>Jasny, ciemny albo tak jak w telefonie</h2>
-      <p>Aplikacja nie narzuca motywu: wybiera się go w „Więcej → Wygląd i motyw”, a trzecia
-      opcja podąża za ustawieniem systemowym. Ta strona zrobiła dokładnie to samo, więc możesz
-      sprawdzić oba warianty bez instalowania czegokolwiek.</p>
+    <div class="sechead">
+      <h2>Wygląd</h2>
+      <p>W aplikacji zmienisz motyw w „Więcej → Wygląd aplikacji”.</p>
     </div>
-
-    <div class="ui__row" data-reveal style="gap:var(--s4);flex-wrap:wrap;align-items:center">
-      <div class="themebar" role="group" aria-label="Motyw strony">
-        <button type="button" data-theme-choice="system" aria-pressed="false">Jak w telefonie</button>
-        <button type="button" data-theme-choice="light" aria-pressed="false">Jasny</button>
-        <button type="button" data-theme-choice="dark" aria-pressed="true">Ciemny</button>
-      </div>
-      <p class="hint" style="margin:0" id="themeNote">Wybór zapisuje się w tej przeglądarce — dokładnie jak w aplikacji.</p>
+    <div class="themebar" role="group" aria-label="Motyw strony">
+      <button type="button" data-theme-choice="system" aria-pressed="true">Systemowy</button>
+      <button type="button" data-theme-choice="light" aria-pressed="false">Jasny</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Ciemny</button>
     </div>
-
-    <div class="themecards">
-      <div class="themecard themecard--light" data-reveal>
-        <div class="themecard__top">Jasny · <span style="opacity:.7">paleta #F1F5F7 / #18576E</span></div>
-        <div class="themecard__body">
-          <div class="device device--sm" style="--dw:184px" data-theme="light">
-            <span class="device__cam"></span>
-            <div class="device__screen">
-              <div class="ui__bar"><span class="mono">13:51</span><span><svg width="10" height="10"><use href="#i-wifi"/></svg></span></div>
-              <div class="ui__head">
-                <img class="ui__mark" src="assets/img/logo-64.png" alt=""><span class="ui__word">OPENOVEN</span>
-                <span class="ui__state">w toku</span>
-              </div>
-              <div class="ui__body" style="gap:.5em">
-                <div class="ui__card ui__card--hero" style="gap:.35em">
-                  <span class="ui__label">Termoobieg</span>
-                  <b class="ui__big" style="font-size:1.4em">180<sup>°C</sup></b>
-                  <span class="ui__sub">pozostało 0:41</span>
-                  <div class="ui__bar2"><i style="width:58%"></i></div>
-                </div>
-                <div class="ui__grid2">
-                  <div class="ui__tile ui__tile--on"><b>178 °C</b>rzeczywista</div>
-                  <div class="ui__tile"><b>0:15</b>etap 2</div>
-                </div>
-                <div class="ui__btn ui__btn--stop">Zatrzymaj</div>
-              </div>
-              <div class="ui__nav"><span class="on"><svg><use href="#i-oven"/></svg>Pulpit</span><span><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-            </div>
-            <span class="device__glare"></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="themecard themecard--dark" data-reveal style="--d:120ms">
-        <div class="themecard__top">Ciemny · <span style="opacity:.7">paleta #14202A / #A9E5F6</span></div>
-        <div class="themecard__body">
-          <div class="device device--sm" style="--dw:184px" data-theme="dark">
-            <span class="device__cam"></span>
-            <div class="device__screen">
-              <div class="ui__bar"><span class="mono">13:51</span><span><svg width="10" height="10"><use href="#i-wifi"/></svg></span></div>
-              <div class="ui__head">
-                <img class="ui__mark" src="assets/img/logo-64.png" alt=""><span class="ui__word">OPENOVEN</span>
-                <span class="ui__state">w toku</span>
-              </div>
-              <div class="ui__body" style="gap:.5em">
-                <div class="ui__card ui__card--hero" style="gap:.35em">
-                  <span class="ui__label">Termoobieg</span>
-                  <b class="ui__big" style="font-size:1.4em">180<sup>°C</sup></b>
-                  <span class="ui__sub">pozostało 0:41</span>
-                  <div class="ui__bar2"><i style="width:58%"></i></div>
-                </div>
-                <div class="ui__grid2">
-                  <div class="ui__tile ui__tile--on"><b>178 °C</b>rzeczywista</div>
-                  <div class="ui__tile"><b>0:15</b>etap 2</div>
-                </div>
-                <div class="ui__btn ui__btn--stop">Zatrzymaj</div>
-              </div>
-              <div class="ui__nav"><span class="on"><svg><use href="#i-oven"/></svg>Pulpit</span><span><svg><use href="#i-sliders"/></svg>Nastawy</span><span><svg><use href="#i-book"/></svg>Przepisy</span><span><svg><use href="#i-wrench"/></svg>Więcej</span></div>
-            </div>
-            <span class="device__glare"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="hint" data-reveal style="margin-top:var(--s5);max-width:78ch">
-      Makiety po prawej i lewej korzystają z tokenów kolorów aplikacji: kontrast tekstu do tła
-      w obu wariantach wynosi ponad 7:1 dla treści podstawowych, więc liczniki czasu i temperatury
-      pozostają czytelne z drugiego końca kuchni.
-    </p>
   </div>
 </section>
 <section class="section section--edge" id="lokalnie">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <p class="eyebrow">06 — Jak to działa</p>
-      <h2>Polecenie nie opuszcza mieszkania</h2>
+      <h2>Sterowanie w domowym Wi-Fi</h2>
       <p>Telefon łączy się z piekarnikiem bezpośrednio w domowej sieci Wi-Fi. Nie ma konta,
       nie ma serwera pośredniczącego, nie ma telemetrii. Jest profil zapisany w telefonie
       i rozmowa dwóch urządzeń w tej samej podsieci.</p>
@@ -1208,7 +551,7 @@
             <svg viewBox="0 0 170 40" preserveAspectRatio="none"><path d="M 0 20 H 170"/></svg>
             <span class="lan__pulse"></span>
             <span class="lan__pulse lan__pulse--back"></span>
-            <span class="mono" class="lan__proto">TCP / discovery UDP</span>
+            <span class="mono lan__proto">TCP / discovery UDP</span>
           </div>
           <div class="lan__node">
             <span class="lan__chip lan__chip--oven"><svg width="34" height="34" aria-hidden="true"><use href="#i-oven"/></svg></span>
@@ -1217,19 +560,12 @@
             <span class="lan__bytes"><span>panel z licznikiem parowania</span><span>odczyt stanu</span></span>
           </div>
         </div>
-        <div class="lan__cloud" style="margin-top:var(--s6)">
-          <svg width="22" height="22" aria-hidden="true"><use href="#i-cloud-off"/></svg>
-          <s>chmura producenta</s>
-          <span style="opacity:.75">— otwiera aplikację i klika „Pobierz”, zamiast karmić dane</span>
-        </div>
       </div>
 
-      <div class="lan__nodes" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s4);margin-top:var(--s6)">
+      <div class="lan__nodes" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--s4);margin-top:var(--s6)">
         <div class="note" data-reveal>
           <b>Pierwsze podłączenie</b>
-          <span>Piekarnik udostępnia sieć konfiguracyjną, telefon podaje jej nazwę domowego Wi-Fi
-          i hasło, a piekarnik wraca do niej z potwierdzeniem. Dalej wystarczy już tylko
-          włączyć okno parowania na panelu.</span>
+          <span>Jeśli piekarnik jest już w sieci, otwórz okno parowania na jego panelu i dodaj urządzenie w OpenOven.</span>
         </div>
         <div class="note" data-reveal style="--d:100ms">
           <b>Profil dla domownika</b>
@@ -1244,67 +580,19 @@
       </div>
     </div>
 
-    <div class="wrap" style="margin-top:clamp(48px,8vw,96px)">
-      <div class="sechead" data-reveal style="margin-bottom:var(--s6)">
-        <p class="eyebrow">Jak powstał ten projekt</p>
-        <h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Od zapisu ruchu w domowej sieci do testów na piekarniku</h2>
-      </div>
-      <div class="timeline">
-        <div class="timeline__row" data-reveal>
-          <div class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></div>
-          <div>
-            <p class="timeline__step">krok 01</p>
-            <h3>Obserwacja ruchu w domowej sieci</h3>
-            <p>Aplikacja producenta steruje piekarnikiem przez domowe Wi-Fi, więc interfejs można
-            było obserwować tam, gdzie faktycznie działa: na lokalnym połączeniu z urządzeniem.</p>
-          </div>
-        </div>
-        <div class="timeline__row" data-reveal style="--d:80ms">
-          <div class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></div>
-          <div>
-            <p class="timeline__step">krok 02</p>
-            <h3>Własny rdzeń w Kotlinie</h3>
-            <p>Moduł <span class="mono">core</span> odpowiada za profil połączenia, składnię poleceń,
-            odczyt stanu i symulator. Aplikacja jest tylko interfejsem — dzięki temu logikę da się
-            przetestować bez telefonu w ręku.</p>
-          </div>
-        </div>
-        <div class="timeline__row" data-reveal style="--d:160ms">
-          <div class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></div>
-          <div>
-            <p class="timeline__step">krok 03</p>
-            <h3>Symulator piekarnika i tryb demonstracji</h3>
-            <p><span class="mono">SimulatedOven</span> odtwarza zachowanie urządzenia: stany, etapy,
-            limity funkcji. Na nim działają testy emulatorów i tryb demonstracji w samej aplikacji.</p>
-          </div>
-        </div>
-        <div class="timeline__row" data-reveal style="--d:240ms">
-          <div class="timeline__rail"><span class="timeline__dot"></span><span class="timeline__line"></span></div>
-          <div>
-            <p class="timeline__step">krok 04</p>
-            <h3>Weryfikacja na telefonie i piekarniku</h3>
-            <p>Ostatni krok to prawdziwe urządzenia: POCO F2 Pro i piekarnik Amica z identyfikatorem
-            modelu 9137. Tu sprawdzano parowanie, odczyty i ponowne łączenie po zamknięciu okna.</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 <section class="section section--edge" id="jakosc">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <p class="eyebrow">07 — Jakość i zakres</p>
-      <h2>Liczby, które da się powtórzyć</h2>
-      <p>OpenOven jest wydawany jako wersja testowa i mówi o tym wprost. Poniżej jest to,
-      co faktycznie sprawdzono — oraz uczciwie to, czego jeszcze nie sprawdzono.</p>
+      <h2>Zakres testów</h2>
+      <p>Wydanie 0.6.0 sprawdzono na emulatorach. Próby na fizycznym piekarniku wykonano w wersji 0.5.1.</p>
     </div>
 
     <div class="stats" data-reveal>
       <div class="stat"><span class="stat__k">Testy JVM</span><b class="mono" data-count="56">56</b><span>połączenie, odczyt, etapy, zmiana czasu i temperatury, utrata sesji</span></div>
-      <div class="stat"><span class="stat__k">Emulatory</span><b class="mono" data-count="34">34</b><span>testy na Androida 14 i tyle samo na Androida 16: nawigacja, karuzele, szkice, ZIP, uprawnienia</span></div>
-      <div class="stat"><span class="stat__k">Kod</span><b class="mono" data-count="5447">5447</b><span>linii Kotlinu w 34 plikach aplikacji, rdzenia i testów</span></div>
-      <div class="stat"><span class="stat__k">Wydanie</span><b class="mono">0.6.0</b><span>APK 8,6 MB, Android 6+, JDK 17, Android SDK 34</span></div>
+      <div class="stat"><span class="stat__k">Emulatory</span><b class="mono" data-count="34">34</b><span>testy na Androidzie 14 i tyle samo na Androidzie 16: nawigacja, karuzele, szkice, ZIP, uprawnienia</span></div>
+      <div class="stat"><span class="stat__k">Wydanie</span><b class="mono">0.6.0</b><span>APK 9,0 MB, Android 6+, JDK 17, Android SDK 34</span></div>
     </div>
 
     <div class="tablewrap" style="margin-top:var(--s6)" data-reveal>
@@ -1318,7 +606,7 @@
             <td>POCO F2 Pro + piekarnik Amica (model 9137)</td>
             <td>aktualny odczyt, dodanie w istniejącym Wi-Fi po wyczyszczeniu danych, ponowne
             połączenie po zamknięciu okna parowania, pełna reinstalacja</td>
-            <td><span class="chip" style="border-color:color-mix(in oklab,var(--ok) 45%,transparent);color:var(--ok)">sprawdzone na urządzeniu</span></td>
+            <td><span class="chip" style="border-color:color-mix(in oklab,var(--ok) 45%,transparent);color:var(--ok)">0.5.1 · sprzęt</span></td>
           </tr>
           <tr>
             <td>Emulator Android 14 i Android 16</td>
@@ -1358,7 +646,7 @@
       <div class="note" data-reveal style="--d:100ms">
         <b>Dlaczego to wersja testowa</b>
         <span>Wydanie 0.6.0 nie jest dystrybuowane przez sklep, tylko jako APK z Releases.
-        Przy pierwszym uruchomieniu Android zapyta o zgodę na instalację z nieznanego źródła —
+        Podczas otwierania pliku APK Android może poprosić o zgodę na instalację z tego źródła —
         to normalne przy aplikacjach spoza sklepu. Przed startem pieczenia sprawdź odczyt na pulpicie.</span>
       </div>
       <div class="note" data-reveal style="--d:200ms">
@@ -1372,7 +660,6 @@
 <section class="section section--edge" id="start">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <p class="eyebrow">08 — Pierwsze połączenie</p>
       <h2>Cztery kroki do pierwszego odczytu</h2>
       <p>Ścieżka dla piekarnika, który jest już w domowym Wi-Fi. Nazwy opcji zależą od panelu —
       na testowanym piekarniku licznik <span class="mono">05</span> oznacza otwarte okno parowania.</p>
@@ -1404,14 +691,13 @@
       </article>
     </div>
 
-    <div style="display:grid;gap:var(--s4);margin-top:var(--s7);grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+    <div style="display:grid;gap:var(--s4);margin-top:var(--s7);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
       <div class="card" data-reveal style="display:grid;gap:var(--s4);align-content:start">
         <p class="eyebrow">Pobieranie</p>
-        <h3 style="font-size:clamp(1.4rem,2.6vw,2rem)">APK 0.6.0 z Releases</h3>
-        <p class="muted">Najnowsze wydanie jest zawsze pod tym samym adresem. Plik ma 8,6 MB
-        i podpis kluczem wydania; checksum SHA-256 publikujemy przy release.</p>
+        <h3 style="font-size:clamp(1.4rem,2.6vw,2rem)">APK 0.6.0</h3>
+        <p class="muted">Testowy APK na Androida 6 lub nowszego. Plik ma około 9,0 MB i podpis debug.</p>
         <div class="ui__row" style="gap:var(--s3);flex-wrap:wrap">
-          <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/latest" rel="noopener">
+          <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
             <svg width="17" height="17" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK
           </a>
           <a class="btn btn--ghost" href="https://github.com/techparka/openoven/releases" rel="noopener">
@@ -1419,20 +705,20 @@
           </a>
         </div>
         <ol class="install">
-          <li><b>Pobierz</b> <span class="mono">OpenOven-0.6.0.apk</span> — 8,6 MB, podpis kluczem wydania.</li>
+          <li><b>Pobierz</b> <span class="mono">OpenOven-0.6.0.apk</span>.</li>
           <li><b>Otwórz</b> plik z powiadomienia albo z menedżera plików telefonu.</li>
           <li><b>Zezwól</b>, jeśli Android upomni się o instalację z nieznanego źródła — wskaż tylko aplikację, która otwiera plik.</li>
         </ol>
-        <p class="hint"><b>SHA-256:</b> <span class="mono">93c542e5a997164b8fcacc33ed3ffd8979d33f6c96f54e56a03a1583c3cfbc66</span></p>
+        <p class="hint file-hash"><a href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk.sha256">Plik sumy SHA-256</a><br> <span class="mono">93c542e5a997164b8fcacc33ed3ffd8979d33f6c96f54e56a03a1583c3cfbc66</span></p>
         <p class="hint">Zachowaj bieżącą konfigurację sieci piekarnika. Profil QR udostępniaj tylko
         osobom, którym chcesz dać dostęp do lokalnego sterowania.</p>
       </div>
 
       <div class="card" data-reveal style="--d:100ms;display:grid;gap:var(--s4);align-content:start">
         <p class="eyebrow">Budowanie</p>
-        <h3 style="font-size:clamp(1.4rem,2.6vw,2rem)">Zbuduj sam, z tego co w repo</h3>
+        <h3 style="font-size:clamp(1.4rem,2.6vw,2rem)">Zbuduj z kodu</h3>
         <p class="muted">Wymagane JDK 17 i Android SDK 34. Aplikacja działa od Androida 6.
-        Poniższe polecenie odpala najpierw testy rdzenia.</p>
+        Poniższe polecenie uruchamia testy rdzenia.</p>
         <pre class="mono" style="margin:0;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2);overflow-x:auto;font-size:13px;line-height:1.9"><code>git clone https://github.com/techparka/openoven.git
 cd openoven
 ./gradlew :core:test :app:assembleDebug</code></pre>
@@ -1464,7 +750,7 @@ cd openoven
         <li><b>124 testy automatyczne</b> (56 JVM, po 34 na emulatorach Android 14 i 16) oraz opisane w README próby na POCO F2 Pro.</li>
       </ul>
       <div class="release__files">
-        <span class="mono">OpenOven-0.6.0.apk · 8,6 MB</span>
+        <span class="mono">OpenOven-0.6.0.apk · 9,0 MB</span>
         <span class="mono">OpenOven-0.6.0.apk.sha256</span>
         <a class="mono" href="https://github.com/techparka/openoven/releases/tag/v0.6.0" rel="noopener">notatki wydania <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
       </div>
@@ -1536,24 +822,23 @@ cd openoven
 <section class="section">
   <div class="wrap">
     <div class="cta" data-reveal>
-      <p class="eyebrow">Start</p>
-      <h2>Piekarnik w domowym Wi-Fi, sterowanie w Twojej ręce.</h2>
+      <p class="eyebrow">Połączenie</p>
+      <h2>Pobierz OpenOven</h2>
       <p class="muted" style="margin-top:var(--s4);max-width:60ch">
         Zainstaluj APK 0.6.0, przejdź demonstrację na symulatorze, a potem dodaj piekarnik
         w czterech krokach. Kod, zgłoszenia i plan dalszych wersji są w repozytorium.
       </p>
       <div class="cta__row">
-        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/latest" rel="noopener">
+        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
           <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
         </a>
         <a class="btn btn--ghost" href="https://github.com/techparka/openoven" rel="noopener">
           <svg width="18" height="18" aria-hidden="true"><use href="#i-github"/></svg> Repozytorium OpenOven
         </a>
         <a class="btn btn--quiet" href="#karuzela">
-          Pobaw się nastawami <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          Wypróbuj nastawy <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
         </a>
       </div>
-      <p class="cta__hash">SHA-256 · 93c542e5a997164b8fcacc33ed3ffd8979d33f6c96f54e56a03a1583c3cfbc66 · wydanie testowe</p>
     </div>
   </div>
 </section>
@@ -1579,9 +864,8 @@ cd openoven
       <div>
         <h3>Aplikacja</h3>
         <a href="#mozliwosci">Możliwości</a>
-        <a href="#aplikacja">Przewodnik po ekranach</a>
-        <a href="#karuzela">Nastawy na żywo</a>
         <a href="#ekrany">Zrzuty ekranu</a>
+        <a href="#karuzela">Nastawy na żywo</a>
         <a href="#motyw">Motyw jasny i ciemny</a>
       </div>
       <div>
@@ -1601,7 +885,7 @@ cd openoven
       </div>
     </div>
     <div class="footer__end">
-      <p>OpenOven 0.6.0 · Android 6+ · 8,6 MB APK · <span id="pageWeight">strona bez zewnętrznych żądań i bez analityki</span></p>
+      <p>OpenOven 0.6.0 · Android 6+ · 9,0 MB APK · bez analityki</p>
       <p>Wersja testowa — przed startem pieczenia sprawdź odczyt na pulpicie.</p>
     </div>
   </div>
@@ -1609,7 +893,7 @@ cd openoven
 
 <div class="toast" id="toast" role="status" aria-live="polite">
   <svg width="18" height="18" aria-hidden="true"><use href="#i-check"/></svg>
-  <span id="toastText">Wysłano do symulatora</span>
+  <span id="toastText">Podgląd nastaw</span>
 </div>
 
 <dialog id="lightbox" aria-label="Powiększenie zrzutu ekranu">
@@ -1626,6 +910,6 @@ cd openoven
   </div>
 </dialog>
 
-<script src="app.js" defer></script>
+<script src="app.js?v=2" defer></script>
 </body>
 </html>
