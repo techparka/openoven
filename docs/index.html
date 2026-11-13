@@ -8,17 +8,17 @@
 <meta name="theme-color" content="#070d13">
 <meta name="color-scheme" content="dark light">
 <meta property="og:type" content="website">
-<meta property="og:title" content="OpenOven — pieczenie po Twojemu. W Twojej sieci.">
+<meta property="og:title" content="OpenOven — sterowanie piekarnikiem z telefonu">
 <meta property="og:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0.">
 <meta property="og:url" content="https://techparka.github.io/openoven/">
 <meta property="og:site_name" content="OpenOven">
 <meta property="og:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
-<meta property="og:image:alt" content="OpenOven — pieczenie po Twojemu. W Twojej sieci. Zero chmury.">
+<meta property="og:image:alt" content="Okładka projektu OpenOven">
 <meta property="og:locale" content="pl_PL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="OpenOven — pieczenie po Twojemu. W Twojej sieci.">
+<meta name="twitter:title" content="OpenOven — sterowanie piekarnikiem z telefonu">
 <meta name="twitter:description" content="Niezależna aplikacja na Androida do lokalnego sterowania piekarnikami Amica. Kod w publicznym repozytorium. Wersja testowa 0.6.0, APK 9,0 MB.">
 <meta name="twitter:image" content="https://techparka.github.io/openoven/assets/og-cover.png">
 <meta name="twitter:image:alt" content="Makieta telefonu z paskiem postępu pieczenia i hasłem OpenOven.">
@@ -30,7 +30,7 @@
 <link rel="preload" as="font" href="assets/fonts/SpaceGrotesk-latin.woff2" type="font/woff2" crossorigin>
 <link rel="preload" as="font" href="assets/fonts/Inter-latin.woff2" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/fonts/fonts.css">
-<link rel="stylesheet" href="styles.css?v=2">
+<link rel="stylesheet" href="styles.css?v=3">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -40,7 +40,7 @@
   "applicationCategory": "UtilitiesApplication",
   "softwareVersion": "0.6.0",
   "softwareRequirements": "Android 6.0 (API 23) lub nowszy",
-  "fileSize": "8.6 MB",
+  "fileSize": "9.0 MB",
   "downloadUrl": "https://github.com/techparka/openoven/releases/latest",
   "isAccessibleForFree": true,
   "codeRepository": "https://github.com/techparka/openoven",
@@ -173,10 +173,9 @@
     <span class="topbar__ver">0.6.0</span>
   </a>
   <nav class="topbar__nav" id="nav" aria-label="Nawigacja sekcji">
-    <a href="#mozliwosci">Możliwości</a>
-    <a href="#karuzela">Nastawy</a>
+    <a href="#mozliwosci">Funkcje</a>
     <a href="#ekrany">Ekrany</a>
-    <a href="#lokalnie">Lokalnie</a>
+    <a href="#karuzela">Demo</a>
     <a href="#jakosc">Testy</a>
     <a href="#start">Połączenie</a>
   </nav>
@@ -187,13 +186,13 @@
     </button>
     <a class="btn btn--ghost btn--sm" href="https://github.com/techparka/openoven" rel="noopener">
       <svg width="17" height="17" aria-hidden="true"><use href="#i-github"/></svg>
-      <span>Kod</span>
+      <span>Kod źródłowy</span>
     </a>
     <a class="btn btn--primary btn--sm" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
       <svg width="16" height="16" aria-hidden="true"><use href="#i-download"/></svg>
-      <span>APK 0.6.0</span>
+      <span>Pobierz APK 0.6.0</span>
     </a>
-    <button class="iconbtn iconbtn--menu" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="msheet">
+    <button class="iconbtn iconbtn--menu" id="menuBtn" type="button" aria-label="Otwórz menu" aria-expanded="false" aria-controls="msheet">
       <svg width="20" height="20" aria-hidden="true"><use href="#i-menu"/></svg>
     </button>
   </div>
@@ -201,10 +200,9 @@
 </header>
 
 <nav class="msheet" id="msheet" hidden aria-label="Menu mobilne">
-  <a href="#mozliwosci">Możliwości </a>
-  <a href="#karuzela">Nastawy </a>
-  <a href="#ekrany">Ekrany </a>
-  <a href="#lokalnie">Lokalnie </a>
+  <a href="#mozliwosci">Funkcje</a>
+  <a href="#ekrany">Ekrany</a>
+  <a href="#karuzela">Demo</a>
   <a href="#jakosc">Testy</a>
   <a href="#start">Połączenie</a>
   <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
@@ -216,34 +214,26 @@
   <div class="wrap hero__grid">
     <div>
       <h1>Steruj piekarnikiem <span class="heat-text">z telefonu</span></h1>
-      <p class="hero__lead">OpenOven to niezależna aplikacja na Androida do kompatybilnych piekarników Amica. Sprawdź temperaturę, dodaj czas i zapisz własne nastawy przez domowe Wi-Fi.</p>
-      <div class="hero__cta" >
-        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
+      <p class="hero__lead">OpenOven steruje kompatybilnymi piekarnikami Amica przez domowe Wi-Fi. Ustaw czas i temperaturę, sprawdzaj stan pieczenia i zapisuj własne przepisy.</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk">
           <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg>
           Pobierz APK 0.6.0
         </a>
-        <a class="btn btn--ghost" href="https://github.com/techparka/openoven" rel="noopener">
-          <svg width="18" height="18" aria-hidden="true"><use href="#i-github"/></svg>
-          Repozytorium i kod
-        </a>
-        <a class="btn btn--quiet" href="#ekrany">
-          Zobacz aplikację <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
+        <a class="btn btn--ghost" href="#ekrany">Zobacz ekrany</a>
       </div>
-      <ul class="hero__meta" >
-        <li>Android <b>6.0+</b></li>
-        <li>APK <b>9,0 MB</b></li>
-
-        <li><b class="chip chip--heat chip--meta">wersja testowa</b></li>
-      </ul>
+      <p class="hero__meta">Android 6.0+ · 9,0 MB · wersja testowa</p>
     </div>
 
     <figure class="hero__stage">
-      <div class="hero__ring" aria-hidden="true"></div>
-      <div class="device device--shot hero__phone">
-        <div class="device__screen">
-          <img class="device__shot" src="screenshots/baking.png" width="1080" height="1920"
-               fetchpriority="high" alt="OpenOven w trakcie pieczenia, z odczytem temperatury i przyciskiem dodawania czasu">
+      <div class="hero__phones">
+        <div class="hero__phone hero__phone--front">
+          <img src="screenshots/dashboard.png" width="1080" height="1920"
+               fetchpriority="high" alt="Pulpit OpenOven z przyciskiem ustawienia pieczenia oraz sterowaniem światłem i nagrzewem">
+        </div>
+        <div class="hero__phone hero__phone--back">
+          <img src="screenshots/settings-wheel.png" width="1080" height="1920"
+               alt="Ekran ustawiania pieczenia z karuzelami czasu i temperatury">
         </div>
       </div>
       <figcaption>OpenOven 0.6.0 w trybie demonstracji</figcaption>
@@ -253,140 +243,49 @@
 
 <section class="section" id="mozliwosci">
   <div class="wrap">
-    <div class="sechead" data-reveal>
-      <h2>Co potrafi OpenOven</h2>
-
+    <div class="sechead">
+      <h2>Funkcje</h2>
     </div>
-
-    <div class="bento">
-      <article class="card feature feature--wide" data-reveal>
+    <div class="feature-grid">
+      <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-thermo"/></svg></span>
-        <h3>Stan na żywo, bez zgadywania</h3>
-        <p>Temperatura zadana i rzeczywista, wybrana funkcja, aktywny etap, licznik czasu —
-        odświeżane z piekarnika, nie z telefonu. Gdy piekarnik potwierdza polecenie odczytem,
-        aplikacja zmienia status na potwierdzony.</p>
-        <div class="feature__art" aria-hidden="true">
-          <div class="ui" style="position:static">
-            <div class="ui__card" style="--dw:260px;background:color-mix(in oklab, var(--accent) 7%, transparent)">
-              <div class="ui__row ui__row--split">
-                <span class="ui__label">Temperatura rzeczywista</span>
-                <span class="ui__sub">zadana 180 °C</span>
-              </div>
-              <div class="ui__row" style="align-items:baseline;gap:.5em">
-                <b class="ui__mid" style="font-size:.85em">178 °C</b>
-                <span class="ui__sub">nagrzewanie zakończone</span>
-              </div>
-              <div class="ui__bars" data-bars="28,42,58,70,78,84,88,90,92,93,94,95"></div>
-              <div class="ui__row" style="gap:.4em">
-                <span class="ui__chip">Termoobieg</span>
-                <span class="ui__chip ui__chip--ghost">0:41 pozostało</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h3>Pulpit pieczenia</h3>
+        <p>Sprawdź temperaturę komory i pozostały czas. Włącz światło lub szybki nagrzew.</p>
       </article>
-
-      <article class="card feature" data-reveal style="--d:80ms">
+      <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-rotate"/></svg></span>
-        <h3>Zmiana w trakcie</h3>
-        <p>Temperatura i czas bez przerywania programu. Dołóż minuty z poziomu pulpitu —
-        aplikacja sprawdza zmianę po odczycie stanu.</p>
-        <div class="feature__art">
-          <div class="ui" style="position:static">
-            <div class="ui__row" style="gap:.4em">
-              <span class="ui__chip ui__chip--ghost">180 °C</span>
-              <span class="ui__sub">→</span>
-              <span class="ui__chip">200 °C</span>
-              <span class="ui__chip">+10 min</span>
-            </div>
-          </div>
-        </div>
+        <h3>Zmiany w trakcie</h3>
+        <p>Dodaj minuty lub zmień temperaturę bez ponownego uruchamiania programu.</p>
       </article>
-
-      <article class="card feature" data-reveal style="--d:160ms">
+      <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-sliders"/></svg></span>
         <h3>Karuzele nastaw</h3>
-        <p>Temperaturę i czas ustawiasz przeciąganiem — jak kołami w piekarniku. Im dłuższy gest,
-        tym szybciej przesuwa się skala.</p>
-        <div class="feature__art">
-          <div class="art-dial">
-            <div class="art-dial__ring">
-              <svg viewBox="0 0 80 80" aria-hidden="true">
-                <circle class="bg" cx="40" cy="40" r="35"/>
-                <circle class="fg" cx="40" cy="40" r="35" stroke-dasharray="220" stroke-dashoffset="220"/>
-              </svg>
-            </div>
-            <div class="art-dial__list">
-              <span>temperatura <b>30–280 °C</b></span>
-              <span>czas <b>1–600 min</b></span>
-              <span>sonda <b>30–90 °C</b></span>
-            </div>
-          </div>
-        </div>
+        <p>Przesuwaj palcem, żeby szybko ustawić temperaturę i czas.</p>
       </article>
-
-      <article class="card feature" data-reveal style="--d:80ms">
+      <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-layers"/></svg></span>
-        <h3>Do trzech etapów</h3>
-        <p>Każdy etap ma własną funkcję, temperaturę i czas. Piekarnik przechodzi między nimi sam,
-        aplikacja pilnuje kolejności.</p>
-        <div class="feature__art art-stages" aria-hidden="true">
-          <div>Etap 1 · Termoobieg · 180 °C · 0:25</div>
-          <div>Etap 2 · Zapiekanie · 195 °C · 0:15</div>
-          <div>Etap 3 · Podawanie · 70 °C · 0:20</div>
-        </div>
+        <h3>Pieczenie w etapach</h3>
+        <p>Ustaw do trzech etapów z osobną funkcją, temperaturą i czasem.</p>
       </article>
-
-      <article class="card feature" data-reveal style="--d:160ms">
+      <article class="card feature">
         <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-book"/></svg></span>
-        <h3>Przepisy, które da się przenieść</h3>
-        <p>Etapy, składniki, opis i zdjęcie w jednej karcie. Całość eksportujesz do pliku ZIP
-        i importujesz na innym telefonie albo w drugą stronę.</p>
-        <div class="feature__art">
-          <span class="art-zip"><svg width="16" height="16" aria-hidden="true"><use href="#i-zip"/></svg> szarlotka-1702.zip · 412 kB</span>
-        </div>
+        <h3>Własne przepisy</h3>
+        <p>Zapisuj nastawy, składniki i zdjęcia. Przenieś przepisy na inny telefon przez ZIP.</p>
       </article>
-
-      <article class="card feature" data-reveal style="--d:240ms">
-        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-play"/></svg></span>
-        <h3>Demonstracja bez piekarnika</h3>
-        <p>Tryb demonstracji odpala symulator protokołu: możesz przejść całą aplikację,
-        poznać ekrany i zachowania, nie mając urządzenia w kuchni.</p>
-        <div class="feature__art">
-          <div class="ui" style="position:static">
-            <div class="ui__row" style="gap:.4em;flex-wrap:wrap">
-              <span class="ui__chip">start</span><span class="ui__chip">etap 2</span>
-              <span class="ui__chip">stop</span><span class="ui__chip ui__chip--ghost">historia</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <article class="card feature feature--wide" data-reveal>
-        <div class="ui__row" style="gap:var(--s4);align-items:flex-start;flex-wrap:wrap">
-          <span class="feature__ic" style="flex:none"><svg width="22" height="22" aria-hidden="true"><use href="#i-shield"/></svg></span>
-          <div style="flex:1;min-width:260px;max-width:62ch;display:grid;gap:var(--s3)">
-            <h3>Limity urządzenia pilnowane przed startem</h3>
-            <p>Aplikacja nie pozwala wystartować wartości, których piekarnik by nie przyjął:
-            każda funkcja ma własny zakres temperatur, a progi są sprawdzane na etapie układania
-            etapów — nie po wysłaniu polecenia.</p>
-          </div>
-        </div>
-        <div class="feature__art" style="display:grid;gap:var(--s3);grid-template-columns:repeat(auto-fit,minmax(190px,1fr))">
-          <div class="ui__row" style="gap:10px;align-items:baseline"><b class="mono" style="color:var(--ember)">≤ 230 °C</b><span class="muted" style="font-size:14px">zarumienienie</span></div>
-          <div class="ui__row" style="gap:10px;align-items:baseline"><b class="mono" style="color:var(--ember)">≤ 240 °C</b><span class="muted" style="font-size:14px">przypiekanie</span></div>
-          <div class="ui__row" style="gap:10px;align-items:baseline"><b class="mono" style="color:var(--ember)">30–90 °C</b><span class="muted" style="font-size:14px">temperatura sondy</span></div>
-          <div class="ui__row" style="gap:10px;align-items:baseline"><b class="mono" style="color:var(--ember)">1–600 min</b><span class="muted" style="font-size:14px">długość etapu</span></div>
-        </div>
+      <article class="card feature">
+        <span class="feature__ic"><svg width="22" height="22" aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <h3>Domowe Wi-Fi</h3>
+        <p>Połącz telefon z piekarnikiem w tej samej sieci. OpenOven działa bez konta i serwera pośredniczącego.</p>
       </article>
     </div>
   </div>
 </section>
+
 <section class="section section--edge" id="ekrany">
   <div class="wrap">
     <div class="sechead" id="aplikacja">
-      <h2>Zobacz aplikację</h2>
-      <p>Trzy ekrany wersji 0.6.0 z emulatora. Otwórz zrzut, aby go powiększyć.</p>
+      <h2>Ekrany aplikacji</h2>
+      <p>Wybierz ekran, aby go powiększyć.</p>
     </div>
     <div class="gallery-grid" id="galRail">
       <a class="gal__item" href="screenshots/dashboard.png">
@@ -397,15 +296,15 @@
       </a>
       <a class="gal__item" href="screenshots/baking.png">
         <div class="device device--shot">
-          <div class="device__screen"><img class="device__shot" src="screenshots/baking.png" width="1080" height="1920" loading="lazy" alt="Zmiana nastaw w trakcie pieczenia"></div>
+          <div class="device__screen"><img class="device__shot" src="screenshots/baking.png" width="1080" height="1920" loading="lazy" alt="Pieczenie w toku"></div>
         </div>
-        <span class="gal__cap">Zmiana nastaw w trakcie pieczenia</span>
+        <span class="gal__cap">Pieczenie w toku</span>
       </a>
       <a class="gal__item" href="screenshots/settings-wheel.png">
         <div class="device device--shot">
-          <div class="device__screen"><img class="device__shot" src="screenshots/settings-wheel.png" width="1080" height="1920" loading="lazy" alt="Karuzele temperatury i czasu"></div>
+          <div class="device__screen"><img class="device__shot" src="screenshots/settings-wheel.png" width="1080" height="1920" loading="lazy" alt="Ustawianie pieczenia"></div>
         </div>
-        <span class="gal__cap">Karuzele temperatury i czasu</span>
+        <span class="gal__cap">Ustawianie pieczenia</span>
       </a>
     </div>
   </div>
@@ -413,8 +312,8 @@
 <section class="section section--edge" id="karuzela">
   <div class="wrap">
     <div class="sechead" data-reveal>
-      <h2>Wypróbuj nastawy w przeglądarce</h2>
-      <p>Wybierz funkcję, temperaturę i czas, a potem dodaj kolejne etapy. Zmiany dotyczą tylko podglądu na tej stronie.</p>
+      <h2>Demo nastaw</h2>
+      <p>Ustaw temperaturę, czas i etapy w przeglądarce.</p>
     </div>
 
     <div class="play">
@@ -515,330 +414,60 @@
     </div>
   </div>
 </section>
-<section class="section section--edge" id="motyw">
-  <div class="wrap">
-    <div class="sechead">
-      <h2>Wygląd</h2>
-      <p>W aplikacji zmienisz motyw w „Więcej → Wygląd aplikacji”.</p>
-    </div>
-    <div class="themebar" role="group" aria-label="Motyw strony">
-      <button type="button" data-theme-choice="system" aria-pressed="true">Systemowy</button>
-      <button type="button" data-theme-choice="light" aria-pressed="false">Jasny</button>
-      <button type="button" data-theme-choice="dark" aria-pressed="false">Ciemny</button>
-    </div>
-  </div>
-</section>
-<section class="section section--edge" id="lokalnie">
-  <div class="wrap">
-    <div class="sechead" data-reveal>
-      <h2>Sterowanie w domowym Wi-Fi</h2>
-      <p>Telefon łączy się z piekarnikiem bezpośrednio w domowej sieci Wi-Fi. Nie ma konta,
-      nie ma serwera pośredniczącego, nie ma telemetrii. Jest profil zapisany w telefonie
-      i rozmowa dwóch urządzeń w tej samej podsieci.</p>
-    </div>
-
-    <div class="lan" data-reveal>
-      <div class="lan__stage">
-        <p class="lan__tag">Ta sama sieć, dwa urządzenia</p>
-        <div class="lan__nodes">
-          <div class="lan__node">
-            <span class="lan__chip"><svg width="34" height="34" aria-hidden="true"><use href="#i-phone"/></svg></span>
-            <b>Telefon z OpenOven</b>
-            <span>profil piekarnika zapisany lokalnie</span>
-            <span class="lan__bytes"><span>Android 6+</span><span>bez konta</span><span>bez internetu</span></span>
-          </div>
-          <div class="lan__wire" aria-hidden="true">
-            <svg viewBox="0 0 170 40" preserveAspectRatio="none"><path d="M 0 20 H 170"/></svg>
-            <span class="lan__pulse"></span>
-            <span class="lan__pulse lan__pulse--back"></span>
-            <span class="mono lan__proto">TCP / discovery UDP</span>
-          </div>
-          <div class="lan__node">
-            <span class="lan__chip lan__chip--oven"><svg width="34" height="34" aria-hidden="true"><use href="#i-oven"/></svg></span>
-            <b>Piekarnik Amica z Wi-Fi</b>
-            <span>jedna aktywna sesja sterowania naraz</span>
-            <span class="lan__bytes"><span>panel z licznikiem parowania</span><span>odczyt stanu</span></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="lan__nodes" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:var(--s4);margin-top:var(--s6)">
-        <div class="note" data-reveal>
-          <b>Pierwsze podłączenie</b>
-          <span>Jeśli piekarnik jest już w sieci, otwórz okno parowania na jego panelu i dodaj urządzenie w OpenOven.</span>
-        </div>
-        <div class="note" data-reveal style="--d:100ms">
-          <b>Profil dla domownika</b>
-          <span>Zamiast drugi raz przechodzić parowanie: „Więcej → Udostępnij piekarnik” generuje
-          kod QR z profilem, a drugi telefon odczytuje go aparatem.</span>
-        </div>
-        <div class="note" data-reveal style="--d:200ms">
-          <b>Diagnostyka zamiast czarnego ekranu</b>
-          <span>Ekran diagnostyki pokazuje, na którym etapie gaśnie połączenie: wykrywanie, adres,
-          port, pierwsza wymiana. Nie wysyła nigdzie żadnych danych prywatnych.</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 <section class="section section--edge" id="jakosc">
   <div class="wrap">
-    <div class="sechead" data-reveal>
+    <div class="sechead">
       <h2>Zakres testów</h2>
-      <p>Wydanie 0.6.0 sprawdzono na emulatorach. Próby na fizycznym piekarniku wykonano w wersji 0.5.1.</p>
     </div>
-
-    <div class="stats" data-reveal>
-      <div class="stat"><span class="stat__k">Testy JVM</span><b class="mono" data-count="56">56</b><span>połączenie, odczyt, etapy, zmiana czasu i temperatury, utrata sesji</span></div>
-      <div class="stat"><span class="stat__k">Emulatory</span><b class="mono" data-count="34">34</b><span>testy na Androidzie 14 i tyle samo na Androidzie 16: nawigacja, karuzele, szkice, ZIP, uprawnienia</span></div>
-      <div class="stat"><span class="stat__k">Wydanie</span><b class="mono">0.6.0</b><span>APK 9,0 MB, Android 6+, JDK 17, Android SDK 34</span></div>
+    <div class="test-grid">
+      <article class="card">
+        <h3>POCO F2 Pro i piekarnik Amica</h3>
+        <p>W wersji 0.5.1 sprawdzono odczyt i ponowne parowanie modelu 9137 po reinstalacji.</p>
+      </article>
+      <article class="card">
+        <h3>Android 14 i 16</h3>
+        <p>W wersji 0.6.0 przeszło 56 testów jednostkowych i po 34 testy na każdym emulatorze.</p>
+      </article>
     </div>
-
-    <div class="tablewrap" style="margin-top:var(--s6)" data-reveal>
-      <table class="table">
-        <caption class="sr-only">Zakres potwierdzonej kompatybilności i testów OpenOven 0.6.0</caption>
-        <thead>
-          <tr><th scope="col">Środowisko</th><th scope="col">Co sprawdzono</th><th scope="col">Status</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>POCO F2 Pro + piekarnik Amica (model 9137)</td>
-            <td>aktualny odczyt, dodanie w istniejącym Wi-Fi po wyczyszczeniu danych, ponowne
-            połączenie po zamknięciu okna parowania, pełna reinstalacja</td>
-            <td><span class="chip" style="border-color:color-mix(in oklab,var(--ok) 45%,transparent);color:var(--ok)">0.5.1 · sprzęt</span></td>
-          </tr>
-          <tr>
-            <td>Emulator Android 14 i Android 16</td>
-            <td>nawigacja, karuzele nastaw, zachowanie szkicu, przepisy ZIP, uprawnienia, scenariusze
-            sterowania z symulatorem — po 34 testy na każdym</td>
-            <td><span class="chip" style="border-color:color-mix(in oklab,var(--ok) 45%,transparent);color:var(--ok)">automatyczne 68/68</span></td>
-          </tr>
-          <tr>
-            <td>JVM, 56 testów jednostkowych</td>
-            <td>model odczytu, etapy, zmiana czasu i temperatury, obsługa utraty sesji, kod warstwy połączenia</td>
-            <td><span class="chip" style="border-color:color-mix(in oklab,var(--ok) 45%,transparent);color:var(--ok)">wszystkie przechodzą</span></td>
-          </tr>
-          <tr>
-            <td>Inne telefony, panele i wersje firmware</td>
-            <td>kompatybilność sprzętowa niepotwierdzona; inne panele mogą inaczej nazywać opcję okna
-            parowania, a nowe wersje oprogramowania piekarnika mogą zmieniać zachowanie</td>
-            <td><span class="chip chip--heat">do sprawdzenia</span></td>
-          </tr>
-          <tr>
-            <td>Pierwsza konfiguracja sieci na nowym piekarniku</td>
-            <td>kreator ma testy z symulatorem; próba z fizycznym urządzeniem dotyczyła już działającej
-            sieci domowej</td>
-            <td><span class="chip chip--heat">częściowo</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div style="display:grid;gap:var(--s4);margin-top:var(--s6);grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
-      <div class="note" data-reveal>
-        <b>Czego jeszcze nie potrafimy obiecać</b>
-        <span>Kompatybilność sprzętowa jest potwierdzona dla jednego, opisanego zestawu.
-        Poza nim mogą zdarzyć się inne nazwy funkcji w panelu, inne ograniczenia czasowe
-        albo braki w odczytach. Aplikacja jest na to przygotowana w ten sposób, że pokazuje
-        statusy zamiast je zgadywać — ale nie zastąpi testu na Twoim modelu.</span>
-      </div>
-      <div class="note" data-reveal style="--d:100ms">
-        <b>Dlaczego to wersja testowa</b>
-        <span>Wydanie 0.6.0 nie jest dystrybuowane przez sklep, tylko jako APK z Releases.
-        Podczas otwierania pliku APK Android może poprosić o zgodę na instalację z tego źródła —
-        to normalne przy aplikacjach spoza sklepu. Przed startem pieczenia sprawdź odczyt na pulpicie.</span>
-      </div>
-      <div class="note" data-reveal style="--d:200ms">
-        <b>Co jest w środku wydania</b>
-        <span>Cztery szablony nastaw OpenOven, zapis i przenoszenie własnych przepisów, historia
-        oraz ostatnie nastawy, diagnostyka połączenia i tryb demonstracji na symulatorze.</span>
-      </div>
-    </div>
+    <p class="section-note">Pozostałe modele piekarników wymagają weryfikacji. <a href="https://github.com/techparka/openoven#zakres-testów">Szczegóły testów</a></p>
   </div>
 </section>
 <section class="section section--edge" id="start">
   <div class="wrap">
-    <div class="sechead" data-reveal>
-      <h2>Cztery kroki do pierwszego odczytu</h2>
-      <p>Ścieżka dla piekarnika, który jest już w domowym Wi-Fi. Nazwy opcji zależą od panelu —
-      na testowanym piekarniku licznik <span class="mono">05</span> oznacza otwarte okno parowania.</p>
+    <div class="sechead">
+      <h2>Połączenie z piekarnikiem</h2>
+      <p>Te kroki dotyczą piekarnika, który jest już w domowym Wi-Fi.</p>
     </div>
-
-    <div class="steps4" id="pairSteps">
-      <article class="card pstep is-active" data-step="1">
-        <h3>Ta sama sieć</h3>
-        <p>Podłącz telefon do domowego Wi-Fi i zamknij inne aplikacje sterujące piekarnikiem —
-        sesja sterowania jest jedna.</p>
-        <p class="pstep__panel"><span>telefon</span><span>Wi-Fi domowe</span></p>
+    <div class="steps4">
+      <article class="card pstep" data-step="1">
+        <h3>Podłącz telefon</h3>
+        <p>Połącz telefon z tą samą siecią Wi-Fi. Zamknij inne aplikacje sterujące piekarnikiem.</p>
       </article>
       <article class="card pstep" data-step="2">
         <h3>Dodaj piekarnik</h3>
-        <p>„Więcej → Połączenie z piekarnikiem → Dodaj piekarnik → Piekarnik już jest w domowym Wi-Fi”.</p>
-        <p class="pstep__panel"><span>OpenOven</span><span>dodawanie</span></p>
+        <p>W OpenOven wybierz „Więcej → Połączenie z piekarnikiem → Dodaj piekarnik → Piekarnik już jest w domowym Wi-Fi”.</p>
       </article>
       <article class="card pstep" data-step="3">
-        <h3>Okno parowania</h3>
-        <p>Na panelu piekarnika włącz <b>ŁĄCZENIE → ON</b> i zatwierdź <b>OK</b>. Licznik pokazuje
-        otwarte okno.</p>
-        <p class="pstep__panel"><span>panel piekarnika</span><b>05</b></p>
+        <h3>Włącz parowanie</h3>
+        <p>Na panelu piekarnika ustaw <b>ŁĄCZENIE → ON</b> i zatwierdź <b>OK</b>. Na testowanym panelu pojawia się licznik 05.</p>
       </article>
       <article class="card pstep" data-step="4">
-        <h3>Połącz i sprawdź</h3>
-        <p>Wybierz „Otworzyłem WI — połącz”. Po komunikacie „Gotowe” sprawdź aktualny odczyt
-        na pulpicie.</p>
-        <p class="pstep__panel"><span>odczyt</span><span>180 °C · 0:41</span></p>
+        <h3>Sprawdź odczyt</h3>
+        <p>W aplikacji wybierz „Otworzyłem WI — połącz”. Po komunikacie „Gotowe” sprawdź odczyt na pulpicie.</p>
       </article>
     </div>
+    <p class="section-note"><a href="https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf">Instrukcja panelu Amica (PDF)</a></p>
 
-    <div style="display:grid;gap:var(--s4);margin-top:var(--s7);grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
-      <div class="card" data-reveal style="display:grid;gap:var(--s4);align-content:start">
-        <p class="eyebrow">Pobieranie</p>
-        <h3 style="font-size:clamp(1.4rem,2.6vw,2rem)">APK 0.6.0</h3>
-        <p class="muted">Testowy APK na Androida 6 lub nowszego. Plik ma około 9,0 MB i podpis debug.</p>
-        <div class="ui__row" style="gap:var(--s3);flex-wrap:wrap">
-          <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
-            <svg width="17" height="17" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/techparka/openoven/releases" rel="noopener">
-            Archiwum wydań
-          </a>
-        </div>
-        <ol class="install">
-          <li><b>Pobierz</b> <span class="mono">OpenOven-0.6.0.apk</span>.</li>
-          <li><b>Otwórz</b> plik z powiadomienia albo z menedżera plików telefonu.</li>
-          <li><b>Zezwól</b>, jeśli Android upomni się o instalację z nieznanego źródła — wskaż tylko aplikację, która otwiera plik.</li>
-        </ol>
-        <p class="hint file-hash"><a href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk.sha256">Plik sumy SHA-256</a><br> <span class="mono">93c542e5a997164b8fcacc33ed3ffd8979d33f6c96f54e56a03a1583c3cfbc66</span></p>
-        <p class="hint">Zachowaj bieżącą konfigurację sieci piekarnika. Profil QR udostępniaj tylko
-        osobom, którym chcesz dać dostęp do lokalnego sterowania.</p>
-      </div>
-
-      <div class="card" data-reveal style="--d:100ms;display:grid;gap:var(--s4);align-content:start">
-        <p class="eyebrow">Budowanie</p>
-        <h3 style="font-size:clamp(1.4rem,2.6vw,2rem)">Zbuduj z kodu</h3>
-        <p class="muted">Wymagane JDK 17 i Android SDK 34. Aplikacja działa od Androida 6.
-        Poniższe polecenie uruchamia testy rdzenia.</p>
-        <pre class="mono" style="margin:0;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--bg-2);overflow-x:auto;font-size:13px;line-height:1.9"><code>git clone https://github.com/techparka/openoven.git
-cd openoven
-./gradlew :core:test :app:assembleDebug</code></pre>
-        <p class="hint">APK pojawi się w <span class="mono">app/build/outputs/apk/debug/</span>.
-        W systemie Windows użyj <span class="mono">gradlew.bat</span>.</p>
-        <div class="ui__row" style="gap:var(--s3);flex-wrap:wrap">
-          <a class="btn btn--ghost" href="https://github.com/techparka/openoven" rel="noopener">
-            <svg width="17" height="17" aria-hidden="true"><use href="#i-github"/></svg> Otwórz repozytorium
-          </a>
-          <a class="btn btn--quiet" href="https://github.com/techparka/openoven/issues" rel="noopener">
-            Zgłoś problem <svg width="15" height="15" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="card release" data-reveal>
-      <div class="release__head">
-        <div>
-          <p class="eyebrow">Wydanie</p>
-          <h3>v0.6.0 — pierwsze publiczne wydanie testowe</h3>
-        </div>
-        <span class="chip chip--heat">12 listopada 2026</span>
-      </div>
-      <ul class="release__list">
-        <li><b>Pulpit pieczenia</b> z odczytem na żywo, zmianą temperatury i czasu oraz szybkimi akcjami.</li>
-        <li><b>Karuzele nastaw</b>, które przyspieszają wraz z gestem; do trzech etapów, historia i edytowalne szablony.</li>
-        <li><b>Własne przepisy</b>, eksport i import ZIP, przenoszenie profilu przez QR oraz tryb demonstracji.</li>
-        <li><b>124 testy automatyczne</b> (56 JVM, po 34 na emulatorach Android 14 i 16) oraz opisane w README próby na POCO F2 Pro.</li>
-      </ul>
-      <div class="release__files">
-        <span class="mono">OpenOven-0.6.0.apk · 9,0 MB</span>
-        <span class="mono">OpenOven-0.6.0.apk.sha256</span>
-        <a class="mono" href="https://github.com/techparka/openoven/releases/tag/v0.6.0" rel="noopener">notatki wydania <svg width="14" height="14" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
-      </div>
-    </div>
-
-    <div style="margin-top:clamp(56px,9vw,104px)">
-      <div class="sechead" data-reveal style="margin-bottom:var(--s5)">
-        <p class="eyebrow">Częste pytania</p>
-        <h2 style="font-size:clamp(1.6rem,3.4vw,2.4rem)">Zanim zainstalujesz</h2>
-      </div>
-      <div class="faq">
-        <details class="faq__item" data-reveal>
-          <summary>Czy potrzebuję konta, rejestracji albo internetu?</summary>
-          <div class="faq__body">Nie. Profil piekarnika powstaje i zostaje w telefonie, a polecenie
-          wędruje prosto do urządzenia w domowym Wi-Fi (TCP 7779, wykrywanie UDP 7777). Żadne dane
-          nie idą przez serwer pośredniczący. Internet jest potrzebny raz — żeby pobrać APK.</div>
-        </details>
-        <details class="faq__item" data-reveal style="--d:60ms">
-          <summary>Czy to oficjalna aplikacja Amica?</summary>
-          <div class="faq__body">Nie. OpenOven to niezależny projekt. Nazwa Amica pojawia się tylko
-          dlatego, że opisuje urządzenia, którymi aplikacja steruje. Nie mamy dostępu do zaplecza
-          producenta ani jego wsparcia — i nikt z zewnątrz nie ma przez tę aplikację dostępu
-          do Twojej sieci.</div>
-        </details>
-        <details class="faq__item" id="licencja" data-reveal style="--d:90ms">
-          <summary>Na jakiej licencji jest kod?</summary>
-          <div class="faq__body">Jeszcze na żadnej — <b>licencja nie została ogłoszona</b>.
-          Repozytorium jest publiczne, więc kod można czytać, nad nim pracować i zbudować własne APK
-          na użytek domowy. Dalsze udostępnianie lub wykorzystanie w innym projekcie uzgodnij
-          z autorem w <a href="https://github.com/techparka/openoven/issues" rel="noopener">issues</a> —
-          wybór licencji jest tu świadomą decyzją, a nie domyślną klauzulą z szablonu.</div>
-        </details>
-        <details class="faq__item" data-reveal style="--d:120ms">
-          <summary>Czy mogę używać OpenOven razem z aplikacją producenta?</summary>
-          <div class="faq__body">Piekarnik obsługuje jedną sesję sterowania, więc drugą aplikację
-          lepiej zamknąć na czas pracy z OpenOven. Konfiguracja sieci w piekarniku zostaje bez zmian,
-          więc powrót do aplikacji producenta nie wymaga parowania ani resetu.</div>
-        </details>
-        <details class="faq__item" data-reveal style="--d:180ms">
-          <summary>Na jakim sprzęcie to sprawdzono?</summary>
-          <div class="faq__body">Na POCO F2 Pro i jednym piekarniku Amica o identyfikatorze modelu 9137,
-          plus 34 testy na emulatorze z Androidem 14 i 34 na Androidzie 16. Inne telefony, panele
-          i wersje firmware mogą rozmawiać inaczej — <a href="#jakosc">zakres testów</a> opisuje to wprost,
-          bez zatajania niewygodnych fragmentów.</div>
-        </details>
-        <details class="faq__item" data-reveal style="--d:240ms">
-          <summary>Jak przekazać sterowanie drugiej osobie w domu?</summary>
-          <div class="faq__body">„Więcej → Udostępnij piekarnik” generuje kod QR z profilem połączenia,
-          a drugi telefon odczytuje go aparatem — bez ręcznego przepisywania adresu. Profil w kodzie
-          traktuj jak klucze do kuchni: zawiera dane potrzebne do sterowania urządzeniem w Twojej sieci.</div>
-        </details>
-        <details class="faq__item" data-reveal style="--d:300ms">
-          <summary>Czy mogę najpierw obejrzeć aplikację bez piekarnika?</summary>
-          <div class="faq__body">Tak. „Więcej → Połączenie z piekarnikiem → Wypróbuj demonstrację”
-          odpala całą aplikację na symulatorze protokołu: ekrany, etapy, przepisy i historia działają
-          jak na żywo. W trakcie przypomina pasek „Demonstracja · dane z symulatora”, żeby nie pomylić
-          danych testowych z odczytem z urządzenia.</div>
-        </details>
-        <details class="faq__item" data-reveal style="--d:360ms">
-          <summary>Jak zgłosić błąd albo zaproponować funkcję?</summary>
-          <div class="faq__body">Przez <a href="https://github.com/techparka/openoven/issues" rel="noopener">issues w repozytorium</a>.
-          Najbardziej przydają się: identyfikator modelu piekarnika, model telefonu i wersja Androida
-          oraz informacja, na którym kroku gaśnie połączenie — sam opis „nie działa” nic nie wnosi.</div>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="wrap">
-    <div class="cta" data-reveal>
-      <p class="eyebrow">Połączenie</p>
-      <h2>Pobierz OpenOven</h2>
-      <p class="muted" style="margin-top:var(--s4);max-width:60ch">
-        Zainstaluj APK 0.6.0, przejdź demonstrację na symulatorze, a potem dodaj piekarnik
-        w czterech krokach. Kod, zgłoszenia i plan dalszych wersji są w repozytorium.
-      </p>
+    <div class="cta download">
+      <h2>Instalacja OpenOven</h2>
+      <p>Pobierz plik i otwórz go na telefonie. Android może poprosić o zgodę na instalację z tego źródła.</p>
       <div class="cta__row">
-        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk" rel="noopener">
+        <a class="btn btn--primary" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk">
           <svg width="18" height="18" aria-hidden="true"><use href="#i-download"/></svg> Pobierz APK 0.6.0
         </a>
-        <a class="btn btn--ghost" href="https://github.com/techparka/openoven" rel="noopener">
-          <svg width="18" height="18" aria-hidden="true"><use href="#i-github"/></svg> Repozytorium OpenOven
-        </a>
-        <a class="btn btn--quiet" href="#karuzela">
-          Wypróbuj nastawy <svg width="16" height="16" aria-hidden="true"><use href="#i-arrow-right"/></svg>
-        </a>
+        <a class="btn btn--ghost" href="https://github.com/techparka/openoven/releases/tag/v0.6.0">Informacje o wydaniu</a>
       </div>
+      <a class="download__hash" href="https://github.com/techparka/openoven/releases/download/v0.6.0/OpenOven-0.6.0.apk.sha256">Suma SHA-256</a>
     </div>
   </div>
 </section>
@@ -846,48 +475,18 @@ cd openoven
 </main>
 
 <footer class="footer">
-  <div class="wrap">
-    <div class="footer__grid">
-      <div>
-        <p class="footer__brand">
-          <img src="assets/img/logo-64.png" alt="" width="34" height="34" style="border-radius:9px">
-          OpenOven
-        </p>
-        <p class="footer__note">
-          Niezależna aplikacja na Androida do lokalnego sterowania kompatybilnymi piekarnikami Amica.
-          Kod dostępny publicznie, wydanie testowe.
-        </p>
-        <p class="footer__note" style="margin-top:var(--s4)">
-          Projekt niezależny. Nazwa Amica wskazuje urządzenia, do których aplikacja jest przeznaczona.
-        </p>
-      </div>
-      <div>
-        <h3>Aplikacja</h3>
-        <a href="#mozliwosci">Możliwości</a>
-        <a href="#ekrany">Zrzuty ekranu</a>
-        <a href="#karuzela">Nastawy na żywo</a>
-        <a href="#motyw">Motyw jasny i ciemny</a>
-      </div>
-      <div>
-        <h3>Projekt</h3>
-        <a href="https://github.com/techparka/openoven" rel="noopener">Repozytorium</a>
-        <a href="https://github.com/techparka/openoven/releases" rel="noopener">Wydania</a>
-        <a href="https://github.com/techparka/openoven/issues" rel="noopener">Zgłoszenia błędów</a>
-        <a href="https://github.com/techparka/openoven/blob/main/README.md" rel="noopener">Zakres testów</a>
-        <a href="#licencja">Na jakiej licencji?</a>
-      </div>
-      <div>
-        <h3>Źródła</h3>
-        <a href="https://www.amica.pl/media/wysiwyg/programatory/tv/android_manual.pdf" rel="noopener">Instrukcja panelu Amica (PDF)</a>
-        <a href="#lokalnie">Jak działa połączenie</a>
-        <a href="#jakosc">Czego nie sprawdzono</a>
-        <a href="#start">Budowanie z kodu</a>
-      </div>
+  <div class="wrap footer__compact">
+    <div>
+      <p class="footer__brand">
+        <img src="assets/img/logo-64.png" alt="" width="34" height="34"> OpenOven
+      </p>
+      <p class="footer__note">Niezależna aplikacja do kompatybilnych piekarników Amica.</p>
     </div>
-    <div class="footer__end">
-      <p>OpenOven 0.6.0 · Android 6+ · 9,0 MB APK · bez analityki</p>
-      <p>Wersja testowa — przed startem pieczenia sprawdź odczyt na pulpicie.</p>
-    </div>
+    <nav aria-label="Projekt OpenOven">
+      <a href="https://github.com/techparka/openoven">Kod źródłowy</a>
+      <a href="https://github.com/techparka/openoven#budowanie">Budowanie</a>
+      <a href="https://github.com/techparka/openoven/issues">Zgłoś błąd</a>
+    </nav>
   </div>
 </footer>
 
@@ -910,6 +509,6 @@ cd openoven
   </div>
 </dialog>
 
-<script src="app.js?v=2" defer></script>
+<script src="app.js?v=3" defer></script>
 </body>
 </html>

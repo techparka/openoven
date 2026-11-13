@@ -4,7 +4,7 @@
 
 <p align="center">Niezależna aplikacja na Androida do lokalnego sterowania kompatybilnymi piekarnikami Amica. Alternatywa dla aplikacji producenta, z własnymi przepisami, edytowalnymi nastawami i szybkim dostępem do funkcji pieczenia.</p>
 
-<p align="center"><a href="https://github.com/techparka/openoven/releases/latest"><strong>Pobierz APK</strong></a> · <a href="#pierwsze-połączenie">Pierwsze połączenie</a> · <a href="#zakres-testów">Zakres testów</a> — <a href="docs/index.html">Prezentacja</a></p>
+<p align="center"><a href="https://github.com/techparka/openoven/releases/latest"><strong>Pobierz APK</strong></a> · <a href="#pierwsze-połączenie">Pierwsze połączenie</a> · <a href="#zakres-testów">Zakres testów</a> — <a href="https://techparka.github.io/openoven/">Prezentacja</a></p>
 
 <p align="center">
   <img src="docs/screenshots/dashboard.png" width="29%" alt="Pulpit z odczytem i szybkimi akcjami">
@@ -58,16 +58,11 @@ W systemie Windows użyj `gradlew.bat`. APK pojawi się w `app/build/outputs/apk
 
 ## Strona prezentacyjna
 
-W katalogu `docs/` leży jednopaginowa prezentacja projektu: makieta nastaw działająca w przeglądarce,
-prawdziwe zrzuty ekranu, opis protokołu połączenia i liczby z testów. Strona nie pobiera niczego
-z zewnątrz i nie ma analityki (418 kB transferu). Podgląd lokalny:
+[Strona OpenOven](https://techparka.github.io/openoven/) zawiera zrzuty aplikacji, demo nastaw i instrukcję połączenia.
+Pliki strony są w katalogu `docs/`. Podgląd lokalny:
 
 ```sh
 python -m http.server -d docs 8000
 ```
-
-Ten sam katalog wystarczy wskazać jako GitHub Pages (`/docs` z gałęzi `main`),
-wtenczas strona będzie dostępna pod `https://techparka.github.io/openoven/`.
-Kopiując zawartość, nie zmieniaj ścieżek: wszystkie zasoby są względne i bez zapytań na zewnątrz.
 
 OpenOven to niezależny projekt. Nazwa Amica wskazuje urządzenia, do których aplikacja jest przeznaczona.

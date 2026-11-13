@@ -26,27 +26,10 @@
   const applyTheme = () => {
     const dark = choice === 'system' ? mqDark.matches : choice === 'dark';
     html.dataset.theme = dark ? 'dark' : 'light';
-    $$('[data-theme-choice]').forEach((b) =>
-      b.setAttribute('aria-pressed', String(b.dataset.themeChoice === choice))
-    );
     const meta = $('meta[name="theme-color"]');
     if (meta) meta.content = dark ? '#070d13' : '#eef3f6';
-    const note = $('#themeNote');
-    if (note) {
-      note.textContent =
-        choice === 'system'
-          ? `Motyw podąża za ustawieniem systemowym — teraz ${dark ? 'ciemny' : 'jasny'}.`
-          : `Motyw wymuszony na ${choice === 'dark' ? 'ciemny' : 'jasny'}. Wybór zapisany w tej przeglądarce.`;
-    }
   };
   mqDark.addEventListener('change', () => choice === 'system' && applyTheme());
-  $$('[data-theme-choice]').forEach((b) =>
-    b.addEventListener('click', () => {
-      choice = b.dataset.themeChoice;
-      saveTheme();
-      applyTheme();
-    })
-  );
   $('#themeToggle')?.addEventListener('click', () => {
     choice = html.dataset.theme === 'dark' ? 'light' : 'dark';
     saveTheme();
@@ -134,15 +117,6 @@
     });
   });
 
-  /* słupki odczytu w makiecie */
-  $$('[data-bars]').forEach((box) => {
-    box.innerHTML = box.dataset.bars
-      .split(',')
-      .map((h) => `<span style="height:${h}%"></span>`)
-      .join('');
-  });
-
-  /* ================================================ 4. Marquee funkcji grzania */
   const FUNCTIONS = [
     { id: 1, name: 'Konwencjonalne', max: 280 },
     { id: 2, name: 'Grzałka dolna + górna + wentylator', max: 280 },
